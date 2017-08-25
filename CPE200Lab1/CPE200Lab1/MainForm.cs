@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private bool isOperater;
 
         private void resetAll()
         {
@@ -26,6 +27,8 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            isOperater = false;
+
         }
 
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -88,7 +91,12 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (isOperater)
+            {
+                lblDisplay.Text = "0";
+            }
+
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
@@ -108,6 +116,15 @@ namespace CPE200Lab1
             {
                 return;
             }
+            if (isOperater)
+            {
+                string secondOperand = lblDisplay.Text;
+                string result = calculate(operate, firstOperand, secondOperand);
+                lblDisplay.Text = result;
+                isOperater = true;
+                return;
+
+            }
             if (isAfterOperater)
             {
                 return;
@@ -124,9 +141,11 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-                    break;
+                   break;
             }
+            
             isAllowBack = false;
+            isOperater = true;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -226,6 +245,16 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
