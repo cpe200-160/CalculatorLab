@@ -127,7 +127,7 @@ namespace CPE200Lab1
             isAfterEqual = true;
             isOperater = false;
         }
-        //ggwp
+        //ggwp55
         private void btnDot_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
