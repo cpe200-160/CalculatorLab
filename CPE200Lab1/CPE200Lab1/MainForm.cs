@@ -91,14 +91,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
+            if(lblDisplay.Text.Length is 8)
+            {
+                return;
+            }
             if (isOperater)
             {
                 lblDisplay.Text = "0";
-            }
-
-            if (lblDisplay.Text.Length is 8)
-            {
-                return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
@@ -165,6 +164,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+            isOperater = false;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
