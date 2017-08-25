@@ -17,10 +17,10 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string secondOperand = null;
+        private string secondOperand;
         private string operate;
-        private bool Is_OpratorClick;
-        private string Operator_Before;
+        private bool Is_Secontime;
+
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -64,7 +64,6 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    lblDisplay.Text = (Convert.ToDouble(firstOperand) / 100).ToString();
                     return ( Convert.ToDouble(firstOperand) / 100).ToString();
                     
                     break;
@@ -118,35 +117,27 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
-            if (operate == "%")
+            if(Is_Secontime)
             {
+                secondOperand = lblDisplay.Text;
                 lblDisplay.Text = calculate(operate, firstOperand, secondOperand);
+                firstOperand = calculate(operate, firstOperand, secondOperand);
+
             }
-            calculate(Operator_Before, firstOperand, secondOperand);
-            Is_OpratorClick = true;
-            Operator_Before = operate;
-            /*           if (Is_OpratorClick == true)
-                       {
-                           secondOperand = lblDisplay.Text;
-                           lblDisplay.Text = calculate(operate, firstOperand, secondOperand);
-                           /*               switch (operate)
-                                          {
-                                              case "+":
-                                              case "-":
-                                              case "X":
-                                              case "÷":
-                                                  firstOperand = lblDisplay.Text;
-                                                  isAfterOperater = true;
-                                                  break;
-                                              case "%":
-                                                  calculate("%", firstOperand, secondOperand);
-                                                  break;
-                                          }
-                       }
-                       else lblDisplay.Text = "0";
-                          firstOperand = lblDisplay.Text;
-                       Is_OpratorClick = true;
-           */
+            switch (operate)
+            {
+                case "+":
+                case "-":
+                case "X":
+                case "÷":
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
+                    break;
+                case "%":
+                    calculate("%", firstOperand, secondOperand );
+                    break;
+            }
+            Is_Secontime = true;
             isAllowBack = false;
         }
 
