@@ -12,20 +12,21 @@ namespace CPE200Lab1
 {
     public partial class MainForm : Form
     {
-        private bool hasDot;
+        private bool containsDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
-        private string firstOperand;
+        private string firstOperand = null;
         private string operate;
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
-            hasDot = false;
+            containsDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            firstOperand = null;
         }
 
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -112,6 +113,20 @@ namespace CPE200Lab1
             {
                 return;
             }
+            if (firstOperand != null)
+            {
+                string secondOperand = lblDisplay.Text;
+                string result = calculate(operate, firstOperand, secondOperand);
+                if (result is "E" || result.Length > 8)
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                    firstOperand = result;
+                }
+            }
             operate = ((Button)sender).Text;
             switch (operate)
             {
@@ -162,10 +177,10 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (!hasDot)
+            if (!containsDot)
             {
                 lblDisplay.Text += ".";
-                hasDot = true;
+                containsDot = true;
             }
         }
 
@@ -218,7 +233,7 @@ namespace CPE200Lab1
                 char rightMost = current[current.Length - 1];
                 if(rightMost is '.')
                 {
-                    hasDot = false;
+                    containsDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if(lblDisplay.Text is "" || lblDisplay.Text is "-")
