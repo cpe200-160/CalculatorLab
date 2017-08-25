@@ -17,8 +17,10 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand = null;
         private string operate;
-
+        private bool Is_OpratorClick;
+        private string Operator_Before;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -62,6 +64,9 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+                    lblDisplay.Text = (Convert.ToDouble(firstOperand) / 100).ToString();
+                    return ( Convert.ToDouble(firstOperand) / 100).ToString();
+                    
                     break;
             }
             return "E";
@@ -113,19 +118,35 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
-            switch (operate)
+            if (operate == "%")
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
-                case "%":
-                    // your code here
-                    break;
+                lblDisplay.Text = calculate(operate, firstOperand, secondOperand);
             }
+            calculate(Operator_Before, firstOperand, secondOperand);
+            Is_OpratorClick = true;
+            Operator_Before = operate;
+            /*           if (Is_OpratorClick == true)
+                       {
+                           secondOperand = lblDisplay.Text;
+                           lblDisplay.Text = calculate(operate, firstOperand, secondOperand);
+                           /*               switch (operate)
+                                          {
+                                              case "+":
+                                              case "-":
+                                              case "X":
+                                              case "÷":
+                                                  firstOperand = lblDisplay.Text;
+                                                  isAfterOperater = true;
+                                                  break;
+                                              case "%":
+                                                  calculate("%", firstOperand, secondOperand);
+                                                  break;
+                                          }
+                       }
+                       else lblDisplay.Text = "0";
+                          firstOperand = lblDisplay.Text;
+                       Is_OpratorClick = true;
+           */
             isAllowBack = false;
         }
 
@@ -135,7 +156,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
+            secondOperand = lblDisplay.Text;
             string result = calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
