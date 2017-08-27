@@ -110,7 +110,7 @@ namespace CPE200Lab1
                     engine.calculate(operate, firstOperand, "0");
                     break;
             }
-            
+            //อัพละทำไมไม่ขึ้น
             isAllowBack = false;
             isOperater = true;
         }
