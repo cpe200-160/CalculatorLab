@@ -43,7 +43,10 @@ namespace CPE200Lab1
                 case "%":
                     //your code here
                     return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100)).ToString();
-                    break;
+                case "√":
+                    return (Math.Sqrt(double.Parse(firstOperand))).ToString();
+                case "1/x":
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();
             }
             return "E";
         }

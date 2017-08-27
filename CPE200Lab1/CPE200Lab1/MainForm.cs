@@ -101,8 +101,14 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-                    lblDisplay.Text = result / 100;
+                    engine.calculate(operate, firstOperand, "0");
                    break;
+                case "1/x":
+                    engine.calculate(operate, firstOperand, "0");
+                    break;
+                case "√":
+                    engine.calculate(operate, firstOperand, "0");
+                    break;
             }
             
             isAllowBack = false;
