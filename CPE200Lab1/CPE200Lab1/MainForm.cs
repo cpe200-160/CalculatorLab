@@ -101,6 +101,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    lblDisplay.Text = result / 100;
                    break;
             }
             
