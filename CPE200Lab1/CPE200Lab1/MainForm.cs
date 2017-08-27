@@ -17,7 +17,11 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
-        private string operate;
+		private string secondOperand;
+		private string operate;
+		private bool hasPercantage; 
+
+		CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -26,9 +30,10 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+			hasPercantage = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        /*private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
             {
@@ -66,10 +71,14 @@ namespace CPE200Lab1
             }
             return "E";
         }
+		*/
 
         public MainForm()
         {
             InitializeComponent();
+			//create new engine
+			engine = new CalculatorEngine();
+			
 
             resetAll();
         }
@@ -122,21 +131,53 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here
-                    break;
+                /*case "%":
+					// your code here
+					break;
+			    */
+					
+
+
+					
             }
             isAllowBack = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+		private void btnPercentage_Click(object sender, EventArgs e)
+		{
+			double secondNumber = (Convert.ToDouble(lblDisplay.Text) / 100) * Convert.ToDouble(firstOperand);
+			secondOperand = secondNumber.ToString();
+			lblDisplay.Text = secondOperand;
+			hasPercantage = true;
+		}
+
+		private void btnRoot_Click(object sender, EventArgs e)
+		{
+			// syntax //(float)Math.Sqrt(inputFloat)
+			double rootNumber = (double)Math.Sqrt(Convert.ToDouble(lblDisplay.Text));
+			lblDisplay.Text = rootNumber.ToString();
+			firstOperand = lblDisplay.Text;
+
+		}
+
+		private void btnOneOverX_Click(object sender, EventArgs e)
+		{
+			double oneOverNumber = 1/Convert.ToDouble(lblDisplay.Text);
+			lblDisplay.Text = oneOverNumber.ToString();
+			firstOperand = lblDisplay.Text;
+		}
+
+		private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+			if (hasPercantage == false)
+			{
+				secondOperand = lblDisplay.Text;
+			}
+            string result = engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -146,6 +187,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+			hasPercantage = false;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
