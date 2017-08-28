@@ -84,9 +84,8 @@ namespace CPE200Lab1
             {
                 secondOperand = lblDisplay.Text;
                 lblDisplay.Text = Engine.calculate(operate, firstOperand, secondOperand);
-                firstOperand = Engine.calculate(operate, firstOperand, secondOperand);
-
             }
+            firstOperand = lblDisplay.Text;
             operate = ((Button)sender).Text;
             switch (operate)
             {
@@ -98,7 +97,16 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    Engine.calculate("%", firstOperand, secondOperand );
+                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0" );
+                    Is_Secontime = false;
+                    break;
+                case "√":
+                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
+                    Is_Secontime = false;
+                    break;
+                case "1/x":
+                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
+                    Is_Secontime = false;
                     break;
             }
             Is_Secontime = true;
@@ -121,6 +129,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            Is_Secontime = false;
             isAfterEqual = true;
         }
 
@@ -202,6 +211,11 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void CE_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = "0";
         }
     }
 }

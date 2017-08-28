@@ -40,6 +40,14 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
+                case "√":
+                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
+                case "%":
+                    return (Convert.ToDouble(firstOperand) / 100).ToString();
+                case "1/x":
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();
+
+
             }
             return "E";
         }
