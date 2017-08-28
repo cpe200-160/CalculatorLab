@@ -20,59 +20,22 @@ namespace CPE200Lab1
         private string secondOperand;
         private string operate;
         private bool Is_Secontime;
+        CalculatorEngine Engine;
 
         private void resetAll()
         {
             lblDisplay.Text = "0";
+            secondOperand = "0";
+            firstOperand = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
-            switch(operate)
-            {
-                case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if(secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
-                        result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        // split between integer part and fractional part
-                        parts = result.ToString().Split('.');
-                        // if integer part length is already break max output, return error
-                        if(parts[0].Length > maxOutputSize)
-                        {
-                            return "E";
-                        }
-                        // calculate remaining space for fractional part.
-                        remainLength = maxOutputSize - parts[0].Length - 1;
-                        // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
-                    }
-                    break;
-                case "%":
-                    //your code here
-                    return ( Convert.ToDouble(firstOperand) / 100).ToString();
-                    
-                    break;
-            }
-            return "E";
-        }
-
         public MainForm()
         {
+            Engine = new CalculatorEngine();
             InitializeComponent();
 
             resetAll();
@@ -116,14 +79,15 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
+
             if(Is_Secontime)
             {
                 secondOperand = lblDisplay.Text;
-                lblDisplay.Text = calculate(operate, firstOperand, secondOperand);
-                firstOperand = calculate(operate, firstOperand, secondOperand);
+                lblDisplay.Text = Engine.calculate(operate, firstOperand, secondOperand);
+                firstOperand = Engine.calculate(operate, firstOperand, secondOperand);
 
             }
+            operate = ((Button)sender).Text;
             switch (operate)
             {
                 case "+":
@@ -134,7 +98,7 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    calculate("%", firstOperand, secondOperand );
+                    Engine.calculate("%", firstOperand, secondOperand );
                     break;
             }
             Is_Secontime = true;
@@ -148,7 +112,7 @@ namespace CPE200Lab1
                 return;
             }
             secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = Engine.calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
