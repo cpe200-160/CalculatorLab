@@ -49,14 +49,7 @@ namespace CPE200Lab1
 			return "E";
 		}
 
-		public string Percentage_Click(string firstOperand, string secondOperand)
-		{
-			double secondNumber = (Convert.ToDouble(secondOperand) / 100) * Convert.ToDouble(firstOperand);
-			secondOperand = secondNumber.ToString();
-			/*lblDisplay.Text = secondOperand;
-			hasPercantage = true; */
-			return secondOperand;
-		}
+		
 
 
 

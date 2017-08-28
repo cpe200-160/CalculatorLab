@@ -254,7 +254,7 @@
 			this.btnPercent.TabIndex = 17;
 			this.btnPercent.Text = "%";
 			this.btnPercent.UseVisualStyleBackColor = true;
-			this.btnPercent.Click += new System.EventHandler(this.btnPercentage_Click);
+			this.btnPercent.Click += new System.EventHandler(this.btnTranformNumber_Click);
 			// 
 			// btnClear
 			// 
@@ -300,7 +300,7 @@
 			this.btn_OneoverX.TabIndex = 21;
 			this.btn_OneoverX.Text = "1/x";
 			this.btn_OneoverX.UseVisualStyleBackColor = true;
-			this.btn_OneoverX.Click += new System.EventHandler(this.btnOneOverX_Click);
+			this.btn_OneoverX.Click += new System.EventHandler(this.btnTranformNumber_Click);
 			// 
 			// btn_Root
 			// 
@@ -311,7 +311,7 @@
 			this.btn_Root.TabIndex = 22;
 			this.btn_Root.Text = "√";
 			this.btn_Root.UseVisualStyleBackColor = true;
-			this.btn_Root.Click += new System.EventHandler(this.btnRoot_Click);
+			this.btn_Root.Click += new System.EventHandler(this.btnTranformNumber_Click);
 			// 
 			// btn_MR
 			// 
@@ -322,6 +322,7 @@
 			this.btn_MR.TabIndex = 23;
 			this.btn_MR.Text = "MR";
 			this.btn_MR.UseVisualStyleBackColor = true;
+			this.btn_MR.Click += new System.EventHandler(this.btnM_operate_Click);
 			// 
 			// btn_MC
 			// 
@@ -332,6 +333,7 @@
 			this.btn_MC.TabIndex = 24;
 			this.btn_MC.Text = "MC";
 			this.btn_MC.UseVisualStyleBackColor = true;
+			this.btn_MC.Click += new System.EventHandler(this.btnM_operate_Click);
 			// 
 			// btn_mPlus
 			// 
@@ -342,6 +344,7 @@
 			this.btn_mPlus.TabIndex = 25;
 			this.btn_mPlus.Text = "M+";
 			this.btn_mPlus.UseVisualStyleBackColor = true;
+			this.btn_mPlus.Click += new System.EventHandler(this.btnM_operate_Click);
 			// 
 			// btn_MS
 			// 
@@ -352,6 +355,7 @@
 			this.btn_MS.TabIndex = 26;
 			this.btn_MS.Text = "MS";
 			this.btn_MS.UseVisualStyleBackColor = true;
+			this.btn_MS.Click += new System.EventHandler(this.btnM_operate_Click);
 			// 
 			// btn_mDevide
 			// 
@@ -362,6 +366,7 @@
 			this.btn_mDevide.TabIndex = 27;
 			this.btn_mDevide.Text = "M-";
 			this.btn_mDevide.UseVisualStyleBackColor = true;
+			this.btn_mDevide.Click += new System.EventHandler(this.btnM_operate_Click);
 			// 
 			// MainForm
 			// 

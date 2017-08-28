@@ -19,7 +19,10 @@ namespace CPE200Lab1
         private string firstOperand;
 		private string secondOperand;
 		private string operate;
-		private bool hasPercantage; 
+		private bool hasPercantage;
+		private string saveNumber = "0";
+		private string mOperate;
+		private string tranformNumber; 
 
 		CalculatorEngine engine;
 
@@ -131,41 +134,68 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                /*case "%":
-					// your code here
-					break;
-			    */
-					
-
-
-					
-            }
+			}
             isAllowBack = false;
         }
 
-		private void btnPercentage_Click(object sender, EventArgs e)
+		private void btnTranformNumber_Click(object sender, EventArgs e)
 		{
-			double secondNumber = (Convert.ToDouble(lblDisplay.Text) / 100) * Convert.ToDouble(firstOperand);
-			secondOperand = secondNumber.ToString();
-			lblDisplay.Text = secondOperand;
-			hasPercantage = true;
+			tranformNumber = ((Button)sender).Text;
+			switch (tranformNumber)
+			{
+				case "%":
+					// your code here
+					double secondNumber = (Convert.ToDouble(lblDisplay.Text) / 100) * Convert.ToDouble(firstOperand);
+					secondOperand = secondNumber.ToString();
+					lblDisplay.Text = secondOperand;
+					hasPercantage = true;
+					break;
+				case "√":
+					double rootNumber = (double)Math.Sqrt(Convert.ToDouble(lblDisplay.Text));
+					lblDisplay.Text = rootNumber.ToString();
+					firstOperand = lblDisplay.Text;
+					break;
+				case "1/x":
+					double oneOverNumber = 1 / Convert.ToDouble(lblDisplay.Text);
+					lblDisplay.Text = oneOverNumber.ToString();
+					firstOperand = lblDisplay.Text;
+					break;
+
+			}
+			
+			
+		}
+		
+		private void btnM_operate_Click(object sender, EventArgs e)
+		{
+			mOperate = ((Button)sender).Text;
+			double saveNum = Convert.ToDouble(saveNumber);
+			switch (mOperate)
+			{
+				
+				case "MC":
+					saveNumber = "0";
+					saveNum = 0;
+					break;
+				case "MR":
+					lblDisplay.Text = saveNumber;
+					break;
+				case "MS":
+					saveNumber = lblDisplay.Text;
+					break;
+				case "M+":
+					saveNum += Convert.ToDouble(lblDisplay.Text);
+					saveNumber = saveNum.ToString();
+					break;
+				case "M-":
+					saveNum -= Convert.ToDouble(lblDisplay.Text);
+					saveNumber = saveNum.ToString();
+					break;
+			}
+			isAfterOperater = true;
 		}
 
-		private void btnRoot_Click(object sender, EventArgs e)
-		{
-			// syntax //(float)Math.Sqrt(inputFloat)
-			double rootNumber = (double)Math.Sqrt(Convert.ToDouble(lblDisplay.Text));
-			lblDisplay.Text = rootNumber.ToString();
-			firstOperand = lblDisplay.Text;
 
-		}
-
-		private void btnOneOverX_Click(object sender, EventArgs e)
-		{
-			double oneOverNumber = 1/Convert.ToDouble(lblDisplay.Text);
-			lblDisplay.Text = oneOverNumber.ToString();
-			firstOperand = lblDisplay.Text;
-		}
 
 		private void btnEqual_Click(object sender, EventArgs e)
         {
@@ -269,5 +299,7 @@ namespace CPE200Lab1
                 }
             }
         }
-    }
+
+		
+	}
 }
