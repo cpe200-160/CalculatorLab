@@ -28,24 +28,6 @@ namespace CPE200Lab1
             return str.Substring(str.Length - 1);
         }
 
-        private bool isNumber(string str)
-        {
-            double retNum;
-            return Double.TryParse(str, out retNum);
-        }
-
-        private bool isOperator(string str)
-        {
-            switch(str) {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    return true;
-            }
-            return false;
-        }
-
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -105,21 +87,13 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string current = lblDisplay.Text;
-            string[] parts = current.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            string result = engine.Process(lblDisplay.Text);
+            if (result is "E")
             {
                 lblDisplay.Text = "Error";
             } else
             {
-                string result = engine.calculate(parts[1], parts[0], parts[2], 4);
-                if(result is "E")
-                {
-                    lblDisplay.Text = "Error";
-                } else
-                {
-                    lblDisplay.Text = result;
-                }
+                lblDisplay.Text = result;
             }
         }
 
