@@ -112,7 +112,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = "Error";
             } else
             {
-                string result = engine.calculate(parts[1], parts[0], parts[2], 20);
+                string result = engine.calculate(parts[1], parts[0], parts[2], 4);
                 if(result is "E")
                 {
                     lblDisplay.Text = "Error";
