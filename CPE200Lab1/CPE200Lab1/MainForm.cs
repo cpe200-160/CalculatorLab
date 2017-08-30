@@ -21,8 +21,9 @@ namespace CPE200Lab1
         private string operate;
         private bool Is_Secontime;
         CalculatorEngine Engine;
+        private string Memories_Number;
 
-        private void resetAll()
+        private void ResetAll()
         {
             lblDisplay.Text = "0";
             secondOperand = "0";
@@ -38,10 +39,10 @@ namespace CPE200Lab1
             Engine = new CalculatorEngine();
             InitializeComponent();
 
-            resetAll();
+            ResetAll();
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void BtnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -49,7 +50,7 @@ namespace CPE200Lab1
             }
             if (isAfterEqual)
             {
-                resetAll();
+   //             resetAll();
             }
             if (isAfterOperater)
             {
@@ -69,7 +70,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
         }
 
-        private void btnOperator_Click(object sender, EventArgs e)
+        private void BtnOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -91,7 +92,7 @@ namespace CPE200Lab1
             {
                 case "+":
                 case "-":
-                case "X":
+                case "x":
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
@@ -113,7 +114,7 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void BtnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -133,7 +134,7 @@ namespace CPE200Lab1
             isAfterEqual = true;
         }
 
-        private void btnDot_Click(object sender, EventArgs e)
+        private void BtnDot_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -141,7 +142,7 @@ namespace CPE200Lab1
             }
             if (isAfterEqual)
             {
-                resetAll();
+                ResetAll();
             }
             if (lblDisplay.Text.Length is 8)
             {
@@ -154,7 +155,7 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnSign_Click(object sender, EventArgs e)
+        private void BtnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -162,7 +163,7 @@ namespace CPE200Lab1
             }
             if (isAfterEqual)
             {
-                resetAll();
+                ResetAll();
             }
             // already contain negative sign
             if (lblDisplay.Text.Length is 8)
@@ -178,12 +179,12 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
-            resetAll();
+            ResetAll();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -216,6 +217,33 @@ namespace CPE200Lab1
         private void CE_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
+        }
+
+        private void Btn_memories_Click(object sender, EventArgs e)
+        {
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "MC":
+                    Memories_Number = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = Memories_Number;
+                    break;
+                case "M+":
+                    Memories_Number = (Convert.ToDouble(Memories_Number) + Convert.ToDouble(lblDisplay.Text)).ToString();
+                    break;
+                case "M-":
+                    Memories_Number = (Convert.ToDouble(Memories_Number) - Convert.ToDouble(lblDisplay.Text)).ToString();
+                    break;
+                case "MS":
+                    Memories_Number = lblDisplay.Text;
+                    break;
+
+            }
+
+
+
         }
     }
 }
