@@ -58,11 +58,13 @@
             this.lblHistory = new System.Windows.Forms.Label();
             this.btnClearE = new System.Windows.Forms.Button();
             this.btnPow = new System.Windows.Forms.Button();
+            this.btnSwitch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
             // 
             this.btn7.BackColor = System.Drawing.Color.White;
+            this.btn7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn7.Location = new System.Drawing.Point(12, 377);
             this.btn7.Name = "btn7";
@@ -75,6 +77,7 @@
             // btn8
             // 
             this.btn8.BackColor = System.Drawing.Color.White;
+            this.btn8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn8.Location = new System.Drawing.Point(106, 377);
             this.btn8.Name = "btn8";
@@ -87,6 +90,7 @@
             // btn9
             // 
             this.btn9.BackColor = System.Drawing.Color.White;
+            this.btn9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn9.Location = new System.Drawing.Point(200, 377);
             this.btn9.Name = "btn9";
@@ -98,6 +102,7 @@
             // 
             // btnMultiply
             // 
+            this.btnMultiply.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMultiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMultiply.Location = new System.Drawing.Point(294, 377);
             this.btnMultiply.Name = "btnMultiply";
@@ -109,6 +114,7 @@
             // 
             // btnMinus
             // 
+            this.btnMinus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinus.Location = new System.Drawing.Point(294, 447);
             this.btnMinus.Name = "btnMinus";
@@ -121,6 +127,7 @@
             // btn6
             // 
             this.btn6.BackColor = System.Drawing.Color.White;
+            this.btn6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn6.Location = new System.Drawing.Point(200, 447);
             this.btn6.Name = "btn6";
@@ -133,6 +140,7 @@
             // btn5
             // 
             this.btn5.BackColor = System.Drawing.Color.White;
+            this.btn5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn5.Location = new System.Drawing.Point(106, 447);
             this.btn5.Name = "btn5";
@@ -145,6 +153,7 @@
             // btn4
             // 
             this.btn4.BackColor = System.Drawing.Color.White;
+            this.btn4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn4.Location = new System.Drawing.Point(12, 447);
             this.btn4.Name = "btn4";
@@ -156,6 +165,7 @@
             // 
             // btnPlus
             // 
+            this.btnPlus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlus.Location = new System.Drawing.Point(294, 517);
             this.btnPlus.Name = "btnPlus";
@@ -168,6 +178,7 @@
             // btn3
             // 
             this.btn3.BackColor = System.Drawing.Color.White;
+            this.btn3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn3.Location = new System.Drawing.Point(200, 517);
             this.btn3.Name = "btn3";
@@ -180,6 +191,7 @@
             // btn2
             // 
             this.btn2.BackColor = System.Drawing.Color.White;
+            this.btn2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2.Location = new System.Drawing.Point(106, 517);
             this.btn2.Name = "btn2";
@@ -192,6 +204,7 @@
             // btn1
             // 
             this.btn1.BackColor = System.Drawing.Color.White;
+            this.btn1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn1.Location = new System.Drawing.Point(12, 517);
             this.btn1.Name = "btn1";
@@ -203,6 +216,7 @@
             // 
             // btnEqual
             // 
+            this.btnEqual.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEqual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEqual.Location = new System.Drawing.Point(294, 587);
             this.btnEqual.Name = "btnEqual";
@@ -215,6 +229,7 @@
             // btnDot
             // 
             this.btnDot.BackColor = System.Drawing.Color.White;
+            this.btnDot.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDot.Location = new System.Drawing.Point(200, 587);
             this.btnDot.Name = "btnDot";
@@ -227,6 +242,7 @@
             // btn0
             // 
             this.btn0.BackColor = System.Drawing.Color.White;
+            this.btn0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.Location = new System.Drawing.Point(106, 587);
             this.btn0.Name = "btn0";
@@ -238,6 +254,7 @@
             // 
             // btnSign
             // 
+            this.btnSign.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSign.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSign.Location = new System.Drawing.Point(12, 587);
             this.btnSign.Name = "btnSign";
@@ -249,6 +266,7 @@
             // 
             // btnDivide
             // 
+            this.btnDivide.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDivide.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDivide.Location = new System.Drawing.Point(294, 307);
             this.btnDivide.Name = "btnDivide";
@@ -260,6 +278,7 @@
             // 
             // btnPercent
             // 
+            this.btnPercent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPercent.Location = new System.Drawing.Point(200, 307);
             this.btnPercent.Name = "btnPercent";
@@ -271,6 +290,7 @@
             // 
             // btnClear
             // 
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Location = new System.Drawing.Point(106, 237);
             this.btnClear.Name = "btnClear";
@@ -282,6 +302,7 @@
             // 
             // btnBack
             // 
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Location = new System.Drawing.Point(200, 237);
             this.btnBack.Name = "btnBack";
@@ -306,6 +327,7 @@
             // 
             // btnMC
             // 
+            this.btnMC.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMC.Location = new System.Drawing.Point(12, 167);
             this.btnMC.Name = "btnMC";
@@ -317,6 +339,7 @@
             // 
             // btnMR
             // 
+            this.btnMR.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMR.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMR.Location = new System.Drawing.Point(106, 167);
             this.btnMR.Name = "btnMR";
@@ -328,6 +351,7 @@
             // 
             // btnMP
             // 
+            this.btnMP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMP.Location = new System.Drawing.Point(200, 167);
             this.btnMP.Name = "btnMP";
@@ -339,6 +363,7 @@
             // 
             // btnMM
             // 
+            this.btnMM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMM.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMM.Location = new System.Drawing.Point(294, 167);
             this.btnMM.Name = "btnMM";
@@ -350,6 +375,7 @@
             // 
             // btnSqr
             // 
+            this.btnSqr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSqr.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSqr.Location = new System.Drawing.Point(12, 307);
             this.btnSqr.Name = "btnSqr";
@@ -361,6 +387,7 @@
             // 
             // btnOox
             // 
+            this.btnOox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOox.Location = new System.Drawing.Point(294, 237);
             this.btnOox.Name = "btnOox";
@@ -385,6 +412,7 @@
             // 
             // btnClearE
             // 
+            this.btnClearE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearE.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearE.Location = new System.Drawing.Point(12, 237);
             this.btnClearE.Name = "btnClearE";
@@ -396,6 +424,7 @@
             // 
             // btnPow
             // 
+            this.btnPow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPow.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPow.Location = new System.Drawing.Point(106, 307);
             this.btnPow.Name = "btnPow";
@@ -405,12 +434,26 @@
             this.btnPow.UseVisualStyleBackColor = true;
             this.btnPow.Click += new System.EventHandler(this.btnUnaryOperator_Click);
             // 
+            // btnSwitch
+            // 
+            this.btnSwitch.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSwitch.Location = new System.Drawing.Point(156, -5);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(88, 32);
+            this.btnSwitch.TabIndex = 42;
+            this.btnSwitch.Text = "Switch";
+            this.btnSwitch.UseVisualStyleBackColor = false;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(394, 666);
+            this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.btnPow);
             this.Controls.Add(this.btnClearE);
             this.Controls.Add(this.lblHistory);
@@ -441,7 +484,10 @@
             this.Controls.Add(this.btn9);
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -480,6 +526,7 @@
         private System.Windows.Forms.Label lblHistory;
         private System.Windows.Forms.Button btnClearE;
         private System.Windows.Forms.Button btnPow;
+        private System.Windows.Forms.Button btnSwitch;
     }
 }
 

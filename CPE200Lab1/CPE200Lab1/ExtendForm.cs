@@ -21,6 +21,14 @@ namespace CPE200Lab1
             engine = new CalculatorEngine();
         }
 
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm SwitchForm = new MainForm();
+            SwitchForm.ShowDialog();
+            this.Close();
+        }
+
         private string getLastInString(string str)
         {
             if (str.Length is 1)

@@ -36,14 +36,19 @@ namespace CPE200Lab1
             lblHistory.Text = history_line;
         }
 
-      
-
         public MainForm()
         {
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
             resetAll();
+        }
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ExtendForm SwitchForm = new ExtendForm();
+            SwitchForm.ShowDialog();
+            this.Close();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -86,6 +91,7 @@ namespace CPE200Lab1
             }
             string type = ((Button)sender).Text;
             lblDisplay.Text = engine.unaryCalculate(type, lblDisplay.Text);
+            isAfterOperater = true;
             isAllowBack = false;
         }
 
