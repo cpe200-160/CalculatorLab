@@ -17,7 +17,9 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string secondOperand;
         private string operate;
+        private string history_line;
         private double memory;
         private CalculatorEngine engine;
 
@@ -29,6 +31,9 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
+
+            history_line = "";
+            lblHistory.Text = history_line;
         }
 
       
@@ -47,7 +52,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterEqual)
+            if (isAfterEqual && history_line == "")
             {
                 resetAll();
             }
@@ -79,18 +84,9 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
-            if (result is "E" || result.Length > 8)
-            {
-                lblDisplay.Text = "Error";
-            }
-            else
-            {
-                lblDisplay.Text = result;
-            }
-
+            string type = ((Button)sender).Text;
+            lblDisplay.Text = engine.unaryCalculate(type, lblDisplay.Text);
+            isAllowBack = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -103,34 +99,37 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
-            {
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
-                if (result is "E" || result.Length > 8)
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                }
-            }
-            operate = ((Button)sender).Text;
+            string temp_operate = operate;
+            if (firstOperand == null) firstOperand = lblDisplay.Text;
             switch (operate)
             {
                 case "+":
                 case "-":
                 case "X":
                 case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
+                    {
+                        if (isAllowBack && isAfterEqual)
+                        {
+                            secondOperand = lblDisplay.Text;
+                            firstOperand = engine.calculate(operate, firstOperand, secondOperand);
+                        }
+                        //isAfterEqual = true;                      
+                        break;
+                    }
                 case "%":
-                    // your code here
-                    break;
+                    {
+                        string secondOperand = lblDisplay.Text;
+                        lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
+                        operate = temp_operate;
+                        break;
+                    }
             }
+            isAfterEqual = true;
+            operate = ((Button)sender).Text;
+            isAfterOperater = true;
+            History(lblDisplay.Text);
             isAllowBack = false;
+            lblDisplay.Text = firstOperand;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -150,6 +149,9 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+
+            history_line = "";
+            lblHistory.Text = history_line;
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -199,7 +201,16 @@ namespace CPE200Lab1
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            resetAll();
+            string text = ((Button)sender).Text;
+            switch (text)
+            {
+                case "C":
+                    resetAll();
+                    break;
+                case "CE":
+                    lblDisplay.Text = "0";
+                    break;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -230,6 +241,15 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void History(string recent)
+        {
+            if (isAllowBack) history_line += " " + recent + " ";
+            else history_line = history_line.Remove(history_line.Length - 1, 1);
+
+            history_line += operate;
+            lblHistory.Text = history_line;
         }
 
         private void btnMP_Click(object sender, EventArgs e)
