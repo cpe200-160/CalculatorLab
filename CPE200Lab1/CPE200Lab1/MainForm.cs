@@ -28,10 +28,12 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             secondOperand = "0";
             firstOperand = "0";
+            operate = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            Is_Secontime = false;
         }
 
         public MainForm()
@@ -81,36 +83,45 @@ namespace CPE200Lab1
                 return;
             }
 
-            if(Is_Secontime)
+            if(Is_Secontime && ((Button)sender).Text == "√")
+            {
+                secondOperand = lblDisplay.Text;
+                lblDisplay.Text = Engine.calculate("√", secondOperand, "0");
+            }else 
+            if (Is_Secontime)
             {
                 secondOperand = lblDisplay.Text;
                 lblDisplay.Text = Engine.calculate(operate, firstOperand, secondOperand);
-            }
-            firstOperand = lblDisplay.Text;
-            operate = ((Button)sender).Text;
-            switch (operate)
+            }else
             {
-                case "+":
-                case "-":
-                case "x":
-                case "÷":
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
-                case "%":
-                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0" );
-                    Is_Secontime = false;
-                    break;
-                case "√":
-                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
-                    Is_Secontime = false;
-                    break;
-                case "1/x":
-                    lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
-                    Is_Secontime = false;
-                    break;
+                switch (((Button)sender).Text)
+                {
+                    case "+":
+                    case "-":
+                    case "x":
+                    case "÷":
+                        firstOperand = lblDisplay.Text;
+                        isAfterOperater = true;
+                        break;
+                    case "%":
+                        lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
+                        break;
+                    case "√":
+                        lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
+                        break;
+                    case "1/x":
+                        lblDisplay.Text = Engine.calculate(operate, firstOperand, "0");
+                        break;
+                }
             }
-            Is_Secontime = true;
+            if (((Button)sender).Text != "%" && ((Button)sender).Text != "√" && ((Button)sender).Text != "1/x")
+            {
+                operate = ((Button)sender).Text;
+                firstOperand = lblDisplay.Text;
+                isAfterOperater = true;
+                Is_Secontime = true;
+            }
+
             isAllowBack = false;
         }
 
