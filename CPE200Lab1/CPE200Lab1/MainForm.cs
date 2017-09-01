@@ -79,9 +79,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
-            firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.unaryCalculate(((Button)sender).Text, lblDisplay.Text);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -95,6 +93,7 @@ namespace CPE200Lab1
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(firstOperand);
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -103,7 +102,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(firstOperand != null)
+            if(firstOperand != null && ((Button)sender).Text != "%")
             {
                 string secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
@@ -115,9 +114,8 @@ namespace CPE200Lab1
                 {
                     lblDisplay.Text = result;
                 }
-            }
-            operate = ((Button)sender).Text;
-            switch (operate)
+            }        
+            switch (((Button)sender).Text)
             {
                 case "+":
                 case "-":
@@ -128,7 +126,12 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    lblDisplay.Text = engine.calculate(((Button)sender).Text, lblDisplay.Text, "0");
                     break;
+            }
+            if (((Button)sender).Text != "√" && ((Button)sender).Text != "1/x" && ((Button)sender).Text != "%")
+            {
+                operate = ((Button)sender).Text;
             }
             isAllowBack = false;
         }
