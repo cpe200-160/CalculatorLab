@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace CPE200Lab1
 {
@@ -28,53 +29,68 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            string x;
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
-                for (int i=0; i<parts.Length; i++)
-             {
-                    if(parts[i]== "÷")
+                for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                    for (int i = 0; i < parts.Length; i++)
                     {
-                        parts[i-1] = calculate(parts[i], parts[i-1], parts[i + 1], 4);
-                        parts[i] = parts[i + 1] = " ";
-                        parts = str.Split(' ');
+                        if (parts[i] == "÷")
+                        {
+                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                            parts[i + 1] = parts[i + 2];
+                            parts[i] = parts[i + 2] = " ";
+                            x = String.Join("", parts);
+                            parts = x.Split(' ');
+                        }
                     }
-             }
-                for (int i = 0; i < parts.Length; i++)
-                {
-                    if (parts[i] == "X")
+                for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                    for (int i = 0; i < parts.Length; i++)
                     {
-                        parts[i - 1] = calculate(parts[i], parts[i-1], parts[i + 1], 4);
-                        parts[i] = parts[i + 1] = " ";
-                        parts = str.Split(' ');
+                        if (parts[i] == "X")
+                        {
+                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                            parts[i + 1] = parts[i + 2];
+                            parts[i] = parts[i + 2] = " ";
+                            x = String.Join("", parts);
+                            parts = x.Split(' ');
+                        }
                     }
-                }
                 for (int i = 0; i < parts.Length; i++)
                 {
                     if (parts[i] == "+")
                     {
-                        parts[i - 1] = calculate(parts[i], parts[i-1], parts[i + 1], 4);
-                        parts[i] = parts[i + 1] = " ";
-                        parts = str.Split(' ');
+                        parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                        parts[i + 1] = parts[i + 2];
+                        parts[i] = parts[i + 2] = " ";
+                        x = String.Join("", parts);
+                        parts = x.Split(' ');
+                        break;
                     }
                 }
-                for (int i = 0; i < parts.Length; i++)
-                {
-                    if (parts[i] == "-")
+                for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                    for (int i = 0; i < parts.Length; i++)
                     {
-                        parts[i - 1] = calculate(parts[i], parts[i-1], parts[i + 1], 4);
-                        parts[i] = parts[i + 1] = null;
-                        parts = str.Split(' ');
+                        if (parts[i] == "-")
+                        {
+                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                            parts[i + 1] = parts[i + 2];
+                            parts[i] = parts[i + 2] = " ";
+                            x = String.Join("", parts);
+                            parts = x.Split(' ');
+                        }
                     }
-                }
                 for (int i = 0; i < parts.Length; i++)
                 {
-                    Console.WriteLine(parts[i]+" out");
+                    Console.WriteLine(parts[i] + " out");
                 }
                 return parts[0];
             }
+
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -158,7 +174,11 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    return (Convert.ToDouble(firstOperand) / 100).ToString();
+                    if(firstOperand == "0")
+                    {
+                        return (Convert.ToDouble(secondOperand) / 100).ToString();
+                    }
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand) / 100)).ToString();
             }
             return "E";
         }

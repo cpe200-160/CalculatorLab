@@ -20,6 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private string secondOperand;
 
         private void resetAll()
         {
@@ -93,7 +94,6 @@ namespace CPE200Lab1
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(firstOperand);
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -104,7 +104,7 @@ namespace CPE200Lab1
             }
             if(firstOperand != null && ((Button)sender).Text != "%")
             {
-                string secondOperand = lblDisplay.Text;
+                secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
@@ -126,7 +126,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
-                    lblDisplay.Text = engine.calculate(((Button)sender).Text, lblDisplay.Text, "0");
+                    lblDisplay.Text = engine.calculate(((Button)sender).Text, firstOperand, lblDisplay.Text);
                     break;
             }
             if (((Button)sender).Text != "√" && ((Button)sender).Text != "1/x" && ((Button)sender).Text != "%")
@@ -134,6 +134,7 @@ namespace CPE200Lab1
                 operate = ((Button)sender).Text;
             }
             isAllowBack = false;
+            hasDot = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -142,8 +143,10 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
+            secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
+         //   if(isAfterEqual == false)
+        //    firstOperand = secondOperand;
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -152,6 +155,8 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
+            Console.WriteLine(firstOperand);
+            Console.WriteLine(secondOperand);
             isAfterEqual = true;
         }
 
