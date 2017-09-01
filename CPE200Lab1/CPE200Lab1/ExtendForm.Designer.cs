@@ -334,7 +334,7 @@
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(88, 32);
             this.btnSwitch.TabIndex = 41;
-            this.btnSwitch.Text = "Switch";
+            this.btnSwitch.Text = "Standard";
             this.btnSwitch.UseVisualStyleBackColor = false;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
@@ -372,7 +372,7 @@
             this.Name = "ExtendForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.btnExit);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.btnExit);
             this.ResumeLayout(false);
             this.PerformLayout();
 

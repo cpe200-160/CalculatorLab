@@ -15,7 +15,8 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private CalculatorEngine engine;
-        
+        MainForm switchForm = new MainForm();
+
         public ExtendForm()
         {
             InitializeComponent();
@@ -24,7 +25,6 @@ namespace CPE200Lab1
 
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            MainForm switchForm = new MainForm();
             switchForm.Show();
             this.Hide();
         }
@@ -141,9 +141,9 @@ namespace CPE200Lab1
             }
         }
 
-        private void btnExit(object sender, FormClosedEventArgs e)
+        private void btnExit(object sender, FormClosingEventArgs e)
         {
-            
+
         }
     }
 }

@@ -107,9 +107,9 @@ namespace CPE200Lab1
                 {
                     return "Error";
                 }
-                double Roundnumber = Convert.ToDouble(temp);
+                /*double Roundnumber = Convert.ToDouble(temp);
                 Roundnumber = System.Math.Ceiling(Roundnumber * 100) / 100;
-                return Roundnumber.ToString();
+                return Roundnumber.ToString();*/
                 // calculate remaining space for fractional part.
                 remainLength = maxOutputSize - parts[0].Length - 1;
                 // trim the fractional part gracefully. =

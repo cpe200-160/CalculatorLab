@@ -31,6 +31,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             firstOperand = null;
+            secondOperand = "0";
 
             history_line = "";
             lblHistory.Text = history_line;
@@ -113,7 +114,9 @@ namespace CPE200Lab1
                 return;
             }
             string temp_operate = operate;
+            operate = ((Button)sender).Text;
             if (firstOperand == null) firstOperand = lblDisplay.Text;
+            else secondOperand = lblDisplay.Text;
             switch (operate)
             {
                 case "+":
@@ -123,26 +126,28 @@ namespace CPE200Lab1
                     {
                         if (isAllowBack && isAfterEqual)
                         {
-                            secondOperand = lblDisplay.Text;
+                            //secondOperand = lblDisplay.Text;
                             firstOperand = engine.calculate(operate, firstOperand, secondOperand);
+                            lblDisplay.Text = firstOperand;
                         }
-                        //isAfterEqual = true;                      
+                        //isAfterEqual = true;
+                        History(lblDisplay.Text);
                         break;
                     }
                 case "%":
                     {
-                        string secondOperand = lblDisplay.Text;
+                        //secondOperand = lblDisplay.Text;
                         lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
                         operate = temp_operate;
                         break;
                     }
             }
-            isAfterEqual = true;
+            /*isAfterEqual = true;
             operate = ((Button)sender).Text;
+            History(lblDisplay.Text);*/
             isAfterOperater = true;
-            History(lblDisplay.Text);
             isAllowBack = false;
-            lblDisplay.Text = firstOperand;
+            //lblDisplay.Text = firstOperand;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -152,15 +157,17 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
-            /*if (result is "E" || result.Length > 8)
+            string result = engine.calculate(operate, firstOperand, secondOperand);
+            if (result is "Error" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
             }
             else
             {
-                lblDisplay.Text = result;
-            }*/
+                double Roundnumber = Convert.ToDouble(result);
+                Roundnumber = System.Math.Ceiling(Roundnumber * 100) / 100;
+                lblDisplay.Text = Roundnumber.ToString();
+            }
             isAfterEqual = true;
 
             history_line = "";

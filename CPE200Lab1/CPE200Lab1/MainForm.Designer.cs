@@ -444,7 +444,7 @@
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(88, 32);
             this.btnSwitch.TabIndex = 42;
-            this.btnSwitch.Text = "Switch";
+            this.btnSwitch.Text = "Extend";
             this.btnSwitch.UseVisualStyleBackColor = false;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
