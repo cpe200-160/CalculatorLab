@@ -25,7 +25,7 @@ namespace CPE200Lab1
             }
             return false;
         }
-        public string Process(string str)
+        /*public string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -35,7 +35,7 @@ namespace CPE200Lab1
             {
                 return calculate(parts[1], Convert.ToDouble(parts[0]), Convert.ToDouble(parts[2]), 4);
             }
-        }
+        }*/
         public string unaryCalculate(string operate, double operand, double firstOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -63,53 +63,48 @@ namespace CPE200Lab1
                     }
                 case "%":
                     {
-                        double result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(operand) / 100);
+                        double result = (firstOperand * Convert.ToDouble(operand) / 100);
                         return showResult(result, Convert.ToString(result).Length);
                     }
             }
             return "Error";
         }
 
-        public string calculate(string operate, double firstOperand, double secondOperand, int maxOutputSize = 8)
+        public void calculate(string operate,ref double firstOperand, double secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
                 case "+":
                     {
-                        double result = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand));
-                        return showResult(result, Convert.ToString(result).Length);
+                        firstOperand = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand));
                     }
                     break;
                 case "-":
                     {
-                        double result = (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand));
-                        return showResult(result, Convert.ToString(result).Length);
+                        firstOperand = (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand));
                     }
                     break;
                 case "X":
                     {
-                        double result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand));
-                        return showResult(result, Convert.ToString(result).Length);
+                        firstOperand = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand));
                     }
                     break;
                 case "÷":
                     // Not allow devide be zero
                     if (secondOperand != 0)
                     {
-                        double result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        return showResult(result, Convert.ToString(result).Length);
+                        firstOperand = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                     }
                     break;
             }
-            return "Error";
+            //return "Error";
         }
 
         public string showResult(double currentOperand, int maxOutputSize = 8)
         {
-            string temp = Convert.ToString(currentOperand);
-            if (temp == "∞" || temp == "NaN") return "Error";
+            //string temp = Convert.ToString(currentOperand);
             //int locdot = temp.IndexOf('.');
-            if (currentOperand%1 != 0)
+            /*if (currentOperand%1 != 0)
             {
                 string[] parts;
                 int remainLength;
@@ -125,7 +120,19 @@ namespace CPE200Lab1
                 // trim the fractional part gracefully. =
                 return currentOperand.ToString("N" + remainLength);
             }
-            return temp;
+            return temp;*/
+            string content_to_str = Convert.ToString(currentOperand);
+            if (content_to_str == "-∞" || content_to_str == "∞" || content_to_str == "NaN") return "Error";
+            if (content_to_str.Length > 8 && currentOperand <= 999999.1)
+            {
+                content_to_str = content_to_str.Remove(8, content_to_str.Length - 8);
+            }
+            
+            if (content_to_str.Length > 8)
+            {
+                content_to_str = "Error";
+            }
+            return content_to_str;
         }
     }
 }

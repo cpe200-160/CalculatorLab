@@ -36,6 +36,7 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterEqual = false;
             lblDisplay.Text = showNumber;
+            hasDot = false;
 
             history_line = "";
             lblHistory.Text = history_line;
@@ -106,7 +107,7 @@ namespace CPE200Lab1
             }*/
             //isAfterOperater = true;
             lblDisplay.Text = showNumber;
-            isAllowBack = false;
+            //isAllowBack = false;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -146,8 +147,8 @@ namespace CPE200Lab1
             
             if (isAllowBack && isfirstEnter) secondOperand = firstOperand;
             Processing();
-            lblDisplay.Text = engine.showResult(firstOperand);
-
+            //lblDisplay.Text = engine.showResult(firstOperand);
+            
             isAfterEqual = true;
 
             history_line = "";
@@ -155,14 +156,16 @@ namespace CPE200Lab1
         }
         private void Processing()
         {
-            if (isAllowBack) secondOperand = Convert.ToDouble(showNumber);
-            string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result == "Error")
+            secondOperand = Convert.ToDouble(showNumber);
+            engine.calculate(operate, ref firstOperand, secondOperand);
+            /*if (result == "Error")
             {
                 lblDisplay.Text = result;
                 return;
             }
             firstOperand = Convert.ToDouble(result);
+            lblDisplay.Text = result;*/
+            lblDisplay.Text = engine.showResult(firstOperand);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -181,7 +184,8 @@ namespace CPE200Lab1
             }
             if (!hasDot)
             {
-                lblDisplay.Text += ".";
+                showNumber += ".";
+                lblDisplay.Text = showNumber;
                 hasDot = true;
             }
         }
