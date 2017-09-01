@@ -33,11 +33,10 @@ namespace CPE200Lab1
                 return "Error";
             } else
             {
-                return calculate(parts[1], parts[0], parts[2], 4);
+                return calculate(parts[1], Convert.ToDouble(parts[0]), Convert.ToDouble(parts[2]), 4);
             }
-
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string unaryCalculate(string operate, double operand, double firstOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -46,57 +45,71 @@ namespace CPE200Lab1
                         if(0 <= Convert.ToDouble(operand))
                         {
                             double result = Math.Sqrt(Convert.ToDouble(operand));
-                            return numberShowed(result, Convert.ToString(result).Length);
+                            return showResult(result, Convert.ToString(result).Length);
                         }
                         break;
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if(operand != 0)
                     {
                         double result = (1.0 / Convert.ToDouble(operand));
-                        return numberShowed(result, Convert.ToString(result).Length);
+                        return showResult(result, Convert.ToString(result).Length);
                     }
                     break;
                 case "x²":
                     {
                         double result = Math.Pow(Convert.ToDouble(operand),2);
-                        return numberShowed(result, Convert.ToString(result).Length);
+                        return showResult(result, Convert.ToString(result).Length);
+                    }
+                case "%":
+                    {
+                        double result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(operand) / 100);
+                        return showResult(result, Convert.ToString(result).Length);
                     }
             }
             return "Error";
         }
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, double firstOperand, double secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
                 case "+":
-                    return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
-                case "-":
-                    return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
-                case "÷":
-                    // Not allow devide be zero
-                    if (secondOperand != "0")
                     {
-                        double result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        return numberShowed(result, Convert.ToString(result).Length);
+                        double result = (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand));
+                        return showResult(result, Convert.ToString(result).Length);
                     }
                     break;
-                case "%":
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString(); //your code here
-                    //break;
+                case "-":
+                    {
+                        double result = (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand));
+                        return showResult(result, Convert.ToString(result).Length);
+                    }
+                    break;
+                case "X":
+                    {
+                        double result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand));
+                        return showResult(result, Convert.ToString(result).Length);
+                    }
+                    break;
+                case "÷":
+                    // Not allow devide be zero
+                    if (secondOperand != 0)
+                    {
+                        double result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
+                        return showResult(result, Convert.ToString(result).Length);
+                    }
+                    break;
             }
             return "Error";
         }
 
-        private string numberShowed(double currentOperand, int maxOutputSize = 8)
+        public string showResult(double currentOperand, int maxOutputSize = 8)
         {
             string temp = Convert.ToString(currentOperand);
-            if (currentOperand > 99999999) return "Error";
-            int locdot = temp.IndexOf('.');
-            if (locdot > 0)
+            if (temp == "∞" || temp == "NaN") return "Error";
+            //int locdot = temp.IndexOf('.');
+            if (currentOperand%1 != 0)
             {
                 string[] parts;
                 int remainLength;
@@ -106,10 +119,7 @@ namespace CPE200Lab1
                 if (parts[0].Length > maxOutputSize)
                 {
                     return "Error";
-                }
-                /*double Roundnumber = Convert.ToDouble(temp);
-                Roundnumber = System.Math.Ceiling(Roundnumber * 100) / 100;
-                return Roundnumber.ToString();*/
+                }           
                 // calculate remaining space for fractional part.
                 remainLength = maxOutputSize - parts[0].Length - 1;
                 // trim the fractional part gracefully. =

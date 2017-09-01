@@ -115,7 +115,7 @@
             this.btnEqual.TabIndex = 35;
             this.btnEqual.Text = "=";
             this.btnEqual.UseVisualStyleBackColor = true;
-            this.btnEqual.Click += new System.EventHandler(this.btnEqual_Click);
+            //this.btnEqual.Click += new System.EventHandler(this.btnEqual_Click);
             // 
             // btnDot
             // 
@@ -330,7 +330,7 @@
             this.btnSwitch.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSwitch.Location = new System.Drawing.Point(388, 67);
+            this.btnSwitch.Location = new System.Drawing.Point(388, 70);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(88, 32);
             this.btnSwitch.TabIndex = 41;

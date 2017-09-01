@@ -93,7 +93,7 @@ namespace CPE200Lab1
             isNumberPart = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        /*private void btnEqual_Click(object sender, EventArgs e)
         {
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
@@ -103,7 +103,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-        }
+        }*/
 
         private void btnSign_Click(object sender, EventArgs e)
         {
