@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
-        public string Calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -16,7 +16,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
                     return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
-                case "X":
+                case "x":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
@@ -40,11 +40,14 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
+                case "√":
+                    return (Math.Sqrt(Convert.ToDouble(firstOperand))).ToString();
                 case "%":
-                    //your code here
                     return (Convert.ToDouble(firstOperand) / 100).ToString();
+                case "1/x":
+                    return (1 / Convert.ToDouble(firstOperand)).ToString();
 
-                    break;
+
             }
             return "E";
         }
