@@ -91,7 +91,15 @@ namespace CPE200Lab1
             }
             string type = ((Button)sender).Text;
             lblDisplay.Text = engine.unaryCalculate(type, lblDisplay.Text);
-            isAfterOperater = true;
+            /*if (result is "E" || result.Length > 8)
+            {
+                lblDisplay.Text = "Error";
+            }
+            else
+            {
+                lblDisplay.Text = result;
+            }*/
+            //isAfterOperater = true;
             isAllowBack = false;
         }
 
@@ -145,15 +153,15 @@ namespace CPE200Lab1
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 8)
+            lblDisplay.Text = engine.calculate(operate, firstOperand, secondOperand);
+            /*if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
             }
             else
             {
                 lblDisplay.Text = result;
-            }
+            }*/
             isAfterEqual = true;
 
             history_line = "";
