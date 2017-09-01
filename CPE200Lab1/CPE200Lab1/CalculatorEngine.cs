@@ -46,7 +46,7 @@ namespace CPE200Lab1
                         if(0 <= Convert.ToDouble(operand))
                         {
                             double result = Math.Sqrt(Convert.ToDouble(operand));
-                            return numberShowed(result);
+                            return numberShowed(result, Convert.ToString(result).Length);
                         }
                         break;
                     }
@@ -54,13 +54,13 @@ namespace CPE200Lab1
                     if(operand != "0")
                     {
                         double result = (1.0 / Convert.ToDouble(operand));
-                        return numberShowed(result);
+                        return numberShowed(result, Convert.ToString(result).Length);
                     }
                     break;
                 case "x²":
                     {
                         double result = Math.Pow(Convert.ToDouble(operand),2);
-                        return numberShowed(result);
+                        return numberShowed(result, Convert.ToString(result).Length);
                     }
             }
             return "Error";
@@ -81,7 +81,7 @@ namespace CPE200Lab1
                     if (secondOperand != "0")
                     {
                         double result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
-                        return numberShowed(result);
+                        return numberShowed(result, Convert.ToString(result).Length);
                     }
                     break;
                 case "%":
@@ -94,7 +94,7 @@ namespace CPE200Lab1
         private string numberShowed(double currentOperand, int maxOutputSize = 8)
         {
             string temp = Convert.ToString(currentOperand);
-            if (temp.Length >= 9) return "Error";
+            if (currentOperand > 99999999) return "Error";
             int locdot = temp.IndexOf('.');
             if (locdot > 0)
             {
@@ -107,6 +107,9 @@ namespace CPE200Lab1
                 {
                     return "Error";
                 }
+                double Roundnumber = Convert.ToDouble(temp);
+                Roundnumber = System.Math.Ceiling(Roundnumber * 100) / 100;
+                return Roundnumber.ToString();
                 // calculate remaining space for fractional part.
                 remainLength = maxOutputSize - parts[0].Length - 1;
                 // trim the fractional part gracefully. =

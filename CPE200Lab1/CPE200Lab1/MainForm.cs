@@ -41,14 +41,13 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
-            resetAll();
+            resetAll();            
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
+            ExtendForm switchForm = new ExtendForm();
+            switchForm.Show();
             this.Hide();
-            ExtendForm SwitchForm = new ExtendForm();
-            SwitchForm.ShowDialog();
-            this.Close();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)

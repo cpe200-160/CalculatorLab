@@ -15,6 +15,7 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private CalculatorEngine engine;
+        
         public ExtendForm()
         {
             InitializeComponent();
@@ -23,10 +24,9 @@ namespace CPE200Lab1
 
         private void btnSwitch_Click(object sender, EventArgs e)
         {
+            MainForm switchForm = new MainForm();
+            switchForm.Show();
             this.Hide();
-            MainForm SwitchForm = new MainForm();
-            SwitchForm.ShowDialog();
-            this.Close();
         }
 
         private string getLastInString(string str)
@@ -139,6 +139,11 @@ namespace CPE200Lab1
                 isContainDot = true;
                 lblDisplay.Text += ".";
             }
+        }
+
+        private void btnExit(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }
