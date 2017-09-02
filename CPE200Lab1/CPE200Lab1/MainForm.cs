@@ -62,7 +62,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterEqual && history_line == "")
+            if (isAfterEqual && history_line == "" && memory == 0)
             {
                 resetAll();
             }
@@ -165,7 +165,7 @@ namespace CPE200Lab1
             }
             firstOperand = Convert.ToDouble(result);
             lblDisplay.Text = result;*/
-            lblDisplay.Text = engine.showResult(firstOperand);
+            lblDisplay.Text = engine.showResult(firstOperand,Convert.ToString(firstOperand).Length);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterEqual)
+            if (isAfterEqual && history_line == "" && memory == 0)
             {
                 resetAll();
             }
@@ -196,7 +196,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if (isAfterEqual)
+            if (isAfterEqual && history_line == "" && memory == 0)
             {
                 resetAll();
             }
@@ -275,12 +275,14 @@ namespace CPE200Lab1
                 return;
             }
             memory += Convert.ToDouble(lblDisplay.Text);
-            isAfterOperater = true;
+            //isAfterOperater = true;
+            memoryNumber.Text = (memory).ToString();
         }
 
         private void btnMC_Click(object sender, EventArgs e)
         {
             memory = 0;
+            memoryNumber.Text = "0";
         }
 
         private void btnMM_Click(object sender, EventArgs e)
@@ -290,7 +292,8 @@ namespace CPE200Lab1
                 return;
             }
             memory -= Convert.ToDouble(lblDisplay.Text);
-            isAfterOperater = true;
+            //isAfterOperater = true;
+            memoryNumber.Text = (memory).ToString();
         }
 
         private void btnMR_Click(object sender, EventArgs e)
@@ -299,7 +302,8 @@ namespace CPE200Lab1
             {
                 return;
             }
-            lblDisplay.Text = memory.ToString();
+            showNumber = memory.ToString();
+            lblDisplay.Text = showNumber;
         }
     }
 }

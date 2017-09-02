@@ -60,6 +60,8 @@
             this.btnClearE = new System.Windows.Forms.Button();
             this.btnPow = new System.Windows.Forms.Button();
             this.btnSwitch = new System.Windows.Forms.Button();
+            this.lblMemory = new System.Windows.Forms.Label();
+            this.memoryNumber = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn7
@@ -440,7 +442,7 @@
             this.btnSwitch.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSwitch.Location = new System.Drawing.Point(156, -5);
+            this.btnSwitch.Location = new System.Drawing.Point(294, 136);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(88, 32);
             this.btnSwitch.TabIndex = 42;
@@ -448,12 +450,44 @@
             this.btnSwitch.UseVisualStyleBackColor = false;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
+            // lblMemory
+            // 
+            this.lblMemory.AutoSize = true;
+            this.lblMemory.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblMemory.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMemory.ForeColor = System.Drawing.Color.White;
+            this.lblMemory.Location = new System.Drawing.Point(12, 5);
+            this.lblMemory.MinimumSize = new System.Drawing.Size(85, 25);
+            this.lblMemory.Name = "lblMemory";
+            this.lblMemory.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblMemory.Size = new System.Drawing.Size(85, 25);
+            this.lblMemory.TabIndex = 43;
+            this.lblMemory.Text = "Memory";
+            this.lblMemory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // memoryNumber
+            // 
+            this.memoryNumber.AutoSize = true;
+            this.memoryNumber.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.memoryNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memoryNumber.ForeColor = System.Drawing.Color.White;
+            this.memoryNumber.Location = new System.Drawing.Point(97, 5);
+            this.memoryNumber.MinimumSize = new System.Drawing.Size(280, 25);
+            this.memoryNumber.Name = "memoryNumber";
+            this.memoryNumber.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.memoryNumber.Size = new System.Drawing.Size(280, 25);
+            this.memoryNumber.TabIndex = 44;
+            this.memoryNumber.Text = "There\'s nothing saved on memory";
+            this.memoryNumber.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(394, 666);
+            this.Controls.Add(this.memoryNumber);
+            this.Controls.Add(this.lblMemory);
             this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.btnPow);
             this.Controls.Add(this.btnClearE);
@@ -529,6 +563,8 @@
         private System.Windows.Forms.Button btnClearE;
         private System.Windows.Forms.Button btnPow;
         private System.Windows.Forms.Button btnSwitch;
+        private System.Windows.Forms.Label lblMemory;
+        private System.Windows.Forms.Label memoryNumber;
     }
 }
 
