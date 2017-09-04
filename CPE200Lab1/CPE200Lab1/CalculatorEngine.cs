@@ -25,18 +25,28 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            } else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
+            List<string> parts;
+            int partsLength;
+            parts = str.Split(' ').ToList<string>();
+            partsLength = parts.Count();
+            string result;
 
+            while (parts.Count() > 1)
+            {
+                if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                {
+                    return "E";
+                }
+                result = calculate(parts[1], parts[0], parts[2], 4);
+                parts.RemoveRange(0, 3);
+                parts.Insert(0, result);
+            }
+            return parts[0];
         }
+
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
