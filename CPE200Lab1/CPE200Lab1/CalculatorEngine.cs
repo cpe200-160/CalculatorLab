@@ -25,6 +25,7 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
