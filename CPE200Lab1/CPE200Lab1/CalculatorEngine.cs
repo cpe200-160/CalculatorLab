@@ -25,7 +25,7 @@ namespace CPE200Lab1
             }
             return false;
         }
-        /*public string Process(string str)
+        public string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -33,9 +33,39 @@ namespace CPE200Lab1
                 return "Error";
             } else
             {
-                return calculate(parts[1], Convert.ToDouble(parts[0]), Convert.ToDouble(parts[2]), 4);
+                //return calculate(parts[1], Convert.ToDouble(parts[0]), Convert.ToDouble(parts[2]), 4);
+                /*double result = Convert.ToDouble(parts[0]);
+                calculate(parts[1],ref result, Convert.ToDouble(parts[2]), 4);
+                parts[0] = Convert.ToString(result);
+                parts[2] = "0";
+                return showResult(result,4);*/
+                int locSignificantOperator = findSignificantOperator(parts);
+                while (locSignificantOperator != 1)
+                {
+                    double temp = Convert.ToDouble(parts[locSignificantOperator - 1]);
+                    calculate(parts[locSignificantOperator], ref temp, Convert.ToDouble(parts[locSignificantOperator + 1]), 4);
+                    parts[locSignificantOperator - 1] = "0";
+                    parts[locSignificantOperator + 1] = Convert.ToString(temp);
+                    parts[locSignificantOperator] = "+";
+                    locSignificantOperator = findSignificantOperator(parts);
+                }
+                double result = Convert.ToDouble(parts[0]);
+                for(int i = 2; i<parts.Length; i += 2)
+                {
+                    calculate(parts[i-1], ref result, Convert.ToDouble(parts[i]), 4);
+                }
+
+                return showResult(result);
             }
-        }*/
+        }
+        private int findSignificantOperator(string[] parts)
+        {
+            for(int i = 0;i < parts.Length; i++)
+            {
+                if (parts[i] == "X" || parts[i] == "÷") return i;
+            }
+            return 1;
+        }
         public string unaryCalculate(string operate, double operand, double firstOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -91,7 +121,7 @@ namespace CPE200Lab1
                     break;
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != 0)
+                    //if (secondOperand != 0)
                     {
                         firstOperand = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                     }

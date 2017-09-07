@@ -17,6 +17,7 @@ namespace CPE200Lab1
         private bool isAfterOperater = false;
         private bool isAfterEqual = false;
         private bool isfirstEnter = true;
+        private bool isAfterUnary = false;
         private double firstOperand = 0;
         private double secondOperand = 0;
         private string operate;
@@ -34,6 +35,7 @@ namespace CPE200Lab1
             isfirstEnter = true;
             isAllowBack = false;
             isAfterOperater = false;
+            isAfterUnary = false;
             isAfterEqual = false;
             lblDisplay.Text = showNumber;
             hasDot = false;
@@ -83,6 +85,7 @@ namespace CPE200Lab1
             showNumber += digit;
             lblDisplay.Text = showNumber;
             isAfterOperater = false;
+            isAfterUnary = false;
         }
 
         private void btnUnaryOperator_Click(object sender, EventArgs e)
@@ -97,6 +100,15 @@ namespace CPE200Lab1
             }
             string type = ((Button)sender).Text;
             showNumber = engine.unaryCalculate(type, Convert.ToDouble(lblDisplay.Text),firstOperand);
+            if (type == "√") history_line += "√";
+            if (type == "1/x") history_line += "1/";
+            history_line += " (";
+            if (type != "%") History(lblDisplay.Text);
+            else History(showNumber);
+            history_line += ") ";
+            if (type == "x²") history_line += "²";
+            lblHistory.Text = history_line;
+            isAfterUnary = true;
             /*if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -121,19 +133,27 @@ namespace CPE200Lab1
                 return;
             }
 
-            if (isfirstEnter) firstOperand = Convert.ToDouble(showNumber);
+            if (isfirstEnter)
+            {
+                firstOperand = Convert.ToDouble(lblDisplay.Text);
+                //operate = ((Button)sender).Text;
+            }
+            //operate = ((Button)sender).Text;
             if (isAllowBack && isAfterEqual) Processing();
+            else History(lblDisplay.Text);
             isAfterEqual = true;
             operate = ((Button)sender).Text;
+            history_line += operate;
+            lblHistory.Text = history_line;
             //flag_key = 0;
             isAfterOperater = true;
 
-            History(lblDisplay.Text);
+            //History(lblDisplay.Text);
 
             isAllowBack = false;
             //flag_operator = 0;
 
-            showNumber = "0";
+            //showNumber = "0";
             isfirstEnter = false;
             lblDisplay.Text = engine.showResult(firstOperand);
         }
@@ -145,12 +165,13 @@ namespace CPE200Lab1
                 return;
             }
             
-            if (isAllowBack && isfirstEnter) secondOperand = firstOperand;
+            if (!isAllowBack && isfirstEnter) secondOperand = firstOperand;
             Processing();
             //lblDisplay.Text = engine.showResult(firstOperand);
-            
-            isAfterEqual = true;
-
+            showNumber = "0";
+            //operate = null;
+            isAfterEqual = false;
+            isfirstEnter = true;
             history_line = "";
             lblHistory.Text = history_line;
         }
@@ -165,6 +186,7 @@ namespace CPE200Lab1
             }
             firstOperand = Convert.ToDouble(result);
             lblDisplay.Text = result;*/
+            History(lblDisplay.Text);
             lblDisplay.Text = engine.showResult(firstOperand,Convert.ToString(firstOperand).Length);
         }
 
@@ -261,11 +283,12 @@ namespace CPE200Lab1
 
         private void History(string recent)
         {
+            if (isAfterUnary) return;
             if (isAllowBack) history_line += " " + recent + " ";
             else history_line = history_line.Remove(history_line.Length - 1, 1);
 
-            history_line += operate;
-            lblHistory.Text = history_line;
+            //history_line += operate;
+            //lblHistory.Text = history_line;
         }
 
         private void btnMP_Click(object sender, EventArgs e)
