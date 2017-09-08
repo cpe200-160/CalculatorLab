@@ -21,21 +21,18 @@ namespace CPE200Lab1
             InitializeComponent();
             engine = new CalculatorEngine();
         }
-
         private void btnSwitch_Click(object sender, EventArgs e)
         {
             MainForm switchForm = new MainForm();
             switchForm.Show();
             this.Hide();
         }
-
         private string getLastInString(string str)
         {
             if (str.Length is 1)
                 return str;
             return str.Substring(str.Length - 1);
         }
-
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -56,6 +53,10 @@ namespace CPE200Lab1
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            if (!isNumberPart)
             {
                 return;
             }
@@ -82,7 +83,6 @@ namespace CPE200Lab1
                 else lblDisplay.Text += parts[i];
             }
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -103,14 +103,12 @@ namespace CPE200Lab1
                 lblDisplay.Text = "0";
             }
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
             isContainDot = false;
             isNumberPart = false;
         }
-
         private void btnEqual_Click(object sender, EventArgs e)
         {
             string result = engine.Process(lblDisplay.Text);
@@ -122,7 +120,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
         }
-
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -149,7 +146,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = current + "-";
             }
         }
-
         private void btnDot_Click(object sender, EventArgs e)
         {
             if(!isContainDot)
@@ -157,11 +153,6 @@ namespace CPE200Lab1
                 isContainDot = true;
                 lblDisplay.Text += ".";
             }
-        }
-
-        private void btnExit(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }

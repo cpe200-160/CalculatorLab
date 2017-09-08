@@ -43,7 +43,6 @@ namespace CPE200Lab1
             history_line = "";
             lblHistory.Text = history_line;
         }
-
         public MainForm()
         {
             InitializeComponent();
@@ -87,7 +86,6 @@ namespace CPE200Lab1
             isAfterOperater = false;
             isAfterUnary = false;
         }
-
         private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
             if (showNumber is "Error")
@@ -121,7 +119,6 @@ namespace CPE200Lab1
             lblDisplay.Text = showNumber;
             //isAllowBack = false;
         }
-
         private void btnOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -157,7 +154,6 @@ namespace CPE200Lab1
             isfirstEnter = false;
             lblDisplay.Text = engine.showResult(firstOperand);
         }
-
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -189,7 +185,6 @@ namespace CPE200Lab1
             History(lblDisplay.Text);
             lblDisplay.Text = engine.showResult(firstOperand,Convert.ToString(firstOperand).Length);
         }
-
         private void btnDot_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -211,7 +206,6 @@ namespace CPE200Lab1
                 hasDot = true;
             }
         }
-
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -235,7 +229,6 @@ namespace CPE200Lab1
                 lblDisplay.Text = "-" + lblDisplay.Text;
             }
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             string text = ((Button)sender).Text;
@@ -250,7 +243,6 @@ namespace CPE200Lab1
                     break;
             }
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -280,7 +272,6 @@ namespace CPE200Lab1
                 }
             }
         }
-
         private void History(string recent)
         {
             if (isAfterUnary) return;
@@ -290,7 +281,6 @@ namespace CPE200Lab1
             //history_line += operate;
             //lblHistory.Text = history_line;
         }
-
         private void btnMP_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "Error")
@@ -301,13 +291,11 @@ namespace CPE200Lab1
             //isAfterOperater = true;
             memoryNumber.Text = (memory).ToString();
         }
-
         private void btnMC_Click(object sender, EventArgs e)
         {
             memory = 0;
             memoryNumber.Text = "0";
         }
-
         private void btnMM_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "Error")
@@ -318,7 +306,6 @@ namespace CPE200Lab1
             //isAfterOperater = true;
             memoryNumber.Text = (memory).ToString();
         }
-
         private void btnMR_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "error")

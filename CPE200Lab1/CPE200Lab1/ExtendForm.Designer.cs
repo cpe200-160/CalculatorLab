@@ -491,7 +491,6 @@
             this.Name = "ExtendForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.btnExit);
             this.ResumeLayout(false);
             this.PerformLayout();
 

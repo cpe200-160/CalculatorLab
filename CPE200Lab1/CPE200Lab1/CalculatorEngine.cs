@@ -13,7 +13,6 @@ namespace CPE200Lab1
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
         private bool isOperator(string str)
         {
             switch(str) {
@@ -64,8 +63,8 @@ namespace CPE200Lab1
                     double temp = Convert.ToDouble(parts[locSignificantOperator - 1]);
                     calculate(parts[locSignificantOperator], ref temp, Convert.ToDouble(parts[locSignificantOperator + 1]), 4);
                     parts[locSignificantOperator - 1] = "0";
-                    parts[locSignificantOperator + 1] = Convert.ToString(temp);
                     parts[locSignificantOperator] = "+";
+                    parts[locSignificantOperator + 1] = Convert.ToString(temp);
                     locSignificantOperator = findSignificantOperator(parts);
                 }
                 double result = Convert.ToDouble(parts[0]);
@@ -123,7 +122,6 @@ namespace CPE200Lab1
             }
             return "Error";
         }
-
         public void calculate(string operate,ref double firstOperand, double secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -153,7 +151,6 @@ namespace CPE200Lab1
             }
             //return "Error";
         }
-
         public string showResult(double currentOperand, int maxOutputSize = 8)
         {
             //string temp = Convert.ToString(currentOperand);
