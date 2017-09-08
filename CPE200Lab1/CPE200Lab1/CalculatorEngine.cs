@@ -26,120 +26,30 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            string x;
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            //Split input string to multiple parts by space
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            //As long as we have more than one part
+            while(parts.Count > 1)
             {
-                return "E";
-            }
-            else
-            {
-                int xx = 0;
-                do
+                //Check if the first three is ready for calcuation
+                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
-                     xx = 2;
-                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
-                        for (int i = 0; i < parts.Length; i++)
-                        {
-                            if (parts[i] == "÷")
-                            {
-                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                                if ((i + 2) < parts.Length)
-                                {
-                                    parts[i + 1] = parts[i + 2];
-                                    parts[i] = parts[i + 2] = " ";
-                                    x = String.Join("", parts);
-                                    parts = x.Split(' ');
-                                }
-                                else
-                                {
-                                    parts[i] = null;
-                                    parts[i + 1] = null;
-                                }
-
-                                Console.WriteLine("XXXX");
-                                xx = 0;
-                            }
-                        }
-                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
-                        for (int i = 0; i < parts.Length; i++)
-                        {
-                            if (parts[i] == "X")
-                            {
-                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                                if ((i + 2) < parts.Length)
-                                {
-                                    parts[i + 1] = parts[i + 2];
-                                    parts[i] = parts[i + 2] = " ";
-                                    x = String.Join("", parts);
-                                    parts = x.Split(' ');
-                                }
-                                else
-                                {
-                                    parts[i] = null;
-                                    parts[i + 1] = null;
-                                }
-
-                                Console.WriteLine("XXXX");
-                                xx = 0;
-                            }
-                        }
-                    for (int i = 0; i < parts.Length; i++)
-                    {
-                        if (parts[i] == "+")
-                        {
-                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                            if ((i + 2) < parts.Length)
-                            {
-                                parts[i + 1] = parts[i + 2];
-                                parts[i] = parts[i + 2] = " ";
-                                x = String.Join("", parts);
-                                parts = x.Split(' ');
-                            }
-                            else
-                            {
-                                parts[i] = null;
-                                parts[i + 1] = null;
-                            }
-                            xx = 0;
-                        }
-                    }
-                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
-                        for (int i = 0; i < parts.Length; i++)
-                        {
-                            if (parts[i] == "-")
-                            {
-                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                                if ((i + 2) < parts.Length)
-                                {
-                                    parts[i + 1] = parts[i + 2];
-                                    parts[i] = parts[i + 2] = " ";
-                                    x = String.Join("", parts);
-                                    parts = x.Split(' ');
-                                }
-                                else
-                                {
-                                    parts[i] = null;
-                                    parts[i + 1] = null;
-                                }
-
-                                Console.WriteLine("XXXX");
-                                xx = 0;
-                            }
-                        }
-                for (int i = 0; i < parts.Length; i++)
+                    return "E";
+                } else
                 {
-                    Console.WriteLine(parts[i] + " out");
+                    //Calculate the first three
+                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    //Remove the first three
+                    parts.RemoveRange(0, 3);
+                    // Put back the result
+                    parts.Insert(0, result);
                 }
-
-                    Console.WriteLine(xx);
-                } while (xx != 2);
-                return parts[0];
             }
-
-
+            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
