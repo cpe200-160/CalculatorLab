@@ -73,7 +73,7 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }*/
             lblDisplay.Text += " " + ((Button)sender).Text;
-            isSpaceAllowed = false;
+            //isSpaceAllowed = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

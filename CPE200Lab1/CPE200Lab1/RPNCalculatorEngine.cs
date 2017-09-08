@@ -22,6 +22,7 @@ namespace CPE200Lab1
                     case "-":
                     case "X":
                     case "÷":
+                        if (parts.Count < 2) return "Error";
                         string secondOperand = parts.Pop();
                         string firstOperand = parts.Pop();
                         string result = calculate(temp[i], firstOperand, secondOperand);
