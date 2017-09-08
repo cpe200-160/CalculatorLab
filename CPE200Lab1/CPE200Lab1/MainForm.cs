@@ -174,7 +174,7 @@ namespace CPE200Lab1
         private void Processing()
         {
             secondOperand = Convert.ToDouble(showNumber);
-            engine.calculate(operate, ref firstOperand, secondOperand);
+            firstOperand = Convert.ToDouble(engine.calculate(operate, Convert.ToString(firstOperand), Convert.ToString(secondOperand)));
             /*if (result == "Error")
             {
                 lblDisplay.Text = result;

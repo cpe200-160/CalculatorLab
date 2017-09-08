@@ -15,12 +15,12 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+        private RPNCalculatorEngine engine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+            engine = new RPNCalculatorEngine();
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace CPE200Lab1
             switchForm.Show();
             this.Hide();
         }
-        private string getLastInString(string str)
+        private bool isOperator(char ch)
         {
             switch(ch) {
                 case '+':
@@ -67,11 +67,13 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ')
+            /*if (current[current.Length - 1] != ' ')
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
-            }
+            }*/
+            lblDisplay.Text += " " + ((Button)sender).Text;
+            isSpaceAllowed = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -163,6 +165,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
+                isContainDot = false;
             }
         }
     }
