@@ -53,7 +53,6 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += ((Button)sender).Text;
         }
-
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -68,8 +67,13 @@ namespace CPE200Lab1
         {
             string type = ((Button)sender).Text;
             string[] parts = lblDisplay.Text.Split(' ');
-            //lblDisplay.Text = lblDisplay.Text.Remove(parts.Length - parts[parts.Length - 1].Length - 1, parts[parts.Length - 1].Length);
-            parts[parts.Length - 1] = engine.unaryCalculate(type, Convert.ToDouble(parts[parts.Length - 1]), Convert.ToDouble(parts[parts.Length - 3]));
+            engine.isConstant(ref parts);
+            if (lblDisplay.Text.IndexOf(' ') == -1)
+            {
+                parts[0] = lblDisplay.Text;
+                engine.isConstant(ref parts);
+                parts[0] = engine.unaryCalculate(type, Convert.ToDouble(parts[0]), 0);
+            }else parts[parts.Length - 1] = engine.unaryCalculate(type, Convert.ToDouble(parts[parts.Length - 1]), Convert.ToDouble(parts[parts.Length - 3]));
             //lblDisplay.Text += parts[parts.Length - 1];
             lblDisplay.Text = "";
             for (int i = 0;i < parts.Length; i++)

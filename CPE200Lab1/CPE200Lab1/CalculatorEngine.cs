@@ -25,10 +25,29 @@ namespace CPE200Lab1
             }
             return false;
         }
+        public void isConstant(ref string[] parts)
+        {
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (parts[i] == "π") parts[i] = Convert.ToString(Math.PI);
+                if (parts[i] == "e") parts[i] = Convert.ToString(Math.E);
+            }
+        }
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+
+            if (str.IndexOf(' ') == -1)
+            {
+                parts[0] = str;
+                isConstant(ref parts);
+                //eturn showResult(Convert.ToDouble(parts[0]));
+                return parts[0];
+            }
+
+            isConstant(ref parts);
+
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "Error";
             } else
@@ -89,6 +108,11 @@ namespace CPE200Lab1
                 case "x²":
                     {
                         double result = Math.Pow(Convert.ToDouble(operand),2);
+                        return showResult(result, Convert.ToString(result).Length);
+                    }
+                case "x³":
+                    {
+                        double result = Math.Pow(Convert.ToDouble(operand), 3);
                         return showResult(result, Convert.ToString(result).Length);
                     }
                 case "%":
@@ -162,7 +186,10 @@ namespace CPE200Lab1
             {
                 content_to_str = "Error";
             }
-            return content_to_str;
+            double result = Convert.ToDouble(content_to_str);
+            //result = Math.Ceiling(result);
+            //result = Math.Truncate(result);
+            return Convert.ToString(result);
         }
     }
 }
