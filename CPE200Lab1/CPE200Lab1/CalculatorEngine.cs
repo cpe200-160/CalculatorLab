@@ -36,58 +36,106 @@ namespace CPE200Lab1
             }
             else
             {
-                for (int j = 0; j < (parts.Length + 1) / 3; j++)
-                    for (int i = 0; i < parts.Length; i++)
-                    {
-                        if (parts[i] == "÷")
-                        {
-                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                            parts[i + 1] = parts[i + 2];
-                            parts[i] = parts[i + 2] = " ";
-                            x = String.Join("", parts);
-                            parts = x.Split(' ');
-                        }
-                    }
-                for (int j = 0; j < (parts.Length + 1) / 3; j++)
-                    for (int i = 0; i < parts.Length; i++)
-                    {
-                        if (parts[i] == "X")
-                        {
-                            parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                            parts[i + 1] = parts[i + 2];
-                            parts[i] = parts[i + 2] = " ";
-                            x = String.Join("", parts);
-                            parts = x.Split(' ');
-                        }
-                    }
-                for (int i = 0; i < parts.Length; i++)
+                int xx = 0;
+                do
                 {
-                    if (parts[i] == "+")
-                    {
-                        parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                        parts[i + 1] = parts[i + 2];
-                        parts[i] = parts[i + 2] = " ";
-                        x = String.Join("", parts);
-                        parts = x.Split(' ');
-                        break;
-                    }
-                }
-                for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                     xx = 2;
+                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                        for (int i = 0; i < parts.Length; i++)
+                        {
+                            if (parts[i] == "÷")
+                            {
+                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                                if ((i + 2) < parts.Length)
+                                {
+                                    parts[i + 1] = parts[i + 2];
+                                    parts[i] = parts[i + 2] = " ";
+                                    x = String.Join("", parts);
+                                    parts = x.Split(' ');
+                                }
+                                else
+                                {
+                                    parts[i] = null;
+                                    parts[i + 1] = null;
+                                }
+
+                                Console.WriteLine("XXXX");
+                                xx = 0;
+                            }
+                        }
+                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                        for (int i = 0; i < parts.Length; i++)
+                        {
+                            if (parts[i] == "X")
+                            {
+                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                                if ((i + 2) < parts.Length)
+                                {
+                                    parts[i + 1] = parts[i + 2];
+                                    parts[i] = parts[i + 2] = " ";
+                                    x = String.Join("", parts);
+                                    parts = x.Split(' ');
+                                }
+                                else
+                                {
+                                    parts[i] = null;
+                                    parts[i + 1] = null;
+                                }
+
+                                Console.WriteLine("XXXX");
+                                xx = 0;
+                            }
+                        }
                     for (int i = 0; i < parts.Length; i++)
                     {
-                        if (parts[i] == "-")
+                        if (parts[i] == "+")
                         {
                             parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
-                            parts[i + 1] = parts[i + 2];
-                            parts[i] = parts[i + 2] = " ";
-                            x = String.Join("", parts);
-                            parts = x.Split(' ');
+                            if ((i + 2) < parts.Length)
+                            {
+                                parts[i + 1] = parts[i + 2];
+                                parts[i] = parts[i + 2] = " ";
+                                x = String.Join("", parts);
+                                parts = x.Split(' ');
+                            }
+                            else
+                            {
+                                parts[i] = null;
+                                parts[i + 1] = null;
+                            }
+                            xx = 0;
                         }
                     }
+                    for (int j = 0; j < (parts.Length + 1) / 3; j++)
+                        for (int i = 0; i < parts.Length; i++)
+                        {
+                            if (parts[i] == "-")
+                            {
+                                parts[i - 1] = calculate(parts[i], parts[i - 1], parts[i + 1], 4);
+                                if ((i + 2) < parts.Length)
+                                {
+                                    parts[i + 1] = parts[i + 2];
+                                    parts[i] = parts[i + 2] = " ";
+                                    x = String.Join("", parts);
+                                    parts = x.Split(' ');
+                                }
+                                else
+                                {
+                                    parts[i] = null;
+                                    parts[i + 1] = null;
+                                }
+
+                                Console.WriteLine("XXXX");
+                                xx = 0;
+                            }
+                        }
                 for (int i = 0; i < parts.Length; i++)
                 {
                     Console.WriteLine(parts[i] + " out");
                 }
+
+                    Console.WriteLine(xx);
+                } while (xx != 2);
                 return parts[0];
             }
 
