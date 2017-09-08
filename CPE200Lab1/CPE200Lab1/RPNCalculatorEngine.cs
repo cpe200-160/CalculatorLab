@@ -8,9 +8,16 @@ namespace CPE200Lab1
 {
     class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public string Process(String str)
         {
             List<String> parts = str.Split(' ').ToList<String>();
+            String result;
+            //
+            while(parts.Count >1)
+            {
+
+
+            }
         }
     }
 }
