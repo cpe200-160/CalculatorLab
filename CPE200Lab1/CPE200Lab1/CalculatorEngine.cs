@@ -34,49 +34,29 @@ namespace CPE200Lab1
         }
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-
-            if (str.IndexOf(' ') == -1)
+            //Split input string to multiple parts by space
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            //As long as we have more than one part
+            while(parts.Count > 1)
             {
-                parts[0] = str;
-                isConstant(ref parts);
-                //eturn showResult(Convert.ToDouble(parts[0]));
-                return parts[0];
-            }
-
-            isConstant(ref parts);
-
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "Error";
-            } else
-            {
-                //return calculate(parts[1], Convert.ToDouble(parts[0]), Convert.ToDouble(parts[2]), 4);
-                /*double result = Convert.ToDouble(parts[0]);
-                calculate(parts[1],ref result, Convert.ToDouble(parts[2]), 4);
-                parts[0] = Convert.ToString(result);
-                parts[2] = "0";
-                return showResult(result,4);*/
-                int locSignificantOperator = findSignificantOperator(parts);
-                while (locSignificantOperator != 1)
+                //Check if the first three is ready for calcuation
+                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
-                    double temp = Convert.ToDouble(parts[locSignificantOperator - 1]);
-                    calculate(parts[locSignificantOperator], ref temp, Convert.ToDouble(parts[locSignificantOperator + 1]), 4);
-                    parts[locSignificantOperator - 1] = "0";
-                    parts[locSignificantOperator] = "+";
-                    parts[locSignificantOperator + 1] = Convert.ToString(temp);
-                    locSignificantOperator = findSignificantOperator(parts);
-                }
-                double result = Convert.ToDouble(parts[0]);
-                for(int i = 2; i<parts.Length; i += 2)
+                    return "E";
+                } else
                 {
-                    calculate(parts[i-1], ref result, Convert.ToDouble(parts[i]), 4);
+                    //Calculate the first three
+                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    //Remove the first three
+                    parts.RemoveRange(0, 3);
+                    // Put back the result
+                    parts.Insert(0, result);
                 }
-
-                return showResult(result);
             }
+            return parts[0];
         }
-        private int findSignificantOperator(string[] parts)
+        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             for(int i = 0;i < parts.Length; i++)
             {
