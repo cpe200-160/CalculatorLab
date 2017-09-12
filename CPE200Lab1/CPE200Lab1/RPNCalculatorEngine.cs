@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         public new string Process(string str)
         {
@@ -26,7 +26,7 @@ namespace CPE200Lab1
                     //FIXME, what if there is only one left in stack?
                     secondOperand = rpnStack.Pop();
                     firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand);
+                    result = calculate(token, firstOperand, secondOperand, 4);
                     if (result is "E")
                     {
                         return result;
