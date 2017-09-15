@@ -97,7 +97,7 @@ namespace CPE200Lab1
                 return;
             }
             string type = ((Button)sender).Text;
-            showNumber = engine.unaryCalculate(type, Convert.ToDouble(lblDisplay.Text),firstOperand);
+            showNumber = engine.unaryCalculate(type, lblDisplay.Text);
             if (type == "√") history_line += "√";
             if (type == "1/x") history_line += "1/";
             history_line += " (";
@@ -152,7 +152,7 @@ namespace CPE200Lab1
 
             //showNumber = "0";
             isfirstEnter = false;
-            lblDisplay.Text = engine.showResult(firstOperand);
+            lblDisplay.Text = Convert.ToString(firstOperand);
         }
         private void btnEqual_Click(object sender, EventArgs e)
         {
@@ -183,7 +183,7 @@ namespace CPE200Lab1
             firstOperand = Convert.ToDouble(result);
             lblDisplay.Text = result;*/
             History(lblDisplay.Text);
-            lblDisplay.Text = engine.showResult(firstOperand,Convert.ToString(firstOperand).Length);
+            lblDisplay.Text = Convert.ToString(firstOperand);
         }
         private void btnDot_Click(object sender, EventArgs e)
         {
