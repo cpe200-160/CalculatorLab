@@ -17,6 +17,7 @@ namespace CPE200Lab1.Tests
         public void Initialize()
         {
             engine = new RPNCalculatorEngine();
+
         }
 
         [TestMethod()]
