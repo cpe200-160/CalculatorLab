@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,32 +11,45 @@ namespace CPE200Lab1
     {
         public new string Process(string str)
         {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
+            if (str == null || str == "") { return "E"; }
             string result;
-            string firstOperand, secondOperand;
+            Stack rpnStack = new Stack();
+            String[] parts = str.Split(' ');
+            bool check = true;
 
-            foreach (string token in parts)
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(token))
+                if (isNumber(parts[i]))
                 {
-                    rpnStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                    if (parts[i].First() == '+')
                     {
-                        return result;
+                        return "E";
                     }
+                    rpnStack.Push(parts[i]);
+                }
+                else if (isOperator(parts[i]))
+                {
+                    if (check == false)
+                    {
+                        return "E";
+                    }
+                    if (rpnStack.Count <= 1)
+                    {
+
+                        return "E";
+                    }
+                    String second = rpnStack.Pop().ToString();
+                    String first = rpnStack.Pop().ToString();
+                    result = calculate(parts[i], first, second);
                     rpnStack.Push(result);
                 }
+                else { check = false; }
             }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
+            if (rpnStack.Count == 0 || rpnStack.Count > 1)
+            {
+                return "E";
+            }
+            result = rpnStack.Pop().ToString();
             return result;
         }
     }
