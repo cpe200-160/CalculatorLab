@@ -48,15 +48,13 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new SimpleCalculatorEngine();
-            resetAll();            
+            resetAll();
         }
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            ExtendForm switchForm = new ExtendForm();
-            switchForm.Show();
+            (new ExtendForm()).Show();
             this.Hide();
         }
-
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (showNumber is "Error")
@@ -314,6 +312,10 @@ namespace CPE200Lab1
             }
             showNumber = memory.ToString();
             lblDisplay.Text = showNumber;
+        }
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
