@@ -171,8 +171,8 @@ namespace CPE200Lab1
 
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            (new MainForm()).Show();
-            this.Hide();
+            Program.mainForm.Show();
+            Program.extendForm.Hide();
         }
 
         private void ExtendForm_FormClosed(object sender, FormClosedEventArgs e)
