@@ -168,5 +168,16 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            Program.mainForm.Show();
+            Program.extendForm.Hide();
+        }
+
+        private void ExtendForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
