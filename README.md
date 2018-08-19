@@ -1,2 +1,2 @@
 # Lab1
-SkeletonForLab
+Semi-complete calculator lab.
