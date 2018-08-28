@@ -49,6 +49,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
+            this.buttonxx = new System.Windows.Forms.Button();
+            this.buttonroot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn7
@@ -284,11 +286,35 @@
             this.lblDisplay.Text = "0";
             this.lblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Form1
+            // buttonxx
+            // 
+            this.buttonxx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonxx.Location = new System.Drawing.Point(388, 148);
+            this.buttonxx.Name = "buttonxx";
+            this.buttonxx.Size = new System.Drawing.Size(88, 64);
+            this.buttonxx.TabIndex = 21;
+            this.buttonxx.Text = "1/x";
+            this.buttonxx.UseVisualStyleBackColor = true;
+            this.buttonxx.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // buttonroot
+            // 
+            this.buttonroot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonroot.Location = new System.Drawing.Point(388, 218);
+            this.buttonroot.Name = "buttonroot";
+            this.buttonroot.Size = new System.Drawing.Size(88, 64);
+            this.buttonroot.TabIndex = 22;
+            this.buttonroot.Text = "√";
+            this.buttonroot.UseVisualStyleBackColor = true;
+            this.buttonroot.Click += new System.EventHandler(this.btnOperator_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 508);
+            this.ClientSize = new System.Drawing.Size(482, 536);
+            this.Controls.Add(this.buttonroot);
+            this.Controls.Add(this.buttonxx);
             this.Controls.Add(this.lblDisplay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
@@ -310,7 +336,7 @@
             this.Controls.Add(this.btn9);
             this.Controls.Add(this.btn8);
             this.Controls.Add(this.btn7);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -340,6 +366,8 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblDisplay;
+        private System.Windows.Forms.Button buttonxx;
+        private System.Windows.Forms.Button buttonroot;
     }
 }
 
