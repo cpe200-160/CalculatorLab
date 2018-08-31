@@ -14,6 +14,15 @@ namespace CPE200Lab1
         {
             switch (operate)
             {
+                case "√":
+                    double result = Math.Sqrt(Convert.ToDouble(firstOperand));
+                    string lResult = result.ToString();
+                    if(lResult.Length >= 8)
+                    {
+                        lResult = string.Format("{0:N6}", result);
+                        result = Convert.ToDouble(lResult);
+                    }
+                    return result.ToString();
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":
@@ -24,7 +33,6 @@ namespace CPE200Lab1
                     // Not allow devide be zero
                     if (secondOperand != "0")
                     {
-                        double result;
                         string[] parts;
                         int remainLength;
 
@@ -43,14 +51,20 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-
                     double firstNum = Convert.ToDouble(firstOperand);
                     double secondNum = Convert.ToDouble(secondOperand);
-                    return (firstNum + secondNum).ToString();
+                    return (firstNum * secondNum/100).ToString();
+                case "1/X":
+                    result = 1/Convert.ToDouble(firstOperand);
+                    lResult = result.ToString();
+                    if (lResult.Length >= 8)
+                    {
+                        lResult = string.Format("{0:N6}", result);
+                        result = Convert.ToDouble(lResult);
+                    }
+                    return result.ToString();
 
-                    //your code here
 
-                    break;
             }
             return "E";
 
