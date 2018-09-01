@@ -20,6 +20,10 @@ namespace CPE200Lab1
         private string operate;
         private string beforePercent;
         private CalculatorEngine engine;
+        //Memory variables
+        private string memResult = "0";
+        private string newMemory;
+
 
         public void resetAll()
         {
@@ -205,24 +209,30 @@ namespace CPE200Lab1
             }
         }
 
+
+
         private void btnMR_Click(object sender, EventArgs e)
         {
-
+            lblDisplay.Text = memResult;
         }
 
         private void btnMP_Click(object sender, EventArgs e)
         {
-
+            newMemory = lblDisplay.Text;
+            memResult = engine.calculate("+", memResult, newMemory);
         }
 
         private void btnMM_Click(object sender, EventArgs e)
         {
-
+            newMemory = lblDisplay.Text;
+            memResult = engine.calculate("-", memResult, newMemory);
         }
+        
 
         private void btnMC_Click(object sender, EventArgs e)
         {
-
+            newMemory = "0";
+            memResult = "0";
         }
     } 
 
