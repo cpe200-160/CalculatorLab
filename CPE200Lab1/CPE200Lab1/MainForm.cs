@@ -69,9 +69,10 @@ namespace CPE200Lab1
             lblDisplay.Text += digit;
             isAfterOperater = false;
         }
-
+        string memory;
         private void btnOperator_Click(object sender, EventArgs e)
         {
+            
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -81,6 +82,7 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            
             switch (operate)
             {
                 case "+":
@@ -105,15 +107,44 @@ namespace CPE200Lab1
                     break;
                  case "√":
                     isAfterOperater = true;
-                    string root;
-                    root = (Math.Sqrt(Convert.ToDouble(lblDisplay.Text))).ToString();
-                    lblDisplay.Text = root;
+                    double root;
+                    string[] limit;
+                    int limitlenght;
+                    root = Math.Sqrt(Convert.ToDouble(lblDisplay.Text));
+                    limit = root.ToString().Split('.');
+                    limitlenght = 5- limit[0].Length - 1;
+
+                    lblDisplay.Text = root.ToString("N" + limitlenght);
                     break;
-
-
+               
 
             }
             isAllowBack = false;
+            
+            if (operate == "MC")
+            {
+                memory = "";
+            }
+            else if (operate == "MS")
+            {
+                memory = lblDisplay.Text;
+            }
+            else if (operate == "MR")
+            {
+                lblDisplay.Text = memory;
+            }
+            else if (operate == "M+")
+            {
+                string first;
+                first = lblDisplay.Text;
+                lblDisplay.Text = (Convert.ToDouble(first) + Convert.ToDouble(memory)).ToString();
+            }
+            else if (operate == "M-")
+            {
+                string first;
+                first = lblDisplay.Text;
+                lblDisplay.Text = (Convert.ToDouble(first) - Convert.ToDouble(memory)).ToString(); 
+            }
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
