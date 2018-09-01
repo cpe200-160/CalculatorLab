@@ -205,7 +205,25 @@ namespace CPE200Lab1
             }
         }
 
-        
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMM_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+
+        }
     } 
 
 }
