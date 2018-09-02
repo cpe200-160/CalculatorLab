@@ -17,7 +17,9 @@ namespace CPE200Lab1
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        private string op;
         private string operate;
+        CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -28,7 +30,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        /*private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
             {
@@ -65,12 +67,12 @@ namespace CPE200Lab1
                     break;
             }
             return "E";
-        }
+        }*/
 
         public MainForm()
         {
             InitializeComponent();
-
+            engine = new CalculatorEngine();
             resetAll();
         }
 
@@ -119,24 +121,32 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                    op = operate;
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    // your code here                    
+                    lblDisplay.Text = engine.calculate(operate, firstOperand, lblDisplay.Text);
+                    break;
+                case "√":
+                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
+                    break;
+                case "1/X":
+                    lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
                     break;
             }
             isAllowBack = false;
         }
-
+        
         private void btnEqual_Click(object sender, EventArgs e)
-        {
+        {      
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+            string result = engine.calculate(op, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
