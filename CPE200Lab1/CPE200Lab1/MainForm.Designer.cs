@@ -339,7 +339,7 @@
             this.C.TabIndex = 24;
             this.C.Text = "C";
             this.C.UseVisualStyleBackColor = true;
-            this.C.Click += new System.EventHandler(this.btnOperator_Click);
+            this.C.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // MC
             // 

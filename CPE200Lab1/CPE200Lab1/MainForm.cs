@@ -163,9 +163,6 @@ namespace CPE200Lab1
                 case "1/X":
                     lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
                     break;
-                case "C":
-                    lblDisplay.Text = "0";
-                    break;
             }
             isAllowBack = false;
         }
