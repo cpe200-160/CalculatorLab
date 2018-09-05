@@ -18,6 +18,9 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string prev_operate;
+        
+        CalculatorEngine engine;
 
         private void resetAll()
         {
@@ -28,6 +31,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
+        /*
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
@@ -66,11 +70,12 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        */
         public MainForm()
-        {
+        { //create a object of class ClassType intsance=new ClassType();
             InitializeComponent();
-
+            engine = new CalculatorEngine();
+            memory = 0;
             resetAll();
         }
 
@@ -112,6 +117,8 @@ namespace CPE200Lab1
             {
                 return;
             }
+            
+            prev_operate = operate;
             operate = ((Button)sender).Text;
             switch (operate)
             {
@@ -123,7 +130,17 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    
+                    break;
+                case "√":
+                    string collect = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate,collect);
+                    break;
+                case "1/X":
+                    string overx = lblDisplay.Text;
+                    isAfterOperater = true;
+                    lblDisplay.Text = engine.calculate(operate, overx);
                     break;
             }
             isAllowBack = false;
@@ -135,8 +152,13 @@ namespace CPE200Lab1
             {
                 return;
             }
+            
             string secondOperand = lblDisplay.Text;
-            string result = calculate(operate, firstOperand, secondOperand);
+
+            string result = "";
+            
+            result= engine.calculate(operate, firstOperand, secondOperand,prev_operate);
+                     
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -227,5 +249,38 @@ namespace CPE200Lab1
                 }
             }
         }
+
+        //011-600611040-lab1-hw1
+        private double memory;
+        private string operateMemory;
+
+        private void btnMemory_Click(object sender,EventArgs e)
+        {
+            operateMemory = ((Button)sender).Text;
+            switch (operateMemory)
+            {
+                case "mc": //Clear memory
+                    memory = 0;
+                    break;
+                case "mr": //Display memory on lblDisplay
+                    lblDisplay.Text = Convert.ToString(memory);
+                    break;
+                case "m+": //Add lblDisplay to memory and store the result to memory
+                    memory = memory + Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "m-": //Substract lblDisplay to memory and store the result to memory
+                    memory = memory - Convert.ToDouble(lblDisplay.Text);
+                    break;
+                case "ms":
+                    memory = Convert.ToDouble(lblDisplay.Text);
+                    break;
+                default:break;
+
+            }
+            Console.WriteLine(operateMemory);
+            Console.WriteLine(memory);
+        }
+
+
     }
 }
