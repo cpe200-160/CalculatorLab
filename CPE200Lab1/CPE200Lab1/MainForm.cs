@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+011-60061039-lab1-hw1
+
 namespace CPE200Lab1
 {
     public partial class MainForm : Form
@@ -18,6 +20,8 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private double Memories;
+        private string operater;
         CalculatorEngine engine;
 
         private void resetAll()
@@ -29,7 +33,8 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        /*private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 😎
+      
+        /*private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch(operate)
             {
@@ -67,13 +72,38 @@ namespace CPE200Lab1
             }
             return "E";
         }*/
-
+        
         public MainForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
-
+            Memories = 0;
             resetAll();
+        }
+
+        private void btnMemories(object sender, EventArgs e)
+        {
+
+            operater = ((Button)sender).Text;
+            switch (operater)
+            {
+                case "MS":
+                    Memories = Double.Parse(lblDisplay.Text);
+                    break;
+                case "MC":
+                    Memories = 0;
+                    break;
+                case "MR":
+                    lblDisplay.Text = Memories.ToString();
+                    break;
+                case "M+":
+                    Memories += Double.Parse(lblDisplay.Text);
+                    break;
+                case "M-":
+                    Memories -= Double.Parse(lblDisplay.Text);
+                    break;
+
+            }
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -132,6 +162,9 @@ namespace CPE200Lab1
                     break;
                 case "1/X":
                     lblDisplay.Text = engine.calculate(operate, lblDisplay.Text, lblDisplay.Text);
+                    break;
+                case "C":
+                    lblDisplay.Text = "0";
                     break;
             }
             isAllowBack = false;
@@ -236,6 +269,21 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MR_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
