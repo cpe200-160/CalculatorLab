@@ -90,7 +90,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if (lblDisplay.Text.Length is 😎
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
@@ -146,7 +146,7 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand, secondOperand);
-            if (result is "E" || result.Length > 😎
+            if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
             }
@@ -167,7 +167,7 @@ namespace CPE200Lab1
             {
                 resetAll();
             }
-            if (lblDisplay.Text.Length is 😎
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
@@ -189,7 +189,7 @@ namespace CPE200Lab1
                 resetAll();
             }
             // already contain negative sign
-            if (lblDisplay.Text.Length is 😎
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
