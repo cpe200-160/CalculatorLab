@@ -18,9 +18,11 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private string memoCmd;
         private CalculatorEngine engine;
         string previousOperand;
-        
+        string memory = "0";
+
 
         private void resetAll()
         {
@@ -31,7 +33,7 @@ namespace CPE200Lab1
             isAfterEqual = false;
         }
 
-        
+
 
         public MainForm()
         {
@@ -55,13 +57,13 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = "0";
             }
-            if(lblDisplay.Text.Length is 8)
+            if (lblDisplay.Text.Length is 8)
             {
                 return;
             }
             isAllowBack = true;
             string digit = ((Button)sender).Text;
-            if(lblDisplay.Text is "0")
+            if (lblDisplay.Text is "0")
             {
                 lblDisplay.Text = "";
             }
@@ -96,7 +98,6 @@ namespace CPE200Lab1
                 case "√":
                     firstOperand = lblDisplay.Text;
                     lblDisplay.Text = Convert.ToString(Math.Sqrt(float.Parse(firstOperand)));
-                    isAfterOperater = true;
                     break;
                 case "1/x":
                     firstOperand = lblDisplay.Text;
@@ -161,7 +162,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text[0] is '-')
+            if (lblDisplay.Text[0] is '-')
             {
                 lblDisplay.Text = lblDisplay.Text.Substring(1, lblDisplay.Text.Length - 1);
             } else
@@ -189,19 +190,66 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(lblDisplay.Text != "0")
+            if (lblDisplay.Text != "0")
             {
                 string current = lblDisplay.Text;
                 char rightMost = current[current.Length - 1];
-                if(rightMost is '.')
+                if (rightMost is '.')
                 {
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if (lblDisplay.Text is "" || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
                 }
+            }
+        }
+
+        private void memories(object sender, EventArgs e)
+        {
+            memoCmd = ((Button)sender).Text;
+            string secondOperand = lblDisplay.Text;
+            string result;
+            switch (memoCmd)
+            {
+                case "M+":
+                    result = engine.calculate(operate, previousOperand, firstOperand, secondOperand);
+                    if (result is "E" || result.Length > 8)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                    memory = Convert.ToString(float.Parse(memory) + float.Parse(lblDisplay.Text));
+                    isAfterEqual = true;
+                    break;
+                case "M-":
+                    result = engine.calculate(operate, previousOperand, firstOperand, secondOperand);
+                    if (result is "E" || result.Length > 8)
+                    {
+                        lblDisplay.Text = "Error";
+                    }
+                    else
+                    {
+                        lblDisplay.Text = result;
+                    }
+                    memory = Convert.ToString(float.Parse(memory) - float.Parse(lblDisplay.Text));
+                    isAfterEqual = true;
+                    break;
+                case "MS":
+                    memory = lblDisplay.Text;
+                    break;
+                case "MC":
+                    memory = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = memory;
+                    isAfterEqual = true;
+                    break;
+                
             }
         }
     }
