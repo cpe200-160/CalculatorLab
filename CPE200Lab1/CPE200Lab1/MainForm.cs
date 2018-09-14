@@ -234,6 +234,12 @@ namespace CPE200Lab1
             newMemory = "0";
             memResult = "0";
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            newMemory = lblDisplay.Text;
+            memResult = lblDisplay.Text;
+        }
     } 
 
 }
