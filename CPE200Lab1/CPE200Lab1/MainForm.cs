@@ -63,7 +63,7 @@ namespace CPE200Lab1
             string digit = ((Button)sender).Text;
             if(lblDisplay.Text is "0")
             {
-                lblDisplay.Text = "";
+                lblDisplay.Text = " ";
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
@@ -225,7 +225,7 @@ namespace CPE200Lab1
                     hasDot = false;
                 }
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
-                if(lblDisplay.Text is "" || lblDisplay.Text is "-")
+                if(lblDisplay.Text is " " || lblDisplay.Text is "-")
                 {
                     lblDisplay.Text = "0";
                 }

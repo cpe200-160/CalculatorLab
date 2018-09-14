@@ -12,29 +12,39 @@ namespace CPE200Lab1
         {
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
+            string RPNResult,  firstOperand, secondOperand;
+
+            List<string> partsWithoutSpace = parts.ToList<string>();
+            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
+            parts = partsWithoutSpace.ToArray();
+
             for (int i = 0; i < parts.Length; i++)
             {
-                if ((isNumber(parts[i]) && isNumber(parts[i+1]) && isOperator(parts[i+2])))
+                
+                if (isNumber(parts[i]))
                 {
-                    return calculate(parts[i + 2], parts[i], parts[i + 1], 4);
-                }
-                else
-                {
-                    string firstOperand, secondOperand;
                     stack.Push(parts[i]);
-
-                    string next = calculate(parts[i + 3], parts[i+1], parts[i + 2], 4);
-                    stack.Push(next);
-
-                    secondOperand = stack.Pop();
-                    firstOperand = stack.Pop();
-
-                    return calculate(parts[i + 2], firstOperand, secondOperand, 4);
-
                 }
                 
+                if (isOperator(parts[i]))
+                {
+                    if (stack.Count < 2)
+                    {
+                        return "E";
+                    }
+                    secondOperand = stack.Pop();
+                    firstOperand = stack.Pop();
+                    RPNResult = calculate(parts[i], firstOperand, secondOperand);
+                    stack.Push(RPNResult);
+                }
+                
+
             }
 
+            if(stack.Count > 1)
+            {
+                return "E";
+            }
             return stack.Pop();
             
         }
