@@ -10,49 +10,49 @@ namespace CPE200Lab1
     {
         public string Process(string str)
         {
-            string[] rpnTokens = str.Split(' ');
+            string[] parts = str.Split(' ');
             Stack<string> stack = new Stack<string>();
+            string firstOperand = null;
+            string secondOperand = null;
+            string result = null;
 
-            foreach (string token in rpnTokens)
+            if (parts.Length == 1)
             {
-                if (isNumber(token))
+                return "E";
+            }
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (isNumber(parts[i]))
                 {
-                    stack.Push(token);
+                    stack.Push(parts[i]);
                 }
-                else if (isOperator(token))
+
+                else if (isOperator(parts[i]))
                 {
                     if (stack.Count < 2)
                     {
                         return "E";
                     }
-                    switch (token)
-                    {
-                        case "+":
-                        case "-":
-                        case "X":
-                        case "÷":
-                            string secondOperand = stack.Pop();
-                            stack.Push(calculate(token, stack.Pop(), secondOperand));
-                            break;
-                        case "%":
-                            secondOperand = stack.Pop();
-                            stack.Push(calculate(token, stack.Peek(), secondOperand));
-                            break;
-                        case "√":
-                            stack.Push(unaryCalculate(token, stack.Pop()));
-                            break;
-                        case "1/x":
-                            stack.Push(unaryCalculate(token, stack.Pop()));
-                            break;
-                    }
+                secondOperand = stack.Pop();
+                firstOperand = stack.Pop();
+                result = calculate(parts[i], firstOperand, secondOperand);
+                stack.Push(result);
+
+                }
+                else
+                {
+                    return "E";
                 }
             }
-            if (stack.Count == 1)
+            if (stack.Count > 1)
             {
-                return stack.Pop();
+                return "E";
             }
-            return "E";
+            else
+            {
+                return stack.Peek();
+            }
         }
-        
+
     }
 }

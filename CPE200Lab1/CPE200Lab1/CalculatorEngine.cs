@@ -32,13 +32,33 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (parts.Length > 3)
             {
-                return "E";
-            } else
+                string percent = calculate("%", parts[0], parts[2]);
+                return calculate(parts[1], parts[0], percent, 4);
+            }
+            if (isNumber(parts[0]) && (parts[1] == "%"))
+            {
+                return calculate("%", "1", parts[0]);
+            }
+            else if (isNumber(parts[0]) && (parts[1] == "√"))
+            {
+                return unaryCalculate("√", parts[0]);
+            }
+            else if (isNumber(parts[0]) && (parts[1] == "1/x"))
+            {
+                return unaryCalculate("1/x", parts[0]);
+            }
+            else if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
+            else
+            {
+                return "E";
+            }
+           
+
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -62,11 +82,8 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        if (Convert.ToDouble(operand) % result == 0)
-                        {
-                            return result.ToString();
-                        }
-                        return result.ToString("N" + remainLength);
+                        double resultZero = Convert.ToDouble(result.ToString("N" + remainLength));
+                        return resultZero.ToString();
                     }
                 case "1/x":
                     if(operand != "0")
@@ -86,11 +103,8 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        if (Convert.ToDouble(operand) * result == 1)
-                        {
-                            return result.ToString();
-                        }
-                        return result.ToString("N" + remainLength);
+                        double resultZero = Convert.ToDouble(result.ToString("N" + remainLength));
+                        return resultZero.ToString(); ;
                     }
                     break;
             }
@@ -123,23 +137,15 @@ namespace CPE200Lab1
                         {
                             return "E";
                         }
-                        //// calculate remaining space for fractional part.
+                        // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
-                        //// trim the fractional part gracefully. =
-                        if (Convert.ToDouble(firstOperand) % Convert.ToDouble(secondOperand) == 0)
-                        {
-                            return result.ToString();
-                        }
-                        else
-                            return result.ToString("N" + remainLength);
+                        // trim the fractional part gracefully. =
+                        double resultZero = Convert.ToDouble(result.ToString("N" + remainLength));
+                        return resultZero.ToString();
                     }
                     break;
                 case "%":
                     //your code here
-                    if (secondOperand == null)
-                    {
-                        return (Convert.ToDouble(firstOperand) / 100).ToString();
-                    }
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
             }
             return "E";

@@ -20,6 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine rpnEngine;
 
         private void resetAll()
         {
@@ -38,6 +39,7 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            rpnEngine = new RPNCalculatorEngine();
             resetAll();
         }
 
@@ -125,9 +127,12 @@ namespace CPE200Lab1
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    lblDisplay.Text += " " + operate + " ";
                     break;
                 case "%":
                     // your code here
+                    string secondOperand = lblDisplay.Text;
+                    engine.calculate("%", firstOperand, secondOperand);
                     break;
             }
             isAllowBack = false;
@@ -139,8 +144,16 @@ namespace CPE200Lab1
             {
                 return;
             }
-            string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = null;
+            string[] parts = lblDisplay.Text.Split(' ');
+            if (engine.isOperator(parts[1]))
+            {
+                result = engine.Process(lblDisplay.Text);
+            }
+            else
+            {
+                result = rpnEngine.Process(lblDisplay.Text);
+            }
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
