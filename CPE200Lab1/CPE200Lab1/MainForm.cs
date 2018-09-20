@@ -18,7 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-        public string SecondOperate;
+        private string SecondOperate;
         private double memory;
         private CalculatorEngine engine;
 
@@ -80,7 +80,6 @@ namespace CPE200Lab1
             {
                 return;
             }
-            SecondOperate = operate;
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
             string result = engine.unaryCalculate(operate, firstOperand);
@@ -131,6 +130,8 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     // your code here
+                    string secondOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
                     break;
             }
             isAllowBack = false;

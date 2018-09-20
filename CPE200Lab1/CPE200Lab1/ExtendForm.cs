@@ -16,11 +16,13 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private CalculatorEngine engine;
+        private RPNCalculatorEngine RpnEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
+            RpnEngine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -104,10 +106,11 @@ namespace CPE200Lab1
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
-                lblDisplay.Text = "Error";
-            } else
-            {
-                lblDisplay.Text = result;
+                result = RpnEngine.Process(lblDisplay.Text);
+                if (result is "E")
+                    lblDisplay.Text = "Error";
+                else
+                    lblDisplay.Text = result.ToString();
             }
         }
 
