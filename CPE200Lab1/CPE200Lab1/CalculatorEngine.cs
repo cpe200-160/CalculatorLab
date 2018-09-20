@@ -120,6 +120,28 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
+                    
+
+                    if (SecondOperate == "+")
+                    {
+                        return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (SecondOperate == "-")
+                    {
+                        return (Convert.ToDouble(firstOperand) - (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (SecondOperate == "X")
+                    {
+                        return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    if (SecondOperate == "÷")
+                    {
+                        return (Convert.ToDouble(firstOperand) / (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
+                    }
+                    else
+                    {
+                        return (0.01 * Convert.ToDouble(secondOperand)).ToString();
+                    }
                     break;
             }
             return "E";
