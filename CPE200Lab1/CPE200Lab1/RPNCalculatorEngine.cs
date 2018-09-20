@@ -26,44 +26,60 @@ namespace CPE200Lab1
             }
             return false;
         }
+
+        private bool isUnaryOperator(string str)
+        {
+            switch (str)
+            {
+                case "√":
+                case "1/x":
+                case "%":
+                    return true;
+            }
+            return false;
+        }
         public string RPNProcess(string str)
         {
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
-            string RPNResult,  firstOperand, secondOperand;
+            string RPNResult, firstOperand, secondOperand;
             
-            /*List<string> partsWithoutSpace = parts.ToList<string>();
-            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
-            parts = partsWithoutSpace.ToArray();*/
-
-            for (int i = 0; i < parts.Length; i++)
-            {
+             for (int i = 0; i < parts.Length; i++)
+             {
                 if (isNumber(parts[i]))
                 {
                     stack.Push(parts[i]);
                 }
-                
+
                 if (isOperator(parts[i]))
                 {
                     if (stack.Count < 2)
                     {
-                        return "E";
+                         return "E";
                     }
                     secondOperand = stack.Pop();
                     firstOperand = stack.Pop();
                     RPNResult = calculate(parts[i], firstOperand, secondOperand);
                     stack.Push(RPNResult);
                 }
+
+                if (isUnaryOperator(parts[i]))
+                {
+                  firstOperand = stack.Pop();
+                  RPNResult = unaryCalculate(parts[i], firstOperand);
+                  stack.Push(RPNResult);
+                }
+             }
                 
-
-            }
-
-            if(stack.Count > 1)
-            {
+             if (stack.Count > 1)
+             {
                 return "E";
-            }
-            return stack.Pop();
+             }
+             return stack.Pop();
             
+            
+
+
         }
     }
 }

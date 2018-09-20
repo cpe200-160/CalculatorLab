@@ -36,6 +36,22 @@ namespace CPE200Lab1.Tests
         }
 
         [TestMethod()]
+        public void Process_Unary_Test()
+        {
+            RPNCalculatorEngine r = new RPNCalculatorEngine();
+            Assert.AreEqual("1", r.RPNProcess("1 √"));
+            Assert.AreEqual("2", r.RPNProcess("4 √"));
+            Assert.AreEqual("3", r.RPNProcess("9 √"));
+            Assert.AreEqual("6", r.RPNProcess("9 √ 9 √ +"));
+            Assert.AreEqual("0", r.RPNProcess("4 √ 2 -"));
+            Assert.AreEqual("0", r.RPNProcess("1 √ 1 + 2 -"));
+            Assert.AreEqual("1", r.RPNProcess("1 1/x"));
+            Assert.AreEqual("0.5", r.RPNProcess("2 1/x"));
+            Assert.AreEqual("0.1", r.RPNProcess("10 1/x"));
+
+        }
+
+        [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();

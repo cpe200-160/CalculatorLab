@@ -16,7 +16,8 @@ namespace CPE200Lab1
 
         private bool isOperator(string str)
         {
-            switch(str) {
+            switch(str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -59,7 +60,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return string.Format("{0:G}",result);
+                        return result.ToString("G"+remainLength);
                     }
                 case "1/x":
                     if(operand != "0")
@@ -79,7 +80,7 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return string.Format("{0:G}", result);
+                        return result.ToString("G" + remainLength);
                     }
                     break;
             }
@@ -121,13 +122,14 @@ namespace CPE200Lab1
                         }
                         else
                         {
-                            return string.Format("{0:F6}",result);
+                            return result.ToString("G" + remainLength);
                         }
                         
                     }
                     break;
                 case "%":
                     //your code here
+                    
                     break;
             }
             return "E";

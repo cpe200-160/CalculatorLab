@@ -61,14 +61,26 @@ namespace CPE200Lab1
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
             string result = engine.unaryCalculate(operate, firstOperand);
-            if (result is "E" || result.Length > 8)
+            
+           string current = lblDisplay.Text;
+            if (current[current.Length - 1] != ' ')
             {
-                lblDisplay.Text = "Error";
+                if (result is "E" || result.Length > 8)
+                {
+                    lblDisplay.Text = "Error";
+                }
+                else
+                {
+                    lblDisplay.Text = result;
+                    return;
+                }
             }
-            else
+            if (current[current.Length - 2] != ' ' || isOperator(current[current.Length - 1]))
             {
-                lblDisplay.Text = result;
+                lblDisplay.Text += ((Button)sender).Text + " ";
+                isSpaceAllowed = false;
             }
+            
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
@@ -80,9 +92,9 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] == ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text;
+                lblDisplay.Text += ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
         }
