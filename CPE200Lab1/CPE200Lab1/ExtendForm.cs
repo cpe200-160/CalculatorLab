@@ -15,15 +15,14 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private bool isEqual = false;
+        private RPNCalculatorEngine RPNengine;
         private CalculatorEngine engine;
-        private RPNCalculatorEngine rpnEngine;
 
         public ExtendForm()
         {
             InitializeComponent();
             engine = new CalculatorEngine();
-            rpnEngine = new RPNCalculatorEngine();
+            RPNengine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(string ch)
@@ -43,11 +42,6 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (isEqual)
-            {
-                lblDisplay.Text = "";
-                isEqual = false;
-            }
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -67,11 +61,6 @@ namespace CPE200Lab1
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
-            if (isEqual)
-            {
-                lblDisplay.Text = "";
-                isEqual = false;
-            }
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -110,7 +99,6 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";
-            isEqual = false;
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
@@ -121,7 +109,7 @@ namespace CPE200Lab1
             string result = engine.Process(lblDisplay.Text);
             if (result is "E")
             {
-                result = rpnEngine.Process(lblDisplay.Text);
+                result = RPNengine.Process(lblDisplay.Text);
                 if (result is "E")
                 {
                     lblDisplay.Text = "Error";
@@ -135,8 +123,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-
-            isEqual = true;
+            
 
         }
 

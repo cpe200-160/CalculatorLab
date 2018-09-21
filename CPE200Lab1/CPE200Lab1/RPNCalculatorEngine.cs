@@ -12,14 +12,11 @@ namespace CPE200Lab1
         {
             string[] parts = str.Split(' ');
             Stack<string> stack = new Stack<string>();
-            string firstOperand = null;
-            string secondOperand = null;
-            string result = null;
+            string firstOperand;
+            string secondOperand;
+            string result;
 
-            if (parts.Length == 1)
-            {
-                return "E";
-            }
+
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -27,30 +24,44 @@ namespace CPE200Lab1
                     stack.Push(parts[i]);
                 }
 
-                else if (isOperator(parts[i]))
+                if (isOperator(parts[i]))
                 {
                     if (stack.Count < 2)
                     {
                         return "E";
                     }
-                secondOperand = stack.Pop();
-                firstOperand = stack.Pop();
-                result = calculate(parts[i], firstOperand, secondOperand);
-                stack.Push(result);
 
-                }
-                else
-                {
-                    return "E";
+                    if(parts[i] == "√")
+                    {
+                        firstOperand = stack.Pop();
+                        result = unaryCalculate(parts[i], firstOperand);
+                        stack.Push(result);
+                    }
+                    else if (parts[i] == "1/x")
+                    {
+                        firstOperand = stack.Pop();
+                        result = unaryCalculate(parts[i], firstOperand);
+                        stack.Push(result);
+                    }
+                    else
+                    {
+                        secondOperand = stack.Pop();
+                        firstOperand = stack.Pop();
+                        result = calculate(parts[i], firstOperand, secondOperand);
+                        stack.Push(result);
+                    }
+                
                 }
             }
-            if (stack.Count > 1)
+            
+
+            if (stack.Count == 1)
             {
-                return "E";
+                return stack.Peek();
             }
             else
             {
-                return stack.Peek();
+                return "E";
             }
         }
 
