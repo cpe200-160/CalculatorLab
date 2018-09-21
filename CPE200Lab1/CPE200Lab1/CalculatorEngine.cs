@@ -6,17 +6,126 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorEngine
+    public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        private bool isNumberPart = false;
+        private bool isContainDot = false;
+        public bool isSpaceAllowed = false;
+
+
+        public string dp = "0";
+
+        public virtual string Display()
+        {
+            return dp;
+        }
+
+        public void Num(string hi)
+        {
+
+            if (dp is "0")
+            {
+                dp = "";
+            }
+            if (!isNumberPart)
+            {
+                isNumberPart = true;
+                isContainDot = false;
+            }
+            dp += hi;
+            isSpaceAllowed = true;
+        }
+
+        public void bin(string hi)
+        {
+            isNumberPart = false;
+            isContainDot = false;
+            string current = dp;
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+            {
+                dp += " " + hi + " ";
+                isSpaceAllowed = false;
+            }
+        }
+        public void black(object n, EventArgs e)
+        {
+            string current = dp;
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            {
+                dp = current.Substring(0, current.Length - 3);
+            }
+            else
+            {
+                dp = current.Substring(0, current.Length - 1);
+            }
+            if (dp is "")
+            {
+                dp = "0";
+            }
+        }
+
+        public void clear(object n, EventArgs e)
+        {
+            dp = "0";
+            isContainDot = false;
+            isNumberPart = false;
+            isSpaceAllowed = false;
+        }
+
+
+
+        public void Dota2(object n, EventArgs e)
+        {
+            if (!isContainDot)
+            {
+                isContainDot = true;
+                dp += ".";
+                isSpaceAllowed = false;
+            }
+        }
+        public void sign(object n, EventArgs e)
+        {
+            if (isNumberPart)
+            {
+                return;
+            }
+            string current = dp;
+            if (current is "0")
+            {
+                dp = "-";
+            }
+            else if (current[current.Length - 1] is '-')
+            {
+                dp = current.Substring(0, current.Length - 1);
+                if (dp is "")
+                {
+                    dp = "0";
+                }
+            }
+            else
+            {
+                dp = current + "-";
+            }
+            isSpaceAllowed = false;
+        }
+        public virtual void space(object n, EventArgs e)
+        {
+            if (isSpaceAllowed)
+            {
+                dp += " ";
+                isSpaceAllowed = false;
+            }
+        }
+        public virtual bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public virtual bool isOperator(string str)
         {
-            switch(str) {
+            switch (str)
+            {
                 case "+":
                 case "-":
                 case "X":
@@ -26,13 +135,14 @@ namespace CPE200Lab1
             return false;
         }
 
-        public string Process(string str)
+        public virtual string Process(string str)
         {
             string[] parts = str.Split(' ');
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
-            } else
+            }
+            else
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -62,7 +172,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if(operand != "0")
+                    if (operand != "0")
                     {
                         double result;
                         string[] parts;
