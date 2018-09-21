@@ -43,6 +43,9 @@ namespace CPE200Lab1
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
             string RPNResult, firstOperand, secondOperand;
+            List<string> partsWithoutSpace = parts.ToList<string>();
+            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
+            parts = partsWithoutSpace.ToArray();
             
              for (int i = 0; i < parts.Length; i++)
              {
@@ -62,14 +65,20 @@ namespace CPE200Lab1
 
                 if (isOperator(parts[i]))
                 {
-                    if (stack.Count < 2)
+                    try
                     {
-                         return "E";
+                        secondOperand = stack.Pop();
+                        firstOperand = stack.Pop();
+                        RPNResult = calculate(parts[i], firstOperand, secondOperand);
+                        stack.Push(RPNResult);
                     }
-                    secondOperand = stack.Pop();
-                    firstOperand = stack.Pop();
-                    RPNResult = calculate(parts[i], firstOperand, secondOperand);
-                    stack.Push(RPNResult);
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine("An error occurred: '0'", ex);
+                        return "E";
+                    }
+                   
+
                 }
 
                 if (isUnaryOperator(parts[i]))
