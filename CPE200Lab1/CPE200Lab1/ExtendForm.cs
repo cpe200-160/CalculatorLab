@@ -30,6 +30,18 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
+                case '%':
+                    return true;
+            }
+            return false;
+        }
+
+        private bool isOperator2(string ch)
+        {
+            switch (ch)
+            {
+                case "√":
+                case "1/x":
                     return true;
             }
             return false;
@@ -68,6 +80,7 @@ namespace CPE200Lab1
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

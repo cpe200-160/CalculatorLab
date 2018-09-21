@@ -14,44 +14,35 @@ namespace CPE200Lab1
             Stack<string> mystack = new Stack<string>();
             string[] parts = str.Split(' ');
             string sum, num1, num2;
-            bool check = false;
-
 
             for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(parts[i]))
-                {
-                    if (check)
+                
+                    if (isNumber(parts[i]))
                     {
                         mystack.Push(parts[i]);
-                        check = false;
                     }
-                    else
+                    if (isOperator(parts[i]))
                     {
-                        mystack.Push(parts[i]);
-                        check = true;
+                        if (mystack.Count < 2)
+                        {
+                            return "E";
+                        }
+                        num2 = mystack.Pop();
+                        num1 = mystack.Pop();
+                        sum = calculate(parts[i], num1, num2);
+                        mystack.Push(sum);
                     }
-                    
-                }
-                if (isOperator(parts[i]))
-                {
-                    if (mystack.Count < 2)
+                    if (isOperator2(parts[i]))
                     {
-                        return "E";
+                        num1 = mystack.Pop();
+                        sum = unaryCalculate(parts[i], num1);
+                        mystack.Push(sum);
                     }
-                   num2 = mystack.Pop();
-                   num1 = mystack.Pop();
-                   sum = calculate(parts[i], num1, num2);
-                   mystack.Push(sum);
-                   check = false;
-                }
+                
+                sum = mystack.Peek();
 
-            }
-            sum = mystack.Peek();
-
-            if (mystack.Count == 1 )
-            {
-                if (check != true)
+                if (mystack.Count == 1)
                 {
                     return sum;
                 }
@@ -59,10 +50,6 @@ namespace CPE200Lab1
                 {
                     return "E";
                 }
-            }
-            else
-            {
-                return "E";
             }
         }
     }

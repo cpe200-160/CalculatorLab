@@ -21,6 +21,18 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
+                    return true;
+            }
+            return false;
+        }
+
+        public bool isOperator2(string ch)
+        {
+            switch (ch)
+            {
+                case "√":
+                case "1/x":
                     return true;
             }
             return false;
@@ -119,8 +131,9 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
-                    break;
+                    double first = Convert.ToDouble(firstOperand);
+                    double secon = Convert.ToDouble(secondOperand);
+                    return (first + (first * secon) / 100).ToString();
             }
             return "E";
         }
