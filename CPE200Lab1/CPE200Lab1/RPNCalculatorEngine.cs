@@ -38,7 +38,7 @@ namespace CPE200Lab1
                     {
                         return "E";
                     }
-                    result = calculate(parts[i], ppap1, ppap2, 4);
+                    result = calculate(parts[i], num1, num2, 4);
                     operands.Push(result);
                 }
 
@@ -53,4 +53,3 @@ namespace CPE200Lab1
 
 
 }
-
