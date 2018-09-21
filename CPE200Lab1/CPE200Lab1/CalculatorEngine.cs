@@ -48,6 +48,7 @@ namespace CPE200Lab1
                     parts.Insert(0, result);
                 }
             }
+           
             return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -127,7 +128,14 @@ namespace CPE200Lab1
                         // calculate remaining space for fractional part.
                         remainLength = maxOutputSize - parts[0].Length - 1;
                         // trim the fractional part gracefully. =
-                        return result.ToString("N" + remainLength);
+                        if (remainLength <= 6)
+                        {
+                            return result.ToString();
+                        }
+                        else
+                        {
+                            return result.ToString("N" + remainLength);
+                        }
                     }
                     break;
                 case "%":
