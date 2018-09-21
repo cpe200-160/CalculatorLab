@@ -92,7 +92,23 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] == ' ' || isOperator(current[current.Length - 2]))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            {
+                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                isSpaceAllowed = false;
+            }
+        }
+
+        private void btnPercentOperator_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
+            isNumberPart = false;
+            isContainDot = false;
+            string current = lblDisplay.Text;
+            if (current[current.Length - 3] != ' ' || isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text += ((Button)sender).Text + " ";
                 isSpaceAllowed = false;

@@ -22,18 +22,18 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
         }
-
+       
         private bool isUnaryOperator(string str)
         {
             switch (str)
             {
                 case "√":
                 case "1/x":
-                case "%":
                     return true;
             }
             return false;
@@ -49,6 +49,15 @@ namespace CPE200Lab1
                 if (isNumber(parts[i]))
                 {
                     stack.Push(parts[i]);
+                }
+
+                if (parts[i] == "%")
+                {
+                    secondOperand = stack.Pop();
+                    firstOperand = stack.Pop();
+                    RPNResult = calculate(parts[i], firstOperand, secondOperand);
+                    stack.Push(firstOperand);
+                    stack.Push(RPNResult);
                 }
 
                 if (isOperator(parts[i]))

@@ -51,6 +51,15 @@ namespace CPE200Lab1.Tests
 
         }
 
+        /*[TestMethod()]
+        public void Process_Percent_Test()
+        {
+            RPNCalculatorEngine r = new RPNCalculatorEngine();
+            Assert.AreEqual("110", r.RPNProcess("100 10 % +"));
+            Assert.AreEqual("240", r.RPNProcess("200 20 % +"));
+            Assert.AreEqual("210", r.RPNProcess("300 30 % -"));
+        }*/
+
         [TestMethod()]
         public void Process_Error_Test()
         {
