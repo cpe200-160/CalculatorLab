@@ -27,12 +27,12 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]))
                 {
-                    string ppap1;
-                    string ppap2;
+                    string num1;
+                    string num2;
                     if (operands.Count() > 1)
                     {
-                        ppap2 = operands.Pop();
-                        ppap1 = operands.Pop();
+                        num2 = operands.Pop();
+                        num1 = operands.Pop();
                     }
                     else
                     {
