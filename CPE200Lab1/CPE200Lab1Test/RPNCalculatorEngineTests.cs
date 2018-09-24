@@ -33,13 +33,13 @@ namespace CPE200Lab1.Tests
             Assert.AreEqual("8", r.Process("1 3 + 2 X"));
             Assert.AreEqual("5", r.Process("1 3 2 + X"));
             Assert.AreEqual("-5", r.Process("1 2 3 4 + - X"));
+            Assert.AreEqual("1", r.Process("1"));
         }
 
         [TestMethod()]
         public void Process_Error_Test()
         {
             RPNCalculatorEngine r = new RPNCalculatorEngine();
-            Assert.AreEqual("E", r.Process("1"));
             Assert.AreEqual("E", r.Process("1 +"));
             Assert.AreEqual("E", r.Process("1 + 1"));
             Assert.AreEqual("E", r.Process("1 1 1 +"));
