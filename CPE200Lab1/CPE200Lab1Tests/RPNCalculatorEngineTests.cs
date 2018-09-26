@@ -105,9 +105,9 @@ namespace CPE200Lab1.Tests
 
         [TestMethod()]
         public void InvalideFormatTest()
-        {
+        {   
             Assert.AreEqual("E", engine.Process("+"));
-            Assert.AreEqual("E", engine.Process("1+"));
+           Assert.AreEqual("E", engine.Process("1+"));
             Assert.AreEqual("E", engine.Process("+1"));
             Assert.AreEqual("E", engine.Process("1 +"));
             Assert.AreEqual("E", engine.Process("+ 1"));
