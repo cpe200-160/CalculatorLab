@@ -32,15 +32,15 @@ namespace CPE200Lab1
                         firstOperand = rpnStack.Pop();
                         rpnStack.Push(calculate(part, firstOperand, secondOperand));
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
-                        if (check == false || rpnStack.Count > 1) 
+                        
                         return "E";
                     }
                 }
                 
             }
-           // if (check == false|| rpnStack.Count > 1) return "E";
+            if (check == false|| rpnStack.Count > 1) return "E";
             check = false;
             return rpnStack.Pop();
         }
