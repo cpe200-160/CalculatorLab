@@ -23,16 +23,24 @@ namespace CPE200Lab1
                 }
                 else 
                 {
-                    check = true;
-                    string firstOperand, secondOperand;
-                    if (rpnStack.Count < 2) return "E";
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    rpnStack.Push(calculate(part, firstOperand, secondOperand)); 
+                    try
+                    {
+                        check = true;
+                        string firstOperand, secondOperand;
+                        if (rpnStack.Count < 2) return "E";
+                        secondOperand = rpnStack.Pop();
+                        firstOperand = rpnStack.Pop();
+                        rpnStack.Push(calculate(part, firstOperand, secondOperand));
+                    }
+                    catch(Exception ex)
+                    {
+                        if (check == false || rpnStack.Count > 1) 
+                        return "E";
+                    }
                 }
                 
             }
-            if (check == false|| rpnStack.Count > 1) return "E";
+           // if (check == false|| rpnStack.Count > 1) return "E";
             check = false;
             return rpnStack.Pop();
         }
