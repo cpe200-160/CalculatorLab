@@ -8,6 +8,18 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        private bool isUnaryOperator(string str)
+        {
+            switch (str)
+            {
+                case "1/x":
+                case "√":
+                    return true;
+            }
+            return false;
+
+        }
+
         private bool isNumber(string str)
         {
             double retNum;
@@ -26,44 +38,26 @@ namespace CPE200Lab1
                     return true;
             }
             return false;
+
         }
-       
-        private bool isUnaryOperator(string str)
-        {
-            switch (str)
-            {
-                case "√":
-                case "1/x":
-                    return true;
-            }
-            return false;
-        }
-        public string RPNProcess(string str)
+
+        public string Process(string str)
         {
             Stack<string> stack = new Stack<string>();
             string[] parts = str.Split(' ');
             string RPNResult, firstOperand, secondOperand;
-            List<string> partsWithoutSpace = parts.ToList<string>();
-            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
-            parts = partsWithoutSpace.ToArray();
-            
+                       
              for (int i = 0; i < parts.Length; i++)
              {
-                if (isNumber(parts[i]))
-                {
-                    stack.Push(parts[i]);
-                }
-
                 if (parts[i] == "%")
                 {
                     secondOperand = stack.Pop();
-                    firstOperand = stack.Pop();
+                    firstOperand = stack.Peek();
                     RPNResult = calculate(parts[i], firstOperand, secondOperand);
-                    stack.Push(firstOperand);
                     stack.Push(RPNResult);
-                }
 
-                if (isOperator(parts[i]))
+                }
+                else if (isOperator(parts[i]))
                 {
                     try
                     {
@@ -77,19 +71,21 @@ namespace CPE200Lab1
                         Console.WriteLine("An error occurred: '0'", ex);
                         return "E";
                     }
-                   
-
                 }
-
-                if (isUnaryOperator(parts[i]))
+                else if (isUnaryOperator(parts[i]))
                 {
                   firstOperand = stack.Pop();
                   RPNResult = unaryCalculate(parts[i], firstOperand);
                   stack.Push(RPNResult);
                 }
-             }
-                
-             if (stack.Count > 1)
+                else if (isNumber(parts[i]))
+                {
+                    stack.Push(parts[i]);
+                }
+
+            }
+
+            if (stack.Count > 1)
              {
                 return "E";
              }

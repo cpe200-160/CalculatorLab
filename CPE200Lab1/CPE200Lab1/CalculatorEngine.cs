@@ -22,6 +22,7 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                case "%":
                     return true;
             }
             return false;
@@ -31,6 +32,10 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
+            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            {
+                return "E";
+            }
             return calculate(parts[1], parts[0], parts[2], 4);
  
 
@@ -134,9 +139,9 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)/100).ToString();
+                    return (Convert.ToDouble(secondOperand)/100 * Convert.ToDouble(firstOperand)).ToString();
             }
-            return "A";
+            return "E";
         }
     }
 }

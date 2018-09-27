@@ -330,7 +330,7 @@
             this.button2.TabIndex = 43;
             this.button2.Text = "%";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnUnaryOperator_Click);
+            this.button2.Click += new System.EventHandler(this.btnBinaryOperator_Click);
             // 
             // button3
             // 
