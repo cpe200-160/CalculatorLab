@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        private Stack<string> myStack;
+
         private bool isUnaryOperator(string str)
         {
             switch (str)
@@ -43,57 +45,62 @@ namespace CPE200Lab1
 
         public string Process(string str)
         {
-            Stack<string> stack = new Stack<string>();
+            myStack = new Stack<string>();
             string[] parts = str.Split(' ');
-            string RPNResult, firstOperand, secondOperand;
-                       
-             for (int i = 0; i < parts.Length; i++)
-             {
-                if (parts[i] == "%")
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (isNumber(parts[i]))
                 {
-                    secondOperand = stack.Pop();
-                    firstOperand = stack.Peek();
-                    RPNResult = calculate(parts[i], firstOperand, secondOperand);
-                    stack.Push(RPNResult);
-
+                    myStack.Push(parts[i]);
                 }
-                else if (isOperator(parts[i]))
+                else
                 {
-                    try
-                    {
-                        secondOperand = stack.Pop();
-                        firstOperand = stack.Pop();
-                        RPNResult = calculate(parts[i], firstOperand, secondOperand);
-                        stack.Push(RPNResult);
-                    }
-                    catch(Exception ex)
-                    {
-                        Console.WriteLine("An error occurred: '0'", ex);
-                        return "E";
-                    }
+                    myStack.Push(calculate(parts[i]));
                 }
-                else if (isUnaryOperator(parts[i]))
-                {
-                  firstOperand = stack.Pop();
-                  RPNResult = unaryCalculate(parts[i], firstOperand);
-                  stack.Push(RPNResult);
-                }
-                else if (isNumber(parts[i]))
-                {
-                    stack.Push(parts[i]);
-                }
-
             }
 
-            if (stack.Count > 1)
-             {
+            if (myStack.Count > 1)
+            {
                 return "E";
-             }
-             return stack.Pop();
-            
-            
+            }
+            return myStack.Pop();
 
+        }
 
+        public string calculate(string operate)
+        {
+            string RPNResult, firstOperand, secondOperand;
+            if (operate == "%")
+            {
+                secondOperand = myStack.Pop();
+                firstOperand = myStack.Peek();
+                RPNResult = calculate(operate, firstOperand, secondOperand);
+                myStack.Push(RPNResult);
+
+            }
+            else if (isOperator(operate))
+            {
+                try
+                {
+                    secondOperand = myStack.Pop();
+                    firstOperand = myStack.Pop();
+                    RPNResult = calculate(operate, firstOperand, secondOperand);
+                    myStack.Push(RPNResult);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred: '0'", ex);
+                    return "E";
+                }
+            }
+            else if (isUnaryOperator(operate))
+            {
+                firstOperand = myStack.Pop();
+                RPNResult = calculate(operate, firstOperand);
+                myStack.Push(RPNResult);
+            }
+
+            return myStack.Pop();
         }
     }
 }
