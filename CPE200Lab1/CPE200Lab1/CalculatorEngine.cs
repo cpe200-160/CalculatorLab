@@ -48,8 +48,14 @@ namespace CPE200Lab1
                     parts.Insert(0, result);
                 }
             }
+            if (isNumber)
+            {
+                return "E";
+            }
+            else {
+                return parts[0];
+            }
            
-            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
