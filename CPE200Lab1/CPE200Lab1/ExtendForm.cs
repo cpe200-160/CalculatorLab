@@ -7,9 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/// <summary>
+/// ExtendForm config
+/// </summary>
 namespace CPE200Lab1
-{
+{   /// <summary>
+/// contain Number,MathOperation to do in Rpnterm
+/// </summary>
     public partial class ExtendForm : Form
     {
         private bool isNumberPart = false;

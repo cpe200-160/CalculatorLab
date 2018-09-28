@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+    /// <summary>
+    /// Main CalculatorEngine class
+    /// </summary>
 namespace CPE200Lab1
-{
+{   /// <summary>
+    /// contain methods to perform math funtion
+    /// </summary>
+    /// <remarks>
+    ///<para>
+    ///this class can be Add,Subtract,Multiply,Divide,Percentage,OneOverX,SquareRoot
+    ///</para>
+    ///<para>can be perform both intreger and double
+    ///</para>
+    /// </remarks>
     public class CalculatorEngine
     {
+ 
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+       
         public bool isOperator(string str)
         {
             switch (str)
@@ -59,6 +71,7 @@ namespace CPE200Lab1
                         double result1;
                         string[] parts;
                         int remainLength;
+                        //catch the case that input is complex number
                         try
                         {
                             result1 = Math.Sqrt(Convert.ToDouble(operand));
@@ -92,6 +105,7 @@ namespace CPE200Lab1
                         double result2;
                         string[] parts;
                         int remainLength;
+                        //catch the case that input is zero
                         try
                         {
                             result2 = (1.0 / Convert.ToDouble(operand));
@@ -169,7 +183,6 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
                     if (operate == "+" && firstOperand != "0")
                     {
                         return (Convert.ToDouble(firstOperand) + (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand)))).ToString();
