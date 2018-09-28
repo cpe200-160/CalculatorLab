@@ -8,12 +8,21 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+		/// <summary>
+		/// this boolean check str is number ?
+		/// </summary>
+		/// <param name="str"></param>
+		/// <returns></returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+		/// <summary>
+		/// this boolean check str is Operator ?
+		/// </summary>
+		/// <param name="str"></param>
+		/// <returns></returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -21,12 +30,20 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+				case "%":
+				case "√":
+				case "1/x":
 					return true;
             }
             return false;
         }
 
-        public string Process(string str)
+		/// <summary>
+		/// process to calculate 2 number which input
+		/// </summary>
+		/// <param name="str"></param>
+		/// <returns></returns>
+		public string Process(string str)
         {
             string[] parts = str.Split(' ');
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -38,6 +55,14 @@ namespace CPE200Lab1
             }
 
         }
+
+		/// <summary>
+		/// this function to calculate 1/x and loot
+		/// </summary>
+		/// <param name="operate"></param>
+		/// <param name="operand"></param>
+		/// <param name="maxOutputSize"></param>
+		/// <returns></returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -88,6 +113,14 @@ namespace CPE200Lab1
             return "E";
         }
 
+		/// <summary>
+		/// this is function to calculate +,-,*,/,%
+		/// </summary>
+		/// <param name="operate"></param>
+		/// <param name="firstOperand"></param>
+		/// <param name="secondOperand"></param>
+		/// <param name="maxOutputSize"></param>
+		/// <returns></returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -123,7 +156,6 @@ namespace CPE200Lab1
                     break;
                 case "%":
 					return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
-					break;	
             }
             return "E";
         }
