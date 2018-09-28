@@ -24,6 +24,7 @@ namespace CPE200Lab1
                     stack.Push(parts[i]);
                 }
 
+
                 if (isOperator(parts[i]))
                 {
                     if (stack.Count < 2)
@@ -31,16 +32,32 @@ namespace CPE200Lab1
                         return "E";
                     }
 
-                    if(parts[i] == "√")
+                    if (parts[i] == "√")
                     {
-                        firstOperand = stack.Pop();
-                        result = unaryCalculate(parts[i], firstOperand);
-                        stack.Push(result);
+                        try
+                        {
+                            firstOperand = stack.Pop();
+                            result = unaryCalculate(parts[i], firstOperand);
+                            stack.Push(result);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            return "E";
+                        }
                     }
                     else if (parts[i] == "1/x")
                     {
                         firstOperand = stack.Pop();
                         result = unaryCalculate(parts[i], firstOperand);
+                        stack.Push(result);
+                    }
+                    else if (parts[i] == "%")
+                    {
+
+                        secondOperand = stack.Pop();
+                        firstOperand = stack.Pop();
+                        stack.Push(firstOperand);
+                        result = calculate(parts[i], firstOperand, secondOperand);
                         stack.Push(result);
                     }
                     else
@@ -50,10 +67,10 @@ namespace CPE200Lab1
                         result = calculate(parts[i], firstOperand, secondOperand);
                         stack.Push(result);
                     }
-                
+
                 }
             }
-            
+
 
             if (stack.Count == 1)
             {

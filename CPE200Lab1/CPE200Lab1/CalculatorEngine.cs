@@ -32,7 +32,7 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-
+            
             if (isNumber(parts[0]) && (parts[1] == "%")) //case 20% = 0.2
             {
                 return calculate("%", "1", parts[0]);
@@ -42,7 +42,7 @@ namespace CPE200Lab1
                 string percent = calculate("%", parts[0], parts[2]);
                 return calculate(parts[1], parts[0], percent, 4);
             }
-            else if (isNumber(parts[0]) && (parts[1] == "√")) //case 2√ = 1.4...
+            if (isNumber(parts[0]) && (parts[1] == "√")) //case 2√ = 1.4...
             {
                 return unaryCalculate("√", parts[0]);
             }
@@ -58,7 +58,16 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-
+            /*
+            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+            {
+                return "E";
+            }
+            else
+            {
+                return calculate(parts[1], parts[0], parts[2], 4);
+            }
+            */
 
 
 
