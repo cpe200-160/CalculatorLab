@@ -13,35 +13,43 @@ namespace CPE200Lab1
             // your code here
             Stack<string> rpnStack = new Stack<string>();
             string[] parts = str.ToString().Split(' ');
-           bool check = false;
+            string result;
             foreach (string part in parts)
             {
-                if (part != "+" && part != "-" && part != "X" && part != "÷")
+                if (parts.Count() < 3 && str != "0")
                 {
-                    
+                    return "E";
+                }
+                else if (isNumber(part))
+                {
+
                     rpnStack.Push(part);
                 }
-                else 
+                else if (isOperator(part))
                 {
                     try
                     {
-                        check = true;
                         string firstOperand, secondOperand;
-                        if (rpnStack.Count < 2) return "E";
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
-                        rpnStack.Push(calculate(part, firstOperand, secondOperand));
+                        result = calculate(part, firstOperand, secondOperand);
+                        rpnStack.Push(result);
                     }
-                    catch(Exception)
+                    catch (InvalidOperationException)
                     {
-                        
+
                         return "E";
                     }
                 }
-                
+                else if (isUnaryOperator(part))
+                {
+                    string firstOperand;
+                    firstOperand = rpnStack.Pop();
+                    result = unaryCalculate(part, firstOperand);
+                    rpnStack.Push(result);
+                }
             }
-            if (check == false|| rpnStack.Count > 1) return "E";
-            check = false;
+            if (rpnStack.Count > 1) return "E";
             return rpnStack.Pop();
         }
     }
