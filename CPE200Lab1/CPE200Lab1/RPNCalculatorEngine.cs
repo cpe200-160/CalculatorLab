@@ -27,27 +27,31 @@ namespace CPE200Lab1
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
+                    try
                     {
-                        second = myStack.Pop();
-                        first = myStack.Pop();
-                        result = calculate(parts[i], first, second);
-                        myStack.Push(result);
-                    }
-                    else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
-                    {
-                        first = myStack.Pop();
-                        myStack.Push(unaryCalculate(parts[i], first));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        second = myStack.Pop();
-                        first = myStack.Pop();
-                        myStack.Push(first);
-                        myStack.Push(calculate(parts[i], first, second));
+                        if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷"))
+                        {
+                            second = myStack.Pop();
+                            first = myStack.Pop();
+                            result = calculate(parts[i], first, second);
+                            myStack.Push(result);
+                        }
+                        else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
+                        {
+                            first = myStack.Pop();
+                            myStack.Push(unaryCalculate(parts[i], first));
+                        }
+                        else if (parts[i] == "%")
+                        {
+                            second = myStack.Pop();
+                            first = myStack.Pop();
+                            myStack.Push(first);
+                            myStack.Push(calculate(parts[i], first, second));
 
+                        }
                     }
-                    else return "E";
+                    catch (Exception er)
+                    { return "E"; }
                 }
                 else
                 {
