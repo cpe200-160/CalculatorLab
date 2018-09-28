@@ -10,7 +10,10 @@ namespace CPE200Lab1
     {
         public override string Process(string str)
         {
-            // your code here
+            if (str == null || str == "")
+            {
+                return "E";
+            }
             string[] parts = str.Split(' ');
             Stack<string> operands = new Stack<string>();
             for (int i = 0; i < parts.Length; i++)
@@ -35,30 +38,19 @@ namespace CPE200Lab1
                     operands.Push(result);
                 }
             }
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
-        }
-    }
-    /*
-    public class RPNCalculatorEngine
-    {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
             if (operands.Count > 1)
             {
                 return "E";
             }
             return operands.Pop();
         }
-
+        
         /*public override void handleSpace()
         {
             base.handleSpace();
             isNumberPart = false;
+
+
         }*/
     }
-    */
 }
