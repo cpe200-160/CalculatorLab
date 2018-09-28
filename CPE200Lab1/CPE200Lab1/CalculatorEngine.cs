@@ -19,6 +19,11 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
+        /// <summary>
+        /// chack wether input is operator
+        /// </summary>
+        /// <param name="str">Input string</param>
+        /// <returns>True if str repersent a operator</returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -32,6 +37,11 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        /// chack wether input is operator "√" and "1/x"
+        /// </summary>
+        /// <param name="ch">Input string</param>
+        /// <returns>True if str repersent a operator "√" and "1/x"</returns>
         public bool isOperator2(string ch)
         {
             switch (ch)
@@ -43,6 +53,11 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        /// Process input numberInput string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>result from calculate</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -55,6 +70,14 @@ namespace CPE200Lab1
             }
 
         }
+
+        /// <summary>
+        /// calculate input number
+        /// </summary>
+        /// <param name="operate">Input string</param>
+        /// <param name="operand">Input string</param>
+        /// <param name="maxOutputSize">Input int</param>
+        /// <returns>result</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -103,6 +126,14 @@ namespace CPE200Lab1
             return "E";
         }
 
+        /// <summary>
+        /// calculate input number
+        /// </summary>
+        /// <param name="operate">Input string</param>
+        /// <param name="firstOperand">Input string</param>
+        /// <param name="secondOperand">Input string</param>
+        /// <param name="maxOutputSize">Input int</param>
+        /// <returns>result</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)

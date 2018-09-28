@@ -9,6 +9,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine :CalculatorEngine
     {
+        /// <summary>
+        /// Process input number
+        /// </summary>
+        /// <param name="str">Input string</param>
+        /// <returns>sum from calculate or unaryCalculate</returns>
         public string Process(string str)
         {
             Stack<string> mystack = new Stack<string>();
