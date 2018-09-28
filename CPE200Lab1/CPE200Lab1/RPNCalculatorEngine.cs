@@ -13,37 +13,41 @@ namespace CPE200Lab1
             if (str == null || str == "")
             {
                 return "E";
-            }
-            string[] parts = str.Split(' ');
-            Stack<string> operands = new Stack<string>();
-            for (int i = 0; i < parts.Length; i++)
+            } else
             {
-                if (isNumber(parts[i]))
+                string[] parts = str.Split(' ');
+                Stack<string> operands = new Stack<string>();
+                for (int i = 0; i < parts.Length; i++)
                 {
-                    operands.Push(parts[i]);
+                    if (isNumber(parts[i]))
+                    {
+                        operands.Push(parts[i]);
+                    }
+                    else if (isOperator(parts[i]))
+                    {
+                        if (operands.Count < 2)
+                        {
+                            return "E";
+                        }
+                        string operands2 = operands.Pop();
+                        string operands1 = operands.Pop();
+                        string result = calculate(parts[i], operands1, operands2, 4);
+                        if (result is "E")
+                        {
+                            return result;
+                        }
+                        operands.Push(result);
+                    }
                 }
-                else if (isOperator(parts[i]))
+                //FIXME, what if there is more than one, or zero, items in the stack?
+                if (operands.Count > 1)
                 {
-                    if (operands.Count < 2)
-                    {
-                        return "E";
-                    }
-                    string operands2 = operands.Pop();
-                    string operands1 = operands.Pop();
-                    string result = calculate(parts[i], operands1, operands2, 4);
-                    if (result is "E")
-                    {
-                        return result;
-                    }
-                    operands.Push(result);
+                    return "E";
                 }
+                return operands.Pop();
             }
-            if (operands.Count > 1)
-            {
-                return "E";
-            }
-            return operands.Pop();
         }
+            
         
         /*public override void handleSpace()
         {
