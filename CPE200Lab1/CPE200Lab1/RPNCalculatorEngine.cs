@@ -19,27 +19,38 @@ namespace CPE200Lab1
                 if (isNumber(parts[i]))
                 {
                     operands.Push(parts[i]);
+                    if (i == 0)
+                    {
+                        result = parts[i];
+                    }
                 }
                 else if (isOperator(parts[i]))
                 {
-                    string ppap1;
-                    string ppap2;
-                    if (operands.Count() > 1)
+                   string ppap1;
+                   string ppap2;
+                    int amountOperads = operands.Count();
+                    if (operands.Count() > 1 )
                     {
+                        if (amountOperads >= 3)
+                        {
+                            continue;
+                        }
                         ppap2 = operands.Pop();
                         ppap1 = operands.Pop();
 
-                    }
-                    else
+                    }else
                     {
-                        return "E";
+                      return "E";
                     }
                     result = calculate(parts[i], ppap1, ppap2, 4);
                     operands.Push(result);
                 }
+                else
+                {
+                    
+                }
             }
             return result;
-
         }
 
     }
