@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine :CalculatorEngine
+    public class RPNCalculatorEngine :BasicCalculatorEngine
     {
         /// <summary>
         /// Process input number
         /// </summary>
         /// <param name="str">Input string</param>
         /// <returns>sum from calculate or unaryCalculate</returns>
-        public string Process(string str)
+        public string Calculate(string str)
         {
             Stack<string> mystack = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -37,7 +37,7 @@ namespace CPE200Lab1
                     {
                         num2 = mystack.Pop();
                         num1 = mystack.Pop();
-                        sum = calculate(parts[i], num1, num2);
+                        sum = Calculate(parts[i], num1, num2);
                         mystack.Push(sum);
                     }
                     catch (InvalidOperationException)
@@ -49,7 +49,7 @@ namespace CPE200Lab1
                 {
 
                     num1 = mystack.Pop();
-                    sum = unaryCalculate(parts[i], num1);
+                    sum = Calculate(parts[i], num1);
                     mystack.Push(sum);
                 }
             }

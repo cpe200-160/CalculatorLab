@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic1CalculatorEngine.cs" />
     <Compile Include="CalculatorEngine.cs" />
     <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
