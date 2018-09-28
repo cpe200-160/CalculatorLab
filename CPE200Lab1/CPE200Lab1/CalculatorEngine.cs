@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// chack wether input is number
+        /// </summary>
+        /// <param name="str">Input string</param>
+        /// <returns>True if str repersent a number </returns>
         public bool isNumber(string str)
         {
             double retNum;
