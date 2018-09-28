@@ -35,6 +35,18 @@ namespace CPE200Lab1
                     operands.Push(result);
                 }
             }
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
+        }
+    }
+    /*
+    public class RPNCalculatorEngine
+    {
+        public string Process(string str)
+        {
+            // your code here
+            return "E";
             if (operands.Count > 1)
             {
                 return "E";
@@ -48,4 +60,5 @@ namespace CPE200Lab1
             isNumberPart = false;
         }*/
     }
+    */
 }
