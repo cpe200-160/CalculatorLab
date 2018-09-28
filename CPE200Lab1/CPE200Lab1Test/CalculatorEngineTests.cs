@@ -80,9 +80,6 @@ namespace CPE200Lab1.Tests
         }
 
 
-        //
-        // Test calculate()
-        //
         [TestMethod()]
         public void Calculate_BasicPlus_Test()
         {

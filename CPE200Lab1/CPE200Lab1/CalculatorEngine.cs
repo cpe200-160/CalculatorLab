@@ -8,12 +8,21 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
+        /// <summary>
+        /// check input is a number
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>true if it is a number</returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+        /// <summary>
+        /// check input is an operator
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>true if it is an operator</returns>
         public bool isOperator(string str)
         {
             switch(str) {
@@ -29,28 +38,33 @@ namespace CPE200Lab1
             return false;
         }
 
+        /// <summary>
+        ///  process input to calculate result
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>result</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
             
-            if (isNumber(parts[0]) && (parts[1] == "%")) //case 20% = 0.2
+            if (isNumber(parts[0]) && (parts[1] == "%")) //calculate percent   Ex: 20 % = 0.2
             {
                 return calculate("%", "1", parts[0]);
             }
-            else if (parts.Length >= 4 && parts[3] == "%") //case 50+20% = 75
+            else if (parts.Length >= 4 && parts[3] == "%") //calculate percent   Ex: 50 + 20 % = 75
             {
                 string percent = calculate("%", parts[0], parts[2]);
                 return calculate(parts[1], parts[0], percent, 4);
             }
-            if (isNumber(parts[0]) && (parts[1] == "√")) //case 2√ = 1.4...
+            if (isNumber(parts[0]) && (parts[1] == "√")) //calculate √   Ex: 2 √ = 1.4...
             {
                 return unaryCalculate("√", parts[0]);
             }
-            else if (isNumber(parts[0]) && (parts[1] == "1/x")) //case 
+            else if (isNumber(parts[0]) && (parts[1] == "1/x")) //calculate one over x   Ex: 1 1/x = 1
             {
                 return unaryCalculate("1/x", parts[0]);
             }
-            else if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
+            else if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])) //calculate number  Ex: 1 + 2 = 3
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -58,20 +72,15 @@ namespace CPE200Lab1
             {
                 return "E";
             }
-            /*
-            if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
-            */
-
-
 
         }
+        /// <summary>
+        /// check operator are √ and 1/x then calculate result
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="operand"></param>
+        /// <param name="maxOutputSize"></param>
+        /// <returns>result</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -121,7 +130,14 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        /// <summary>
+        /// check operator are +,-,X and ÷  then calculate result
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <param name="maxOutputSize"></param>
+        /// <returns>result</returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -156,7 +172,6 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();
             }
             return "E";

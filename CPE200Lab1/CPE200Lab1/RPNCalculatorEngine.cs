@@ -8,6 +8,11 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
+        /// <summary>
+        /// process input to calculate result
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>result</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -15,16 +20,12 @@ namespace CPE200Lab1
             string firstOperand;
             string secondOperand;
             string result;
-
-
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
                 {
                     stack.Push(parts[i]);
                 }
-
-
                 if (isOperator(parts[i]))
                 {
                     if (stack.Count < 2)
@@ -70,8 +71,6 @@ namespace CPE200Lab1
 
                 }
             }
-
-
             if (stack.Count == 1)
             {
                 return stack.Peek();
