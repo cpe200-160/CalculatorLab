@@ -17,40 +17,48 @@ namespace CPE200Lab1
 
             for (int i = 0; i < parts.Length; i++)
             {
-                
-                    if (isNumber(parts[i]))
+
+                if (isNumber(parts[i]))
+                {
+                    mystack.Push(parts[i]);
+                }
+                if (isOperator(parts[i]))
+                {
+                    if (mystack.Count < 2)
                     {
-                        mystack.Push(parts[i]);
+                        return "E";
                     }
-                    if (isOperator(parts[i]))
+                    try
                     {
-                        if (mystack.Count < 2)
-                        {
-                            return "E";
-                        }
                         num2 = mystack.Pop();
                         num1 = mystack.Pop();
                         sum = calculate(parts[i], num1, num2);
                         mystack.Push(sum);
                     }
-                    if (isOperator2(parts[i]))
+                    catch (InvalidOperationException)
                     {
-                        num1 = mystack.Pop();
-                        sum = unaryCalculate(parts[i], num1);
-                        mystack.Push(sum);
+                        return "E";
                     }
-                
-                sum = mystack.Peek();
-
-                if (mystack.Count == 1)
-                {
-                    return sum;
                 }
-                else
+                if (isOperator2(parts[i]))
                 {
-                    return "E";
+
+                    num1 = mystack.Pop();
+                    sum = unaryCalculate(parts[i], num1);
+                    mystack.Push(sum);
                 }
             }
+            sum = mystack.Peek();
+
+            if (mystack.Count == 1)
+            {
+                return sum;
+            }
+            else
+            {
+                return "E";
+            }
+            
         }
     }
 }
