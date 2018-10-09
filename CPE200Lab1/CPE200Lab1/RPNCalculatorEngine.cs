@@ -13,48 +13,61 @@ namespace CPE200Lab1
             if (str == null || str == "")
             {
                 return "E";
-            } else
+            }
+            else
             {
                 string[] parts = str.Split(' ');
-                Stack<string> operands = new Stack<string>();
+                Stack<string> text = new Stack<string>();
                 for (int i = 0; i < parts.Length; i++)
                 {
                     if (isNumber(parts[i]))
                     {
-                        operands.Push(parts[i]);
+                        text.Push(parts[i]);
                     }
                     else if (isOperator(parts[i]))
                     {
-                        if (operands.Count < 2)
+                        if (text.Count < 2)
                         {
                             return "E";
                         }
-                        string operands2 = operands.Pop();
-                        string operands1 = operands.Pop();
-                        string result = calculate(parts[i], operands1, operands2, 4);
+                        string text2 = text.Pop();
+                        string text1 = text.Pop();
+                        string result = calculate(parts[i], text1, text2, 4);
                         if (result is "E")
                         {
                             return result;
                         }
-                        operands.Push(result);
+                        text.Push(result);
                     }
+                    else
+                    {
+                        string numberoroperator = parts[i];
+                        for (int j = 0; j < numberoroperator.Length; j++)
+                        {
+                            if (isOperator(numberoroperator[j].ToString()) && numberoroperator[j] != '-')
+                            {
+                                return "E";
+                            }
+                        }
+                    }  
                 }
                 //FIXME, what if there is more than one, or zero, items in the stack?
-                if (operands.Count > 1)
+                if (text.Count != 1)
                 {
                     return "E";
                 }
-                return operands.Pop();
+                else if (text.Count == 1)
+                {
+                    string number = text.Pop();
+                    for (int i = 0; i < number.Length; i++)
+                    {
+                        if (isOperator(number[i].ToString()) && number[0] != '-') return "E";
+                    }
+
+                    text.Push(number);
+                }
+                return text.Pop();
             }
         }
-            
-        
-        /*public override void handleSpace()
-        {
-            base.handleSpace();
-            isNumberPart = false;
-
-
-        }*/
     }
 }
