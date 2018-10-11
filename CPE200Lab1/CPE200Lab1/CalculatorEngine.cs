@@ -49,7 +49,7 @@ namespace CPE200Lab1
             }
             return false;
         }
-        public string Process(string str)
+        public string calculate(string str)
         {
             string[] parts = str.Split(' ');
             if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
@@ -62,7 +62,7 @@ namespace CPE200Lab1
             }
 
         }
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {

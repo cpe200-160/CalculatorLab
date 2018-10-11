@@ -22,9 +22,10 @@ namespace CPE200Lab1
 
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        protected Stack<string> rpnStack = new Stack<string>();
+        public string calculate(string str)
         {
-            Stack<string> rpnStack = new Stack<string>();
+            //Stack<string> rpnStack = new Stack<string>();
             //separate the intreger and fraction
             string[] parts = str.ToString().Split(' ');
             string result;
@@ -61,7 +62,7 @@ namespace CPE200Lab1
                 {
                     string firstOperand;
                     firstOperand = rpnStack.Pop();
-                    result = unaryCalculate(part, firstOperand);
+                    result = calculate(part, firstOperand);
                     rpnStack.Push(result);
                 }
             }
