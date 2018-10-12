@@ -59,12 +59,30 @@ namespace CPE200Lab1
                 else if (text.Count == 1)
                 {
                     string number = text.Pop();
+                    string numberreturn = number;
                     for (int i = 0; i < number.Length; i++)
                     {
                         if (isOperator(number[i].ToString()) && number[0] != '-') return "E";
                     }
-
-                    text.Push(number);
+                    string[] checktext = number.Split('.');
+                    string decimals;
+                    int decimalsint;
+                    if (checktext.Length > 1 && isNumber(checktext[1]) && checktext[1].Length > 4)
+                    {
+                        decimals = checktext[1].Substring(0, 5);
+                        if (Int32.Parse(decimals[4].ToString()) > 5)
+                        {
+                            decimalsint = Int32.Parse(checktext[1].Substring(0, 4));
+                            decimalsint++;
+                            decimals = decimalsint.ToString();
+                        }
+                        else
+                        {
+                            decimals = checktext[1].Substring(0, 4);
+                        }
+                        numberreturn = checktext[0] + "." + decimals;
+                    }
+                    text.Push(numberreturn);
                 }
                 return text.Pop();
             }
