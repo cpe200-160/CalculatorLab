@@ -15,12 +15,12 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
+		private RPNCalculatorEngine myengine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
+			myengine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -30,12 +30,15 @@ namespace CPE200Lab1
                 case '-':
                 case 'X':
                 case '÷':
-                    return true;
+				case 'x':
+				case '%':
+				case '√':
+					return true;
             }
             return false;
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -54,7 +57,7 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -65,7 +68,7 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
-                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                lblDisplay.Text += " " + ((Button)sender).Text;
                 isSpaceAllowed = false;
             }
         }
@@ -101,7 +104,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = myengine.calculate(lblDisplay.Text) ;
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
@@ -162,7 +165,7 @@ namespace CPE200Lab1
             if(isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
-                isSpaceAllowed = false;
+             //   isSpaceAllowed = false;
             }
         }
     }
