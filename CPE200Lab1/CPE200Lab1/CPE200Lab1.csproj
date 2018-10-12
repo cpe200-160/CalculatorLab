@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic1CalculatorEngine.cs" />
     <Compile Include="CalculatorEngine.cs" />
     <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
@@ -60,6 +61,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RPNCalculatorEngine.cs" />
     <EmbeddedResource Include="ExtendForm.resx">
       <DependentUpon>ExtendForm.cs</DependentUpon>
     </EmbeddedResource>
