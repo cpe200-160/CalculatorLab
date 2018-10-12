@@ -45,11 +45,13 @@ namespace CPE200Lab1
                 {                        
                     try
                     {
+                       
                         string firstOperand, secondOperand;
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
                         result = calculate(part, firstOperand, secondOperand);
                         rpnStack.Push(result);
+
                     }
                     
                     catch (InvalidOperationException)
