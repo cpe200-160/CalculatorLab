@@ -30,9 +30,8 @@ namespace CPE200Lab1
             isAfterEqual = false;
             firstOperand = null;
         }
-
       
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -90,7 +89,7 @@ namespace CPE200Lab1
             {
                 lblDisplay.Text = result;
             }
-
+           
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -132,7 +131,6 @@ namespace CPE200Lab1
             }
             isAllowBack = false;
         }
-
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -151,7 +149,6 @@ namespace CPE200Lab1
             }
             isAfterEqual = true;
         }
-
         private void btnDot_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -172,7 +169,6 @@ namespace CPE200Lab1
                 hasDot = true;
             }
         }
-
         private void btnSign_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -231,7 +227,6 @@ namespace CPE200Lab1
                 }
             }
         }
-
         private void btnMP_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "Error")
@@ -241,12 +236,10 @@ namespace CPE200Lab1
             memory += Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
-
         private void btnMC_Click(object sender, EventArgs e)
         {
             memory = 0;
         }
-
         private void btnMM_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "Error")
@@ -256,7 +249,6 @@ namespace CPE200Lab1
             memory -= Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
-
         private void btnMR_Click(object sender, EventArgs e)
         {
             if(lblDisplay.Text is "error")
@@ -265,5 +257,7 @@ namespace CPE200Lab1
             }
             lblDisplay.Text = memory.ToString();
         }
+        
     }
+    
 }

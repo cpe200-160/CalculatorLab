@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public string Process(string str)
         {
             string first, second, result;
@@ -39,7 +44,7 @@ namespace CPE200Lab1
                         else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
                         {
                             first = myStack.Pop();
-                            myStack.Push(unaryCalculate(parts[i], first));
+                            myStack.Push(calculate(parts[i], first));
                         }
                         else if (parts[i] == "%")
                         {

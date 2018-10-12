@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,24 +7,13 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    
-    public class CalculatorEngine: BasicCalculatorEngine
+    public class BasicCalculatorEngine
     {
-        /// <summary>
-        /// Check the numbers
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-        /// <summary>
-        /// Check the operators
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
 
         public bool isOperator(string str)
         {
@@ -41,34 +31,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        /// <summary>
-        /// Split the numbers
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-
-        public string Process(string str)
-        {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
-            {
-                return "E";
-            }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2]);
-            }
-
-        }
-
-        /// <summary>
-        /// Calculate squar root and 1/x
-        /// </summary>
-        /// <param name="operate"></param>
-        /// <param name="operand"></param>
-        /// <param name="maxOutputSize"></param>
-        /// <returns></returns>
-        public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
+        public string calculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
             {
@@ -116,15 +79,6 @@ namespace CPE200Lab1
             return "E";
         }
 
-        /// <summary>
-        /// Calculate plus minus multiply divide and percentage
-        /// </summary>
-        /// <param name="operate"></param>
-        /// <param name="firstOperand"></param>
-        /// <param name="secondOperand"></param>
-        /// <param name="maxOutputSize"></param>
-        /// <returns></returns>
-
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -164,7 +118,5 @@ namespace CPE200Lab1
             }
             return "E";
         }
-      
     }
-   
 }
