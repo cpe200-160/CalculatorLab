@@ -7,17 +7,17 @@ using System.Collections;
 
 namespace CPE200Lab1
 {
-	public class RPNCalculatorEngine : CalculatorEngine
+	public class RPNCalculatorEngine : basicCalculatorEngine
 	{
+		protected Stack<string> mystack = new Stack<string>();
 		/// <summary>
 		/// process to calculate 2 number which input
 		/// </summary>
-		/// <param name="str">str is string in consle for input to process </param>
+		/// <param name="oper">str is string in consle for input to process </param>
 		/// <returns></returns>
-		public string Process(string str)
+		public string calculate(string oper)
 		{
-			string[] parts = str.Split(' ');
-			Stack<string> mystack = new Stack<string>();
+			string[] parts = oper.Split(' ');
 			if (isOperator(parts[0])) return "E";
 			string fristOperator;
 			string secondOperator;
@@ -41,7 +41,7 @@ namespace CPE200Lab1
 					else if (parts[i] == "√" || parts[i] == "1/x")
 					{
 						fristOperator = mystack.Pop().ToString();
-						mystack.Push(unaryCalculate(parts[i], fristOperator, 8));
+						mystack.Push(calculate(parts[i], fristOperator, 8));
 					}
 					else
 					{

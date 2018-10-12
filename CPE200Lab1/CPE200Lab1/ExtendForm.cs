@@ -15,14 +15,12 @@ namespace CPE200Lab1
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
-		private RPNCalculatorEngine RPNCalculator;
+		private RPNCalculatorEngine myengine;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-			RPNCalculator = new RPNCalculatorEngine();
+			myengine = new RPNCalculatorEngine();
         }
 
         private bool isOperator(char ch)
@@ -40,7 +38,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void number_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -59,7 +57,7 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private void btnBinaryOperator_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
             {
@@ -106,7 +104,7 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = RPNCalculator.Process(lblDisplay.Text) ;
+            string result = myengine.calculate(lblDisplay.Text) ;
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
