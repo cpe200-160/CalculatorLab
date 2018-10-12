@@ -49,7 +49,7 @@ namespace CPE200Lab1
                                 return "E";
                             }
                         }
-                    }  
+                    }
                 }
                 //FIXME, what if there is more than one, or zero, items in the stack?
                 if (text.Count != 1)
