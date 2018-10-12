@@ -13,7 +13,7 @@ namespace CPE200Lab1
         /// </summary>
         /// <param name="str"></param>
         /// <returns>result</returns>
-        public string Process(string str)
+        public string calculate(string str)
         {
             string[] parts = str.Split(' ');
             Stack<string> stack = new Stack<string>();
@@ -38,7 +38,7 @@ namespace CPE200Lab1
                         try
                         {
                             firstOperand = stack.Pop();
-                            result = unaryCalculate(parts[i], firstOperand);
+                            result = calculate(parts[i], firstOperand);
                             stack.Push(result);
                         }
                         catch (InvalidOperationException)
@@ -49,7 +49,7 @@ namespace CPE200Lab1
                     else if (parts[i] == "1/x")
                     {
                         firstOperand = stack.Pop();
-                        result = unaryCalculate(parts[i], firstOperand);
+                        result = calculate(parts[i], firstOperand);
                         stack.Push(result);
                     }
                     else if (parts[i] == "%")

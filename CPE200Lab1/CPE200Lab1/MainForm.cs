@@ -78,7 +78,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -139,11 +139,11 @@ namespace CPE200Lab1
             string[] parts = lblDisplay.Text.Split(' ');
             if (engine.isOperator(parts[1]))
             {
-                result = engine.Process(lblDisplay.Text);
+                result = engine.calculate(lblDisplay.Text);
             }
             else
             {
-                result = rpnEngine.Process(lblDisplay.Text);
+                result = rpnEngine.calculate(lblDisplay.Text);
             }
             if (result is "E" || result.Length > 8)
             {
