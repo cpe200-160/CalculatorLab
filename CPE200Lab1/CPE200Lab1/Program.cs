@@ -17,6 +17,6 @@ namespace CPE200Lab1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ExtendForm());
-        }
+            Application.Run(new MainForm());         }
     }
 }
