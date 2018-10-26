@@ -12,13 +12,13 @@ namespace CPE200Lab1
 
 		public override string Process(string str)
 		{
-			Boolean w = true;
+			//Boolean w = true;
 			int ValueNum = 0;
 			for (int j = 0;j < str.Length; j++)
 			{
 				if(str == null)
 				{
-					w = false;
+					///w = false;
 					return "E";
 				}
 			}

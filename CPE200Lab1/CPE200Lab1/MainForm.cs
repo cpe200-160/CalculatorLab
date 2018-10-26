@@ -20,6 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+		private SimpleCalculatorEngine simple;
 
         private void resetAll()
         {
@@ -81,7 +82,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = simple.unaryCalculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
