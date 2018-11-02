@@ -10,7 +10,8 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+
+    public partial class MainForm : Form ,View
     {
         private bool hasDot;
         private bool isAllowBack;
@@ -20,7 +21,13 @@ namespace CPE200Lab1
         private string operate;
         private string SecondOperate;
         private double memory;
-        private SimpleCalculatorEngine engine;
+        private Model engine;
+        private Controller controller;
+
+        public void Notify(Model m)
+        {
+            throw new NotImplementedException();
+        }
 
         private void resetAll()
         {
@@ -38,7 +45,9 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memory = 0;
-            engine = new SimpleCalculatorEngine();
+            engine = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.AddModel(engine);
             resetAll();
         }
 
@@ -82,7 +91,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand);
+            string result = ((CalculatorModel)engine).calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -107,7 +116,8 @@ namespace CPE200Lab1
             if (firstOperand != null)
             {
                 string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
+                controller.Calculate(lblDisplay.Text);
+                string result = ((CalculatorModel)engine).calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
                     lblDisplay.Text = "Error";
@@ -137,14 +147,14 @@ namespace CPE200Lab1
             isAllowBack = false;
         }
 
-        private void btnEqual_Click(object sender, EventArgs e)
+        private void btnEqual_Click(object sender, EventArgs e)//CONTROLLER
         {
             if (lblDisplay.Text is "Error")
             {
                 return;
             }
             string secondOperand = lblDisplay.Text;
-            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string result = ((CalculatorModel)engine).calculate(operate, firstOperand, secondOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";

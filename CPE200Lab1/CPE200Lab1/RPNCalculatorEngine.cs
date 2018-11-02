@@ -20,7 +20,7 @@ namespace CPE200Lab1
     ///</remarks>
    
 
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine 
     {
         protected Stack<string> rpnStack = new Stack<string>();
         public string calculate(string str)

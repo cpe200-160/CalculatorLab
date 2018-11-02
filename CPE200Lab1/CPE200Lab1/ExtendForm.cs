@@ -14,19 +14,28 @@ namespace CPE200Lab1
 {   /// <summary>
 /// contain Number,MathOperation to do in Rpnterm
 /// </summary>
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form ,View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private RPNCalculatorEngine RpnEngine;
+        private CalculatorModel RpnEngine;
+        private Controller controller;
 
         public ExtendForm()
         {
             InitializeComponent();
-            RpnEngine = new RPNCalculatorEngine();
+            //RpnEngine = new RPNCalculatorEngine();
+            RpnEngine = new CalculatorModel();
+            controller = new CalculatorController();
+            RpnEngine.AttachObserver(this);
+            controller.AddModel(RpnEngine);
         }
 
+        public void NoticeMeSenpai(Model m)
+        {
+            lblDisplay.Text = ((CalculatorModel)m).GetAnswer();
+        }
         private bool isOperator(char ch)
         {
             switch (ch)
@@ -106,14 +115,14 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            
-            string result = RpnEngine.calculate(lblDisplay.Text);
-           
-            if (result is "E")
-            {
-                    lblDisplay.Text = "Error";
-            }
-            lblDisplay.Text = result;
+             controller.Calculate(lblDisplay.Text);
+             string result = RpnEngine.calculate(lblDisplay.Text);
+
+              if (result is "E")
+              {
+                      lblDisplay.Text = "Error";
+              }
+              lblDisplay.Text = result;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -184,6 +193,11 @@ namespace CPE200Lab1
             string current = lblDisplay.Text;
             lblDisplay.Text += " " + ((Button)sender).Text + " ";
             isSpaceAllowed = false;
+        }
+
+        public void Notify(Model m)
+        {
+            throw new NotImplementedException();
         }
     }
 }

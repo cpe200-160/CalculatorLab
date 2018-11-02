@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-    /// <summary>
-    /// Main CalculatorEngine class
-    /// </summary>
+/// <summary>
+/// Main CalculatorEngine class
+/// </summary>
 namespace CPE200Lab1
 {   /// <summary>
     /// contain methods to perform math funtion
@@ -17,17 +17,19 @@ namespace CPE200Lab1
     ///<para>can be perform both intreger and double
     ///</para>
     /// </remarks>
-    public class CalculatorEngine
+    public class CalculatorEngine 
     {
- 
+
         public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
+
         }
-       
+
         public bool isOperator(string str)
         {
+
             switch (str)
             {
                 case "+":
@@ -37,9 +39,11 @@ namespace CPE200Lab1
                     return true;
             }
             return false;
+
         }
         public bool isUnaryOperator(string str)
         {
+
             switch (str)
             {
                 case "1/x":
@@ -48,6 +52,7 @@ namespace CPE200Lab1
                     return true;
             }
             return false;
+
         }
         public string calculate(string str)
         {
@@ -140,9 +145,10 @@ namespace CPE200Lab1
                     return result3.ToString();
             }
             return "E";
+
         }
 
-        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)//MODEL
         {
             switch (operate)
             {
@@ -206,6 +212,7 @@ namespace CPE200Lab1
                     break;
             }
             return "E";
+
         }
     }
 }
