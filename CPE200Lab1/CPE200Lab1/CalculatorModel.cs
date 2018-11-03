@@ -8,35 +8,30 @@ namespace CPE200Lab1
 {
     class CalculatorModel : Model
     {
-        protected CalculatorEngine C;
-        protected RPNCalculatorEngine RpnC;
+        protected CalculatorEngine mainC;
+        protected SimpleCalculatorEngine simpleC;
         private string result;
 
         public CalculatorModel()
         {
-            C    = new CalculatorEngine();
-            RpnC = new RPNCalculatorEngine();
-
+            mainC    = new CalculatorEngine();
+            simpleC = new SimpleCalculatorEngine();
         }
         public bool isNumber(string str)
         {
-            return C.isNumber(str);
+            return mainC.isNumber(str);
         }
-         //public bool isOpera
-        public string GetAnswer()
+        
+        public string gettingSimpleAnswer()
         {
             return result;
         }
-        public void SequentialCalculate(string str)
+        public void simpleProcessingCalculate(string str)
         {
-            result = C.calculate(str);
+            result = simpleC.calculate(str);
             if(this.result == "E")
             {
-                result = RpnC.calculate(str);
-                if(this.result == "E")
-                {
                     result = "E";
-                }
                 NoticeMeSenpai();
             }
         }
@@ -48,9 +43,6 @@ namespace CPE200Lab1
         {
             return calculate(Operate, Operand);
         }
-        public string calculate(string Text)
-        {
-            return calculate(Text);
-        }
+       
     }
 }

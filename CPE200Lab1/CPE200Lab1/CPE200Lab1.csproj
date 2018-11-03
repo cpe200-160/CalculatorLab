@@ -64,7 +64,9 @@
     <Compile Include="Model.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RpnCalculatorController.cs" />
     <Compile Include="RPNCalculatorEngine.cs" />
+    <Compile Include="RpnCalculatorModel.cs" />
     <Compile Include="SimpleCalculatorEngine.cs" />
     <Compile Include="View.cs" />
     <EmbeddedResource Include="ExtendForm.resx">

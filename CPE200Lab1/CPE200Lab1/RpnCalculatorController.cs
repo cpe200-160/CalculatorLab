@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class CalculatorController : Controller
+    class RpnCalculatorController : Controller
     {
-        public override void Calculate(string str)
+         public override void Calculate(string str)
         {
-            foreach (CalculatorModel m in ControlList)
+            foreach (RpnCalculatorModel m in ControlList)
             {
-                m.simpleProcessingCalculate(str);
+                m.rpnProcessingCalculate(str);
             }
         }
     }
 }
-
