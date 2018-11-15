@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-    /// <summary>
-    /// main RpncalculatorEngine class
-    /// </summary>
+/// <summary>
+/// main RpncalculatorEngine class
+/// </summary>
 namespace CPE200Lab1
 {
     /// <summary>
@@ -18,12 +18,12 @@ namespace CPE200Lab1
     ///<para>can be perform both intreger and double
     ///</para>
     ///</remarks>
-   
 
-    public class RPNCalculatorEngine : CalculatorEngine 
+
+    public class RPNCalculatorEngine : CalculatorEngine
     {
         protected Stack<string> rpnStack = new Stack<string>();
-        public string calculate(string str)
+        public string Calculate(string str)
         {
             //Stack<string> rpnStack = new Stack<string>();
             //separate the intreger and fraction
@@ -42,10 +42,10 @@ namespace CPE200Lab1
                     rpnStack.Push(part);
                 }
                 else if (isOperator(part))
-                {                        
+                {
                     try
                     {
-                       
+
                         string firstOperand, secondOperand;
                         secondOperand = rpnStack.Pop();
                         firstOperand = rpnStack.Pop();
@@ -53,7 +53,7 @@ namespace CPE200Lab1
                         rpnStack.Push(result);
 
                     }
-                    
+
                     catch (InvalidOperationException)
                     {
 

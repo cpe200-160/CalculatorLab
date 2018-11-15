@@ -18,9 +18,9 @@ namespace CPE200Lab1
         {
             secondOperand = Double.Parse(SecondOperand);
         }
-        public String calculate(string operate)
+        public String Calculate(string operate)
         {
-            return calculate(operate);
+            return Calculate(operate);
         }
     }
 }

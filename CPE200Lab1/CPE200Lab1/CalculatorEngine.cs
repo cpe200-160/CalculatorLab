@@ -17,7 +17,7 @@ namespace CPE200Lab1
     ///<para>can be perform both intreger and double
     ///</para>
     /// </remarks>
-    public class CalculatorEngine 
+    public class CalculatorEngine
     {
 
         public bool isNumber(string str)

@@ -21,65 +21,35 @@ namespace CPE200Lab1
             ControlList.Add(m);
         }
         // The `virtual` keyword allows the method to be overridden
-        public virtual void calculate(string str)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnNumber_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual void Calculate(string str) => throw new NotImplementedException();
 
-        internal void btnUnaryOperator_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        internal void BtnNumber_Click(object sender, EventArgs e) => throw new NotImplementedException();
 
-        internal void btnOperator_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        internal void BtnUnaryOperator_Click(object sender, EventArgs e) => throw new NotImplementedException();
 
-        internal void btnEqual_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        internal void BtnOperator_Click(object sender, EventArgs e) => throw new NotImplementedException();
 
-        internal void btnDot_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnSign_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnClear_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnMP_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnMC_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnMR_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnBack_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void btnMM_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        internal void performedAction(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        internal void BtnEqual_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnDot_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnSign_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnClear_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnMP_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnMC_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnMR_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnBack_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnMM_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnBinaryOperator_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
+        internal void BtnSpace_Click(object sender, EventArgs e) => throw new NotImplementedException();
+
     }
 }

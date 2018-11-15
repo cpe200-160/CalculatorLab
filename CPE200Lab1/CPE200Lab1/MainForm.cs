@@ -11,16 +11,8 @@ using System.Windows.Forms;
 namespace CPE200Lab1
 {
 
-    public partial class MainForm : Form ,View
+    public partial class MainForm : Form, View
     {
-        private bool hasDot;
-        private bool isAllowBack;
-        private bool isAfterOperater;
-        private bool isAfterEqual;
-        private string firstOperand;
-        private string operate;
-        private string SecondOperate;
-        private double memory;
         Model model;
         Controller controller;
 
@@ -36,69 +28,32 @@ namespace CPE200Lab1
             model.AttachObserver(this);
             controller = new CalculatorController();
             controller.AddModel(model);
-           
+
         }
 
-        public void btnNumber_Click(object sender, EventArgs e)
-         {
-             controller.performedAction()
-           // controller.ActionPerformed(TwoZeroFourEightController.UP);
-        }
+        public void BtnNumber_Click(object sender, EventArgs e) => controller.BtnNumber_Click(sender, e);
 
-         public void btnUnaryOperator_Click(object sender, EventArgs e)
-         {
-            controller.btnUnaryOperator_Click(sender, e);
-         }
+        public void BtnUnaryOperator_Click(object sender, EventArgs e) => controller.BtnUnaryOperator_Click(sender, e);
 
-         public void btnOperator_Click(object sender, EventArgs e)
-         {
-            controller.btnOperator_Click(sender, e);
-         }
+        public void BtnOperator_Click(object sender, EventArgs e) => controller.BtnOperator_Click(sender, e);
 
-         public void btnEqual_Click(object sender, EventArgs e)
-         {
-            controller.btnEqual_Click(sender, e);
-         }
+        public void BtnEqual_Click(object sender, EventArgs e) => controller.BtnEqual_Click(sender, e);
 
-         public void btnDot_Click(object sender, EventArgs e)
-         {
-            controller.btnDot_Click(sender, e);
-         }
+        public void BtnDot_Click(object sender, EventArgs e) => controller.BtnDot_Click(sender, e);
 
-         public void btnSign_Click(object sender, EventArgs e)
-         {
-            controller.btnSign_Click(sender, e);
-         }
+        public void BtnSign_Click(object sender, EventArgs e) => controller.BtnSign_Click(sender, e);
 
-         public void btnClear_Click(object sender, EventArgs e)
-         {
-            controller.btnClear_Click(sender, e);
-         }
+        public void BtnClear_Click(object sender, EventArgs e) => controller.BtnClear_Click(sender, e);
 
-         public void btnBack_Click(object sender, EventArgs e)
-         {
-            controller.btnBack_Click(sender, e);
-         }
+        public void BtnBack_Click(object sender, EventArgs e) => controller.BtnBack_Click(sender, e);
 
-         public void btnMP_Click(object sender, EventArgs e)
-         {
-            controller.btnMP_Click(sender, e);
-         }
+        public void BtnMP_Click(object sender, EventArgs e) => controller.BtnMP_Click(sender, e);
 
-         public void btnMC_Click(object sender, EventArgs e)
-         {
-            controller.btnMC_Click(sender, e);
-         }
+        public void BtnMC_Click(object sender, EventArgs e) => controller.BtnMC_Click(sender, e);
 
-         public void btnMM_Click(object sender, EventArgs e)
-         {
-            controller.btnMM_Click(sender, e);
-         }
+        public void BtnMM_Click(object sender, EventArgs e) => controller.BtnMM_Click(sender, e);
 
-         public void btnMR_Click(object sender, EventArgs e)
-         {
-            controller.btnMR_Click(sender, e);
-         }
-         
+        public void BtnMR_Click(object sender, EventArgs e) => controller.BtnMR_Click(sender, e);
+
     }
 }
