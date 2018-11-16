@@ -10,14 +10,17 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class ExtendForm : Form, CalculaterView
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
         private CalculatorEngine basicEngine;
-    
+        public Model model;
+        public Controller controller;
+
+
 
         public ExtendForm()
         {
@@ -26,10 +29,11 @@ namespace CPE200Lab1
             basicEngine = new CalculatorEngine();
         }
 
-        
+
         public bool isOperator(char ch)
         {
-            switch(ch) {
+            switch (ch)
+            {
                 case '+':
                 case '-':
                 case 'X':
@@ -61,14 +65,14 @@ namespace CPE200Lab1
             isSpaceAllowed = true;
         }
 
-        private void btnUnaryOperator_Click(object sender,EventArgs e)
+        private void btnUnaryOperator_Click(object sender, EventArgs e)
         {
-            string operate,firstOperand;
+            string operate, firstOperand;
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
             string result = engine.calculate(operate, firstOperand);
-            
-           string current = lblDisplay.Text;
+
+            string current = lblDisplay.Text;
             if (current[current.Length - 1] != ' ')
             {
                 if (result is "E" || result.Length > 8)
@@ -86,7 +90,7 @@ namespace CPE200Lab1
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
             }
-            
+
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
@@ -116,7 +120,8 @@ namespace CPE200Lab1
             if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
             }
@@ -141,15 +146,16 @@ namespace CPE200Lab1
 
             result = engine.Process(lblDisplay.Text);
             memDisplay = lblDisplay.Text;
-            if(result == "B")
+            if (result == "B")
             {
                 result = basicEngine.calculate(memDisplay);
             }
-            
+
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
-            } else
+            }
+            else
             {
                 lblDisplay.Text = result;
             }
@@ -169,14 +175,16 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (current[current.Length - 1] is '-')
+            }
+            else if (current[current.Length - 1] is '-')
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current + "-";
             }
@@ -189,7 +197,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            if(!isContainDot)
+            if (!isContainDot)
             {
                 isContainDot = true;
                 lblDisplay.Text += ".";
@@ -199,11 +207,11 @@ namespace CPE200Lab1
 
         private void btnSpace_Click(object sender, EventArgs e)
         {
-            if(lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error")
             {
                 return;
             }
-            if(isSpaceAllowed)
+            if (isSpaceAllowed)
             {
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
@@ -211,3 +219,4 @@ namespace CPE200Lab1
         }
     }
 }
+

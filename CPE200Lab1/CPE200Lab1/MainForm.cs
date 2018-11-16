@@ -21,7 +21,7 @@ namespace CPE200Lab1
         private double memory;
         private CalculatorEngine engine;
 
-        private void resetAll()
+         void resetAll()
         {
             lblDisplay.Text = "0";
             isAllowBack = true;
@@ -41,6 +41,11 @@ namespace CPE200Lab1
             resetAll();
         }
 
+        /// <summary>
+        /// Show number you clicked on lblDisplay
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
