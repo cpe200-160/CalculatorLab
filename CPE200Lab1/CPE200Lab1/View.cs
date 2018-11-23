@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
-
 {
-    public interface CalculaterView
+    public interface View
     {
         void Notify(Model m);
     }

@@ -43,7 +43,7 @@ namespace CPE200Lab1
 
         }
 
-        public string Process(string str)
+        public string calculate(string str)
         {
             myStack = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -55,7 +55,7 @@ namespace CPE200Lab1
                 }
                 else
                 {
-                    myStack.Push(calculate(parts[i]));
+                    myStack.Push(Process(parts[i]));
                 }
             }
 
@@ -67,7 +67,7 @@ namespace CPE200Lab1
 
         }
 
-        public string calculate(string operate)
+        public string Process(string operate)
         {
             string RPNResult, firstOperand, secondOperand;
             if (operate == "%")

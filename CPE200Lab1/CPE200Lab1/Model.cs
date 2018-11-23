@@ -16,18 +16,13 @@ namespace CPE200Lab1
         }
         public void NotifyAll()
         {
-            foreach(CalculaterView m in arr)
+            foreach(View m in arr)
             {
                 m.Notify(this);
             }
         }
-        public void AttachObserver(CalculaterView m)
+        public void AttachObserver(View m)
         {
-            if (m == null)
-            {
-                throw new ArgumentNullException(nameof(m));
-            }
-
             arr.Add(m);
         }
     }

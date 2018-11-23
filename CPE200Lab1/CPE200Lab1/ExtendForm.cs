@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form, CalculaterView
+    public partial class ExtendForm : Form, View
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
@@ -19,6 +19,7 @@ namespace CPE200Lab1
         private CalculatorEngine basicEngine;
         public Model model;
         public Controller controller;
+       
 
 
 
@@ -27,8 +28,16 @@ namespace CPE200Lab1
             InitializeComponent();
             engine = new RPNCalculatorEngine();
             basicEngine = new CalculatorEngine();
+            model = new CalculatorModel();
+            model.AttachObserver(this);
+            controller = new CalculatorController();
+            controller.Model(model);
         }
 
+        public void Notify(Model m)
+        {
+            lblDisplay.Text = ((CalculatorModel)m).Display();
+        }
 
         public bool isOperator(char ch)
         {
@@ -144,7 +153,7 @@ namespace CPE200Lab1
             string result;
             string memDisplay;
 
-            result = engine.Process(lblDisplay.Text);
+            result = engine.calculate(lblDisplay.Text);
             memDisplay = lblDisplay.Text;
             if (result == "B")
             {
