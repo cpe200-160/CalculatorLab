@@ -20,10 +20,15 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private Model model;
+        private Controller controller;
+        private string display = "0";
 
-        private void resetAll()
+
+         void resetAll()
         {
             lblDisplay.Text = "0";
+            display = "0";
             isAllowBack = true;
             hasDot = false;
             isAfterOperater = false;
@@ -38,9 +43,17 @@ namespace CPE200Lab1
             InitializeComponent();
             memory = 0;
             engine = new CalculatorEngine();
+            model = new CalculatorModel();
+            controller = new CalculatorController();
+            controller.Model(model);
             resetAll();
         }
 
+        /// <summary>
+        /// Show number you clicked on  
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
@@ -81,7 +94,7 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
