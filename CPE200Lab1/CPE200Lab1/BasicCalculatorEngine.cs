@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class BasicCalculatorEngine
+    public class BasicCalculatorEngine 
     {
         public bool isNumber(string str)
         {
