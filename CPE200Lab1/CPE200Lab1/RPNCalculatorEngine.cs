@@ -3,73 +3,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections;
-
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine:CalculatorEngine
+    public class RPNCalculatorEngine : BasicCalculatorEngine
     {
-        public new string Process(string str)
+        Stack<string> myStack = new Stack<string>();
+        public string calculate(string oper)
         {
-            string[] parts;
-            Stack myStack = new Stack();
-            parts = str.Split(' ');
-
-            for (int i = 0; i < parts.Length ; i++)
+            string firstOperand;
+            string secondOperand;
+            string result;
+            string[] parts = oper.Split(' ');
+            foreach (string list in parts)
             {
-                if (isNumber(parts[i]))
+                if (isNumber(list))
                 {
-                    myStack.Push(parts[i]);
+                    myStack.Push(list);
                 }
-                else if (isOperator(parts[i]))
+                else if (isOperator(list))
                 {
-                    if (myStack.Count == 0)
+                    try
+                    {
+                        if (list == "+" || list == "-" || list == "X" || list == "÷")
+                        {
+                            secondOperand = myStack.Pop();
+                            firstOperand = myStack.Pop();
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
+                        }
+                        else if (list == "%")
+                        {
+                            if (myStack.Count == 1)
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = "1";
+                            }
+                            else
+                            {
+                                secondOperand = myStack.Pop();
+                                firstOperand = myStack.Peek();
+                            }
+                            result = calculate(list, firstOperand, secondOperand);
+                            myStack.Push(result);
+                        }
+                        else
+                        {
+                            secondOperand = myStack.Pop();
+                            result = calculate(list, secondOperand);
+                            myStack.Push(result);
+                        }
+                    }
+                    catch (Exception e)
                     {
                         return "E";
-                    }
-                    else if (myStack.Count == 1)
-                    {
-                        string first = myStack.Pop().ToString();
-                        myStack.Push(unaryCalculate(parts[i], first, 4));
-                    }
-                    else if (parts[i] != "√" && parts[i] != "1/x" && parts[i] != "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Pop().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
-                    }
-                    else if (parts[i] == "%")
-                    {
-                        string first = myStack.Pop().ToString();
-                        string second = myStack.Peek().ToString();
-                        myStack.Push(calculate(parts[i], second, first, 4));
                     }
                 }
             }
             if (myStack.Count == 1)
             {
-                return myStack.Pop().ToString();
+                return myStack.Pop();
             }
-            // your code here
-            return "E";
-        }
-
-        private bool isOperator(string str)
-        {
-            switch (str)
+            else
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "√":
-                case "1/x":
-                case "%":
-
-
-                    return true;
+                return "E";
             }
-            return false;
+
         }
     }
 }
