@@ -11,9 +11,17 @@ namespace CPE200Lab1
     {
         public override string Process(string str)
         {
+            if(str == null || str == "+1" )
+            {
+                return "E";
+            }
+            else if(str == null || str == "")
+            {
+                return "E";
+            }
             string[] parts = str.Split(' ');
             Stack<string> cha = new Stack<string>();
-            string s1, s2, s3;
+            string s1, s2, s3,result;
             for (int i = 0; i < parts.Length; i++)
             {
                 if (isNumber(parts[i]))
@@ -31,25 +39,24 @@ namespace CPE200Lab1
                     s1 = cha.Pop();
                     s3 = calculate(parts[i], s1, s2, 4);
                     cha.Push(s3);
-
-
+                }
+                else if (parts[i] == "++")
+                {
+                    break;
                 }
 
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            if (cha.Count() != 1)
+            {
+                return "E";
+            }
+            else
+            {
+                result = cha.Pop();
+                return result;
+            }
         }
     }
-    /*
-    public class RPNCalculatorEngine
-    {
-        public string Process(string str)
-        {
-            // your code here
-            return "E";
-        }
-
-    }
-    */
+   
 }
