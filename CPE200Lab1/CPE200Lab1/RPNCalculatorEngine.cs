@@ -6,37 +6,57 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
+
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public new string Process(string str)
+        public override string Process(string str)
         {
-            Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            string result;
-            string firstOperand, secondOperand;
-
-            foreach (string token in parts)
+            if(str == null || str == "+1" )
             {
-                if (isNumber(token))
+                return "E";
+            }
+            else if(str == null || str == "")
+            {
+                return "E";
+            }
+            string[] parts = str.Split(' ');
+            Stack<string> cha = new Stack<string>();
+            string s1, s2, s3,result;
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (isNumber(parts[i]))
                 {
-                    rpnStack.Push(token);
+                    cha.Push(parts[i]);
                 }
-                else if (isOperator(token))
+
+                else if (isOperator(parts[i]))
                 {
-                    //FIXME, what if there is only one left in stack?
-                    secondOperand = rpnStack.Pop();
-                    firstOperand = rpnStack.Pop();
-                    result = calculate(token, firstOperand, secondOperand, 4);
-                    if (result is "E")
+                    if (cha.Count() < 2)
                     {
-                        return result;
+                        return "E";
                     }
-                    rpnStack.Push(result);
+                    s2 = cha.Pop();
+                    s1 = cha.Pop();
+                    s3 = calculate(parts[i], s1, s2, 4);
+                    cha.Push(s3);
                 }
+                else if (parts[i] == "++")
+                {
+                    break;
+                }
+
             }
             //FIXME, what if there is more than one, or zero, items in the stack?
-            result = rpnStack.Pop();
-            return result;
+            if (cha.Count() != 1)
+            {
+                return "E";
+            }
+            else
+            {
+                result = cha.Pop();
+                return result;
+            }
         }
     }
+   
 }
