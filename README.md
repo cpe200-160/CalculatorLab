@@ -1,4 +1,4 @@
-# Lab1
+# Lab1 Awesome Project
 Lab detail
 - Lab0 (master c932a3ba) complete base work
 - Lab1 (Lab1/master 84d1a9fa) add unary operator
